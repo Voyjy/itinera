@@ -1,0 +1,2574 @@
+[
+  {
+    "continent": "Oceania",
+    "country": "Australia",
+    "city": "Sydney",
+    "tags": [
+      "coastal",
+      "urban",
+      "cultural"
+    ],
+    "attractions": [
+      "Sydney Opera House",
+      "Sydney Harbour Bridge",
+      "Bondi Beach",
+      "Darling Harbour",
+      "Taronga Zoo",
+      "The Rocks",
+      "Royal Botanic Garden",
+      "Manly Beach",
+      "Queen Victoria Building",
+      "Art Gallery of New South Wales"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "The Darling at The Star",
+          "price_per_night": 700,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Park Hyatt Sydney",
+          "price_per_night": 680,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Shangri-La Hotel Sydney",
+          "price_per_night": 650,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Four Seasons Hotel Sydney",
+          "price_per_night": 630,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Rydges Sydney Harbour",
+          "price_per_night": 350,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "The Grace Hotel",
+          "price_per_night": 340,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Novotel Sydney Darling Harbour",
+          "price_per_night": 330,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Travelodge Hotel Sydney",
+          "price_per_night": 210,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "ibis Sydney World Square",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Song Hotel Sydney",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Sydney.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Australia",
+    "city": "Melbourne",
+    "tags": [
+      "cultural",
+      "urban",
+      "historic"
+    ],
+    "attractions": [
+      "Federation Square",
+      "Royal Botanic Gardens",
+      "Queen Victoria Market",
+      "National Gallery of Victoria",
+      "Melbourne Zoo",
+      "Eureka Skydeck",
+      "St. Kilda Beach",
+      "Flinders Street Station",
+      "Yarra River Cruise",
+      "Shrine of Remembrance"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Crown Towers Melbourne",
+          "price_per_night": 720,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Park Hyatt Melbourne",
+          "price_per_night": 690,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "The Langham Melbourne",
+          "price_per_night": 670,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Sofitel Melbourne on Collins",
+          "price_per_night": 650,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Rydges Melbourne",
+          "price_per_night": 350,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Novotel Melbourne on Collins",
+          "price_per_night": 340,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Crown Promenade",
+          "price_per_night": 330,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "ibis Styles Kingsgate Hotel",
+          "price_per_night": 220,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Mercure Welcome Melbourne",
+          "price_per_night": 210,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "City Centre Budget Hotel",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Melbourne.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Australia",
+    "city": "Brisbane",
+    "tags": [
+      "riverside",
+      "urban",
+      "nature"
+    ],
+    "attractions": [
+      "South Bank Parklands",
+      "Story Bridge",
+      "Brisbane City Botanic Gardens",
+      "Lone Pine Koala Sanctuary",
+      "Gallery of Modern Art (GOMA)",
+      "Mount Coot-tha Lookout",
+      "Roma Street Parkland",
+      "Queen Street Mall",
+      "Wheel of Brisbane",
+      "Kangaroo Point Cliffs"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Emporium Hotel South Bank",
+          "price_per_night": 650,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "W Brisbane",
+          "price_per_night": 620,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "The Westin Brisbane",
+          "price_per_night": 600,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Hilton Brisbane",
+          "price_per_night": 580,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Novotel Brisbane South Bank",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Mercure Brisbane King George Square",
+          "price_per_night": 310,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "The Point Brisbane Hotel",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Hotel Grand Chancellor Brisbane",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Best Western Astor Metropole Hotel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Madison Hotel Tower Mill",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Brisbane.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "New Zealand",
+    "city": "Auckland",
+    "tags": [
+      "coastal",
+      "urban",
+      "scenic"
+    ],
+    "attractions": [
+      "Sky Tower",
+      "Auckland War Memorial Museum",
+      "Waiheke Island",
+      "Auckland Zoo",
+      "Viaduct Harbour",
+      "Mount Eden",
+      "Auckland Art Gallery",
+      "Rangitoto Island",
+      "SEA LIFE Kelly Tarlton's Aquarium",
+      "Albert Park"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Park Hyatt Auckland",
+          "price_per_night": 700,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Sofitel Auckland Viaduct Harbour",
+          "price_per_night": 670,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Hilton Auckland",
+          "price_per_night": 650,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "The Grand by SkyCity",
+          "price_per_night": 630,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Crowne Plaza Auckland",
+          "price_per_night": 340,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Pullman Auckland",
+          "price_per_night": 330,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Cordis Auckland",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Kiwi International Hotel",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Ibis Budget Auckland Central",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Haka Lodge Auckland",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Auckland.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "New Zealand",
+    "city": "Queenstown",
+    "tags": [
+      "adventure",
+      "scenic",
+      "lakeside"
+    ],
+    "attractions": [
+      "Skyline Queenstown",
+      "Lake Wakatipu",
+      "Shotover Jet",
+      "Milford Sound (Tours from Queenstown)",
+      "The Remarkables",
+      "Queenstown Gardens",
+      "TSS Earnslaw Steamship",
+      "Kawarau Bridge Bungy",
+      "Arrowtown",
+      "Kiwi Birdlife Park"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Matakauri Lodge",
+          "price_per_night": 750,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Eichardt's Private Hotel",
+          "price_per_night": 720,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Hilton Queenstown Resort & Spa",
+          "price_per_night": 690,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "The Rees Hotel & Luxury Apartments",
+          "price_per_night": 670,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Novotel Queenstown Lakeside",
+          "price_per_night": 350,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Kamana Lakehouse",
+          "price_per_night": 340,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Ramada Queenstown Central",
+          "price_per_night": 330,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Heartland Hotel Queenstown",
+          "price_per_night": 210,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Pinewood Lodge",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Melbourne Lodge",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Queenstown.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "New Zealand",
+    "city": "Wellington",
+    "tags": [
+      "cultural",
+      "urban",
+      "scenic"
+    ],
+    "attractions": [
+      "Te Papa Museum",
+      "Wellington Cable Car",
+      "Zealandia Ecosanctuary",
+      "Mount Victoria Lookout",
+      "Wellington Botanic Garden",
+      "Oriental Bay",
+      "Weta Workshop Tour",
+      "Cuba Street",
+      "Beehive (Parliament Building)",
+      "Wellington Waterfront"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "InterContinental Wellington",
+          "price_per_night": 690,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "QT Wellington",
+          "price_per_night": 650,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Sofitel Wellington",
+          "price_per_night": 630,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Bolton Hotel",
+          "price_per_night": 620,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Rydges Wellington",
+          "price_per_night": 330,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "DoubleTree by Hilton Wellington",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Novotel Wellington",
+          "price_per_night": 310,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Mercure Wellington Abel Tasman",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "ibis Wellington",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "The Setup on Dixon",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Wellington.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "New Zealand",
+    "city": "Rotorua",
+    "tags": [
+      "geothermal",
+      "cultural",
+      "nature"
+    ],
+    "attractions": [
+      "Te Puia",
+      "Wai-O-Tapu Thermal Wonderland",
+      "Polynesian Spa",
+      "Skyline Rotorua",
+      "Redwoods Whakarewarewa Forest",
+      "Rotorua Lakefront",
+      "Tamaki Māori Village",
+      "Government Gardens",
+      "Agrodome",
+      "Kuirau Park"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Solitaire Lodge",
+          "price_per_night": 740,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Pullman Rotorua",
+          "price_per_night": 660,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Regent of Rotorua",
+          "price_per_night": 640,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Peppers on the Point",
+          "price_per_night": 620,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Novotel Rotorua Lakeside",
+          "price_per_night": 330,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Sudima Lake Rotorua",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Jet Park Hotel Rotorua",
+          "price_per_night": 310,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "BK's Rotorua Motor Lodge",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Ibis Rotorua",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Four Canoes Hotel",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Rotorua.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Fiji",
+    "city": "Suva",
+    "tags": [
+      "historic",
+      "cultural",
+      "urban"
+    ],
+    "attractions": [
+      "Fiji Museum",
+      "Colo-i-Suva Forest Park",
+      "Thurston Gardens",
+      "Albert Park",
+      "Government House",
+      "Handicraft Market",
+      "Grand Pacific Hotel",
+      "Parliament House",
+      "My Suva Park",
+      "Sacred Heart Cathedral"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Grand Pacific Hotel",
+          "price_per_night": 380,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Holiday Inn Suva",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tanoa Plaza Hotel",
+          "price_per_night": 310,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Novotel Suva Lami Bay",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Elixir Hotel and Serviced Apartments",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Capricorn Hotel",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Suva Motor Inn",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Southern Cross Hotel",
+          "price_per_night": 110,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "City Private Hotel",
+          "price_per_night": 100,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Rainforest Eco Lodge",
+          "price_per_night": 95,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Suva.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Fiji",
+    "city": "Nadi",
+    "tags": [
+      "coastal",
+      "cultural",
+      "relaxing"
+    ],
+    "attractions": [
+      "Sri Siva Subramaniya Temple",
+      "Garden of the Sleeping Giant",
+      "Sabeto Hot Springs and Mud Pool",
+      "Nadi Handicraft Market",
+      "Wailoaloa Beach",
+      "Nadi Produce Market",
+      "Namaka Market",
+      "Port Denarau Marina",
+      "Vuda Point Marina",
+      "Sleeping Giant Zipline"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "The Palms Denarau",
+          "price_per_night": 400,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Sofitel Fiji Resort & Spa",
+          "price_per_night": 380,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Hilton Fiji Beach Resort",
+          "price_per_night": 370,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Radisson Blu Resort",
+          "price_per_night": 360,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Tanoa International Hotel",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Novotel Nadi",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Nadi Bay Resort Hotel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Aquarius On The Beach",
+          "price_per_night": 120,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Smugglers Cove Beach Resort",
+          "price_per_night": 110,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Tropic of Capricorn",
+          "price_per_night": 100,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Nadi.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Fiji",
+    "city": "Lautoka",
+    "tags": [
+      "nature",
+      "cultural",
+      "relaxing"
+    ],
+    "attractions": [
+      "Lautoka Botanical Gardens",
+      "Churchill Park",
+      "Koroyanitu National Heritage Park",
+      "Abaca Village",
+      "Vuda Marina",
+      "Lautoka Sugar Mill",
+      "Shirley Park",
+      "Saweni Beach",
+      "Tifajek Hot Springs",
+      "Hare Krishna Temple"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "The Fiji Orchid",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "First Landing Beach Resort",
+          "price_per_night": 370,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Anchorage Beach Resort",
+          "price_per_night": 360,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Landers Bay Resort",
+          "price_per_night": 350,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Tanoa Waterfront Hotel",
+          "price_per_night": 220,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Lautoka Hotel",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Bekana Garden Island Resort",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "City Hotel Lautoka",
+          "price_per_night": 120,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Sea Breeze Hotel",
+          "price_per_night": 110,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "South Sea Hotel",
+          "price_per_night": 100,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Lautoka.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Fiji",
+    "city": "Labasa",
+    "tags": [
+      "nature",
+      "cultural",
+      "rural"
+    ],
+    "attractions": [
+      "Subrail Park",
+      "Snake Temple (Naag Mandir)",
+      "Three Sisters Mountain",
+      "Wasavulu Waterfalls",
+      "Labasa Market",
+      "Guru Nanak Khalsa College Grounds",
+      "Palmlea Farms Eco-Resort",
+      "Nukutatava Beach",
+      "Labasa Sugar Mill",
+      "Saint Mary's Catholic Church"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Palmlea Farms Eco-Resort",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Grand Eastern Hotel",
+          "price_per_night": 310,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Hotel Takia",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Northwind Hotel",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "The Friendly North Inn",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tropic Splendor",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Labasa Lodge",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Budget Motel Labasa",
+          "price_per_night": 100,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Sunset Motel",
+          "price_per_night": 95,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Northern Lodge",
+          "price_per_night": 90,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Labasa.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Solomon Islands",
+    "city": "Honiara",
+    "tags": [
+      "historic",
+      "cultural",
+      "coastal"
+    ],
+    "attractions": [
+      "Solomon Islands National Museum",
+      "Central Market",
+      "American War Memorial",
+      "Holy Cross Cathedral",
+      "Bonegi Beach",
+      "Mbonege WWII Shipwreck",
+      "Botanical Gardens",
+      "Tenaru Falls",
+      "Vilu War Museum",
+      "Kukum Highway Coastal Walk"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Heritage Park Hotel",
+          "price_per_night": 430,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Coral Sea Resort & Casino",
+          "price_per_night": 400,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Pacific Casino Hotel",
+          "price_per_night": 390,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "King Solomon Hotel",
+          "price_per_night": 370,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Honiara Hotel",
+          "price_per_night": 210,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Solomon Kitano Mendana Hotel",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Iron Bottom Sound Hotel",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Red Mansion Comfort Inn",
+          "price_per_night": 120,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Rekona Lodge",
+          "price_per_night": 110,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Tanuli Royal Plains Motel",
+          "price_per_night": 100,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Honiara.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Vanuatu",
+    "city": "Port Vila (Efate Island)",
+    "tags": [
+      "coastal",
+      "cultural",
+      "relaxing"
+    ],
+    "attractions": [
+      "Mele Cascades Waterfall",
+      "Hideaway Island Marine Reserve",
+      "Port Vila Market",
+      "Iririki Island",
+      "Ekasup Cultural Village",
+      "National Museum of Vanuatu",
+      "Blue Lagoon",
+      "Vanuatu Cultural Centre",
+      "Secret Garden",
+      "Wet 'n' Wild Adventure Park"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "The Havannah Vanuatu",
+          "price_per_night": 690,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Iririki Island Resort & Spa",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Warwick Le Lagon Resort",
+          "price_per_night": 440,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Ramada Resort Port Vila",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Mangoes Resort",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Chantilly's on the Bay",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Moorings Hotel",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Kaiviti Motel",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Pacific Paradise Motel",
+          "price_per_night": 150,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Seachange Lodge",
+          "price_per_night": 140,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Port_Vila_(Efate_Island).jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Vanuatu",
+    "city": "Luganville (Espiritu Santo)",
+    "tags": [
+      "adventure",
+      "coastal",
+      "historic"
+    ],
+    "attractions": [
+      "Millennium Cave",
+      "Champagne Beach",
+      "SS President Coolidge Dive Site",
+      "Blue Hole (Nanda & Matevulu)",
+      "Million Dollar Point",
+      "Luganville Market",
+      "Port Olry Beach",
+      "Mount Hope Waterfall",
+      "Santo Heritage Museum",
+      "Riri Blue Hole"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Ratua Island Resort & Spa",
+          "price_per_night": 670,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Aore Island Resort",
+          "price_per_night": 450,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Deco Stop Lodge",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "The Espiritu Hotel",
+          "price_per_night": 400,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Village de Santo Resort",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Beachfront Resort",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Turtle Bay Lodge",
+          "price_per_night": 240,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Luganville Hotel",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tropicana Motel",
+          "price_per_night": 150,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Unity Park Motel",
+          "price_per_night": 140,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Luganville_(Espiritu_Santo).jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Vanuatu",
+    "city": "Tanna (Tafea Province)",
+    "tags": [
+      "adventure",
+      "volcanic",
+      "cultural"
+    ],
+    "attractions": [
+      "Mount Yasur Volcano",
+      "Blue Cave",
+      "Port Resolution",
+      "Tanna Coffee Factory",
+      "Yakel Custom Village",
+      "Sulphur Bay",
+      "White Sand Beach",
+      "John Frum Cargo Cult Site",
+      "Giant Banyan Tree",
+      "Lowinio Hot Springs"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "White Grass Ocean Resort & Spa",
+          "price_per_night": 650,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Tanna Evergreen Resort",
+          "price_per_night": 430,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Rockwater Resort",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Tanna Lodge",
+          "price_per_night": 400,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Volcano Island Paradise",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Friendly Bungalows",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Tanna Horizon",
+          "price_per_night": 240,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Yasur View Bungalows",
+          "price_per_night": 130,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tanna Tree Top Lodge",
+          "price_per_night": 120,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Iwaru Beach Bungalows",
+          "price_per_night": 110,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Tanna_(Tafea_Province).jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Papua New Guinea",
+    "city": "Port Moresby",
+    "tags": [
+      "urban",
+      "historic",
+      "cultural"
+    ],
+    "attractions": [
+      "National Museum & Art Gallery",
+      "Port Moresby Nature Park",
+      "Parliament Haus",
+      "Ela Beach",
+      "Bomana War Cemetery",
+      "Adventure Park PNG",
+      "Varirata National Park",
+      "National Botanical Gardens",
+      "Vision City Mega Mall",
+      "Hanuabada Village"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Airways Hotel (Jacksons Parade)",
+          "price_per_night": 620,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Hilton Port Moresby",
+          "price_per_night": 540,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Grand Papua Hotel",
+          "price_per_night": 520,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Crowne Plaza Residences",
+          "price_per_night": 500,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Lamana Hotel",
+          "price_per_night": 320,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Citi Boutique Hotel",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Gateway Hotel",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Holiday Inn Express",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Hideaway Hotel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Lodge 10 Mile",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Port_Moresby.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Papua New Guinea",
+    "city": "Lae",
+    "tags": [
+      "historic",
+      "nature",
+      "urban"
+    ],
+    "attractions": [
+      "Rainforest Habitat",
+      "Lae War Cemetery",
+      "Lae Botanic Gardens",
+      "Unitech Campus Grounds",
+      "Mount Lunaman Lookout",
+      "Lae Market",
+      "Voco Point",
+      "Bumbu River",
+      "DCA Hill",
+      "Lae Golf Club"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Crossroads Hotel Lae",
+          "price_per_night": 580,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Lae International Hotel",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Morobe Hotel",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Melanesian Hotel",
+          "price_per_night": 440,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Huon Gulf Hotel",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Hotel Morobe",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "City Garden Lodge",
+          "price_per_night": 240,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Traveller's Inn",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "R&A Guesthouse",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Budget Inn Lae",
+          "price_per_night": 150,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Lae.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Papua New Guinea",
+    "city": "Madang",
+    "tags": [
+      "coastal",
+      "nature",
+      "relaxing"
+    ],
+    "attractions": [
+      "Madang Lagoon",
+      "Kalibobo Lighthouse",
+      "Machine Gun Beach",
+      "Madang Resort Marina",
+      "Coastwatchers' Memorial Beacon",
+      "Malolo Plantation Lodge Excursions",
+      "Snorkeling Coral Reefs",
+      "Balek Wildlife Sanctuary",
+      "Siar Island",
+      "Flying Fox Habitat"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Madang Resort Hotel",
+          "price_per_night": 600,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Kalibobo Village",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Jais Aben Resort",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Malolo Plantation Lodge",
+          "price_per_night": 440,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Smugglers Inn",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Coastwatchers Hotel",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Hotel Madang",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "PNG Budget Lodge",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Cassowary Lodge",
+          "price_per_night": 150,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Coconut Guesthouse",
+          "price_per_night": 140,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Madang.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Samoa",
+    "city": "Apia",
+    "tags": [
+      "cultural",
+      "coastal",
+      "historic"
+    ],
+    "attractions": [
+      "Robert Louis Stevenson Museum",
+      "Palolo Deep Marine Reserve",
+      "Immaculate Conception of Mary Cathedral",
+      "Papaseea Sliding Rocks",
+      "Fish Market",
+      "Samoa Cultural Village",
+      "Clock Tower",
+      "Museum of Samoa",
+      "Apia Harbour",
+      "Fugalei Market"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Taumeasina Island Resort",
+          "price_per_night": 590,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Sheraton Samoa Aggie Grey's Hotel",
+          "price_per_night": 530,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tanoa Tusitala Hotel",
+          "price_per_night": 500,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Travellers Point Hotel",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Insel Fehmarn Hotel",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Amanaki Hotel",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Hotel Elisa",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Lynn's Getaway Hotel",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tatiana Motel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Moanalisa Hotel",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Apia.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Samoa",
+    "city": "Salelologa",
+    "tags": [
+      "nature",
+      "cultural",
+      "coastal"
+    ],
+    "attractions": [
+      "Saleaula Lava Fields",
+      "Alofaaga Blowholes",
+      "Afu Aau Waterfall",
+      "Canopy Walk at Falealupo",
+      "Peapea Cave",
+      "Salelologa Market",
+      "Cape Mulinu'u",
+      "Savai'i Cultural Village",
+      "Tafua Rainforest Preserve",
+      "Lano Beach"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Amoa Resort",
+          "price_per_night": 580,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Savai'i Lagoon Resort",
+          "price_per_night": 510,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Stevensons at Manase",
+          "price_per_night": 490,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Le Lagoto Resort & Spa",
+          "price_per_night": 470,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Jet Over Hotel",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tanu Beach Fales",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Vaisala Hotel",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Lucia's Lagoon Chalets",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Beach Fale Resort",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Lusia's Lagoon Resort",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Salelologa.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Samoa",
+    "city": "Manase",
+    "tags": [
+      "beach",
+      "relaxing",
+      "nature"
+    ],
+    "attractions": [
+      "Manase Beach",
+      "Swimming with turtles at Satoalepai",
+      "Snorkeling at coral reefs",
+      "Coastal road scenic drive",
+      "Fagamalo village walk",
+      "Local handicraft markets",
+      "Sunset views over the reef",
+      "Traditional Samoan ava ceremony",
+      "Church service experience",
+      "Relaxation at beach fales"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Le Lagoto Resort",
+          "price_per_night": 600,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Stevensons at Manase",
+          "price_per_night": 520,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Vacations Beach Fales",
+          "price_per_night": 490,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Manase Paradise Resort",
+          "price_per_night": 470,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Tanu Beach Fales",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Regina's Beach Fales",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Ifiele'ele Plantation",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Tailua Beach Fales",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Samoana Beach Fales",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "White Sands Beach",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Manase.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Tonga",
+    "city": "Nukuʻalofa",
+    "tags": [
+      "historic",
+      "cultural",
+      "coastal"
+    ],
+    "attractions": [
+      "Royal Palace of Tonga",
+      "Talamahu Market",
+      "Centenary Church",
+      "Haʻamonga ʻa Maui Trilithon",
+      "Mapu a Vaea (Blowholes)",
+      "Ancient Royal Tombs",
+      "Anahulu Cave",
+      "Malaʻekula (Royal Tombs)",
+      "Free Church of Tonga",
+      "Fafa Island (Day Trips)"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Seaview Lodge & Restaurant",
+          "price_per_night": 550,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Tanoa International Dateline Hotel",
+          "price_per_night": 500,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Little Italy Hotel",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Emerald Hotel",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "House of Tonga",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "The Village Backpackers",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Villa Ishadora",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Meida Hotel",
+          "price_per_night": 200,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "City Hotel Tonga",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Simon's Place",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Nukuʻalofa.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Tonga",
+    "city": "Pangai",
+    "tags": [
+      "nature",
+      "coastal",
+      "adventure"
+    ],
+    "attractions": [
+      "Haʻapai Island hopping",
+      "Sandy Beach at Uoleva Island",
+      "Diving and snorkeling reefs",
+      "Whale swimming excursions",
+      "Pangai Market",
+      "Lifuka Island beach walks",
+      "Cultural performances",
+      "Church of Pangai",
+      "Kayaking to nearby islets"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Serenity Beaches Resort",
+          "price_per_night": 540,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Sandy Beach Resort",
+          "price_per_night": 500,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Matafonua Lodge",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Sea Change Eco Retreat",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Haʻapai Beach Resort",
+          "price_per_night": 300,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Haka'ano Eco Retreat",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Ha’ano Island Retreat",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Mariner’s Café Lodge",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Eva’s Guesthouse",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Friendly Islands Inn",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Pangai.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Kiribati",
+    "city": "Kiritimati Island",
+    "tags": [
+      "nature",
+      "adventure",
+      "remote"
+    ],
+    "attractions": [
+      "Cook Island Bird Sanctuary",
+      "Paris Point View",
+      "Bonefishing expeditions",
+      "Captain Cook Monument",
+      "Korean Wreck Dive Site",
+      "London Village",
+      "Bay of Wrecks",
+      "Wildlife viewing at salt flats",
+      "Banana village traditions",
+      "WWII Airfields"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Ikari House",
+          "price_per_night": 490,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Captain Cook Hotel",
+          "price_per_night": 450,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Lagoon View Lodge",
+          "price_per_night": 430,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Sunset Horizon Lodge",
+          "price_per_night": 410,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Adventure Lodge Kiritimati",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "The Villages Lodge",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Kirimati Safari Camp",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Banana Guesthouse",
+          "price_per_night": 190,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Line Island Inn",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Fish Camp Stay",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Kiritimati_Island.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Kiribati",
+    "city": "Abaiang Atoll",
+    "tags": [
+      "nature",
+      "remote",
+      "cultural"
+    ],
+    "attractions": [
+      "Ouba Islet canoe tours",
+      "Local coral gardens",
+      "Snorkeling lagoons",
+      "Traditional dance & storytelling",
+      "Coconut husking & weaving workshops",
+      "Reef walks",
+      "Mangrove kayaking",
+      "Fishing with locals",
+      "Community churches",
+      "Sunset on Tebunginako"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Abaiang Eco-Resort",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Sunset Palms Bungalows",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Te Atata Lodge",
+          "price_per_night": 410,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Mangrove View Resort",
+          "price_per_night": 390,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Coral Lagoon Guesthouse",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Village Bay Retreat",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Abaiang Reef Stay",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Island Welcome House",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "North Bay Lodge",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Friendly Shore Inn",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Abaiang_Atoll.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Nauru",
+    "city": "Yaren District",
+    "tags": [
+      "historic",
+      "urban",
+      "cultural"
+    ],
+    "attractions": [
+      "Parliament House",
+      "Moqua Caves",
+      "Nauru International Airport (Aviation photo spots)",
+      "Buada Lagoon",
+      "Civic Center",
+      "WWII Japanese Prison",
+      "Government Buildings",
+      "Yaren Beach",
+      "WWII Bunkers",
+      "Traditional fishing areas"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Yaren Grand Pacific",
+          "price_per_night": 470,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Menen Hotel",
+          "price_per_night": 430,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Oceanview Resort",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Pacific Dusk Lodge",
+          "price_per_night": 400,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Moqua Inn",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Government Square Hotel",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Coral Island Hotel",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Beachcomber Motel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Lagoon Stay Inn",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Traveler's Haven",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Yaren_District.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Nauru",
+    "city": "Aiwo District",
+    "tags": [
+      "historic",
+      "urban",
+      "industrial"
+    ],
+    "attractions": [
+      "NPC Wharf (sunset view)",
+      "Aiwo District Market",
+      "Historical phosphate train line",
+      "Kayaking along the shore",
+      "Local eateries and seafood joints",
+      "WWII Pillboxes",
+      "Industrial Heritage Museum",
+      "Local Arts and Crafts Shops",
+      "The Round House",
+      "Community Sports Complex"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Aiwo Signature Stay",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Western Reef Hotel",
+          "price_per_night": 450,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Island Dream Suites",
+          "price_per_night": 430,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Trade Winds Hotel",
+          "price_per_night": 410,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Seaside Point Inn",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Aiwo Bay Guesthouse",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Central Comfort Hotel",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Reefline Motel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Nauru Cozy Stay",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Ocean Breeze Lodge",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Aiwo_District.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Nauru",
+    "city": "Buada District",
+    "tags": [
+      "nature",
+      "cultural",
+      "rural"
+    ],
+    "attractions": [
+      "Buada Lagoon",
+      "Surrounding forest trails",
+      "Traditional village tour",
+      "Nauruan vegetable gardens",
+      "Island-style picnic sites",
+      "Lagoon birdwatching",
+      "Buada storytelling huts",
+      "Fruit markets",
+      "Community worship areas",
+      "Canoeing opportunities"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Lagoon Serenity Resort",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Island Forest Lodge",
+          "price_per_night": 420,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Green Oasis Stay",
+          "price_per_night": 410,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "The Buada Bay Hotel",
+          "price_per_night": 390,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Tropical Lagoon Inn",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Nature Edge Lodge",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Inner Peace Guesthouse",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Lagoon Walk Stay",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Buada Nights Inn",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Quiet Retreat Hotel",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Buada_District.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Micronesia",
+    "city": "Palikir",
+    "tags": [
+      "historic",
+      "nature",
+      "cultural"
+    ],
+    "attractions": [
+      "Nan Madol ruins",
+      "Kepirohi Waterfall",
+      "Pohnpei Botanical Garden",
+      "Sokehs Rock Hike",
+      "Liduduhniap Waterfall",
+      "Spanish Wall Ruins",
+      "Kolonia town",
+      "Palikir Government Complex",
+      "Catholic Cathedral",
+      "Mangrove kayaking tours"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Pohnpei Imperial",
+          "price_per_night": 510,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Mangrove Bay Resort",
+          "price_per_night": 470,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "The Nan Madol Inn",
+          "price_per_night": 460,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Palikir Royal Stay",
+          "price_per_night": 440,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Sokehs Cliff Lodge",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Blue Lagoon Hotel",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Garden View Inn",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Ocean Breeze Lodge",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Tropical Stay Palikir",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Waterfall Inn",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Palikir.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Micronesia",
+    "city": "Kolonia",
+    "tags": [
+      "historic",
+      "urban",
+      "cultural"
+    ],
+    "attractions": [
+      "Japanese WWII sites",
+      "Kolonia Market",
+      "Catholic Bell Tower",
+      "Pohnpei Museum",
+      "Spanish Wall Ruins",
+      "Kolonia Marina",
+      "Local art and craft stalls",
+      "Oceanfront trail",
+      "Lighthouse Point",
+      "Cultural dance events"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Kolonia Grand Palace",
+          "price_per_night": 520,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Lighthouse Marina Hotel",
+          "price_per_night": 480,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Bayfront Heritage Inn",
+          "price_per_night": 470,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Island Luxury Resort",
+          "price_per_night": 450,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Kolonia Garden Inn",
+          "price_per_night": 290,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Pearl Reef Hotel",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Heritage Hill Lodge",
+          "price_per_night": 260,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Tropicstay Hotel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Pacific Walk Inn",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Seaview Rooms",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Kolonia.jpg"
+  },
+  {
+    "continent": "Oceania",
+    "country": "Micronesia",
+    "city": "Tofol",
+    "tags": [
+      "nature",
+      "historic",
+      "cultural"
+    ],
+    "attractions": [
+      "Lelu Ruins",
+      "Mt. Finkol",
+      "Kosrae Island Tours",
+      "Menke Ruins",
+      "Utwe-Walung Marine Park",
+      "WWII Plane Wreck",
+      "Kosrae Village Church",
+      "Hiking Trails of Mt. Oma",
+      "Coral Reef Snorkeling",
+      "Kosrae traditional canoe experiences"
+    ],
+    "hotels": {
+      "7_star": [
+        {
+          "name": "Kosrae Royal Cove",
+          "price_per_night": 500,
+          "image": "assets/Hotels/hotel11.jpg"
+        }
+      ],
+      "5_star": [
+        {
+          "name": "Lelu Blue Resort",
+          "price_per_night": 470,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Mt. Finkol Retreat",
+          "price_per_night": 450,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Tofol Beachfront Stay",
+          "price_per_night": 430,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "4_star": [
+        {
+          "name": "Coral Garden Inn",
+          "price_per_night": 280,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Kosrae Island Hotel",
+          "price_per_night": 270,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Mangrove Hideaway Lodge",
+          "price_per_night": 250,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ],
+      "3_star": [
+        {
+          "name": "Palm View Motel",
+          "price_per_night": 180,
+          "image": "assets/Hotels/hotel11.jpg"
+        },
+        {
+          "name": "Island Lodge Kosrae",
+          "price_per_night": 170,
+          "image": "assets/Hotels/hotel12.jpg"
+        },
+        {
+          "name": "Peace Inn Kosrae",
+          "price_per_night": 160,
+          "image": "assets/Hotels/hotel13.jpg"
+        }
+      ]
+    },
+    "image": "assets/Oceania/Tofol.jpg"
+  }
+]

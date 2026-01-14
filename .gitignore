@@ -1,5 +1,10 @@
-**/node_modules
-**/.env
-**/.env.*
-**/dist
-**/build
+# Node modules
+node_modules/
+ 
+# Environment variables
+.env
+dist/
+.vite/
+
+# Media
+solea-frontend/src/assets/videos/*.mp4

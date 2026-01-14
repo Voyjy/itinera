@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+@import "tailwindcss";
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.oswald {
+  font-family: "Oswald", sans-serif !important;
+}
+
+/* Rest of your styles */
+.slick-prev,
+.slick-next {
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: #333;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slick-list {
+  overflow: hidden;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+  box-sizing: border-box;
+}
+
+.reduce-word-spacing {
+  word-spacing: -0.65rem;
+}
