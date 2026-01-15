@@ -1,4 +1,4 @@
-# ✨ Solea — Travel Planner Project
+# ✨ Itinera — Travel Planner Project
 
 Solea is a modern travel planning web application designed to help users discover cities, plan personalized trips, manage preferences, and get real-time recommendations.
 
