@@ -60,6 +60,8 @@ app.get('/', (req, res) => {
 });
 
 // Register API Routes
+// NOTE: In Docker, gateway routes /api/auth and /api/users to microservices
+// These are kept for local development (standalone monolith mode)
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/trips', tripRoutes);

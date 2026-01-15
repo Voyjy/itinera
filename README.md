@@ -7,28 +7,29 @@ Solea is a modern travel planning web application designed to help users discove
 Solea uses a **microservices architecture** with an API Gateway pattern:
 
 ```
-┌─────────────────┐     ┌──────────────────────────────────────────────────┐
-│   Frontend      │     │                  Docker Network                   │
-│   (React)       │     │                                                   │
-│   :5173         │────▶│  ┌─────────────────┐                             │
-└─────────────────┘     │  │   API Gateway   │                             │
-                        │  │     :8080       │                             │
-                        │  └────────┬────────┘                             │
-                        │           │                                       │
-                        │     ┌─────┴─────┐                                 │
-                        │     │           │                                 │
-                        │     ▼           ▼                                 │
-                        │  ┌─────────┐ ┌─────────┐ ┌─────────────────┐     │
-                        │  │ Rec Svc │ │Cache Svc│ │  Legacy Backend │     │
-                        │  │  :4005  │ │  :4006  │ │      :4000      │     │
-                        │  └────┬────┘ └────┬────┘ └────────┬────────┘     │
-                        │       │           │               │               │
-                        │       ▼           ▼               ▼               │
-                        │  ┌─────────┐ ┌─────────┐    ┌─────────┐          │
-                        │  │  Neo4j  │ │  Redis  │    │ MongoDB │          │
-                        │  │  :7687  │ │  :6379  │    │ :27017  │          │
-                        │  └─────────┘ └─────────┘    └─────────┘          │
-                        └──────────────────────────────────────────────────┘
+┌─────────────────┐     ┌──────────────────────────────────────────────────────────┐
+│   Frontend      │     │                    Docker Network                         │
+│   (React)       │     │                                                           │
+│   :5173         │────▶│  ┌─────────────────┐                                     │
+└─────────────────┘     │  │   API Gateway   │                                     │
+                        │  │     :8080       │                                     │
+                        │  └────────┬────────┘                                     │
+                        │           │                                               │
+                        │  ┌────────┼────────┬─────────┬─────────┐                 │
+                        │  ▼        ▼        ▼         ▼         ▼                 │
+                        │ ┌────┐ ┌────┐ ┌────────┐ ┌────────┐ ┌────────────────┐  │
+                        │ │Auth│ │User│ │Rec Svc │ │Cache   │ │Legacy Backend  │  │
+                        │ │Svc │ │Svc │ │        │ │Svc     │ │                │  │
+                        │ │4001│ │4002│ │  4005  │ │  4006  │ │     4000       │  │
+                        │ └──┬─┘ └──┬─┘ └───┬────┘ └───┬────┘ └───────┬────────┘  │
+                        │    │      │       │          │              │            │
+                        │    └──────┴───────┴──────────┴──────────────┘            │
+                        │                          │                               │
+                        │    ┌─────────┐    ┌─────────┐    ┌─────────┐            │
+                        │    │ MongoDB │    │  Redis  │    │  Neo4j  │            │
+                        │    │ :27017  │    │  :6379  │    │  :7687  │            │
+                        │    └─────────┘    └─────────┘    └─────────┘            │
+                        └──────────────────────────────────────────────────────────┘
 ```
 
 ### Services
@@ -36,16 +37,22 @@ Solea uses a **microservices architecture** with an API Gateway pattern:
 | Service | Port | Description |
 |---------|------|-------------|
 | **api-gateway** | 8080 (public) | Routes requests to appropriate microservices |
-| **legacy-backend** | 4000 (internal) | Auth, Users, Trips, Cities, Hotels, Blogs |
-| **recommendation-service** | 4005 (internal) | Neo4j-based recommendations |
-| **cache-service** | 4006 (internal) | Redis caching for drafts, recent cities |
+| **auth-service** | 4001 (internal) | User registration and login (MS-2) |
+| **users-service** | 4002 (internal) | User profile, preferences, trips (MS-2) |
+| **recommendation-service** | 4005 (internal) | Neo4j-based recommendations (MS-1) |
+| **cache-service** | 4006 (internal) | Redis caching for drafts, recent cities (MS-1) |
+| **legacy-backend** | 4000 (internal) | Trips, Cities, Hotels, Blogs |
 
 ### Routing Rules
 
-- `/api/recommendations/*` → recommendation-service
-- `/api/redis/*` → cache-service
-- `/api/*` (all other) → legacy-backend
-- `/assets/*` → legacy-backend (static files)
+| Route | Service | Phase |
+|-------|---------|-------|
+| `/api/auth/*` | auth-service | MS-2 |
+| `/api/users/*` | users-service | MS-2 |
+| `/api/recommendations/*` | recommendation-service | MS-1 |
+| `/api/redis/*` | cache-service | MS-1 |
+| `/api/*` (fallback) | legacy-backend | - |
+| `/assets/*` | legacy-backend | - |
 
 ---
 
@@ -95,7 +102,7 @@ npm run dev
 | `NEO4J_URI` | `bolt://neo4j:7687` | Neo4j Bolt protocol URI |
 | `NEO4J_USERNAME` | `neo4j` | Neo4j username |
 | `NEO4J_PASSWORD` | `password123` | Neo4j password |
-| `JWT_SECRET` | `your-super-secret-jwt-key` | JWT signing secret |
+| `JWT_SECRET` | `your-super-secret-jwt-key` | JWT signing secret (shared across auth/users services) |
 
 ### Production (Cloud Services)
 
@@ -110,14 +117,16 @@ For production, set these environment variables to your cloud service credential
 
 ```
 itinera/
-├── solea-frontend/           # React frontend
-├── solea-backend/            # Legacy monolith (auth, users, trips, etc.)
+├── solea-frontend/               # React frontend
+├── solea-backend/                # Legacy monolith (trips, cities, hotels, blogs)
 ├── services/
-│   ├── api-gateway/          # BFF - routes to microservices
-│   ├── recommendation-service/ # Neo4j recommendations
-│   └── cache-service/        # Redis caching
-├── docker-compose.yml        # Full stack orchestration
-├── .env.docker.example       # Example environment file
+│   ├── api-gateway/              # BFF - routes to microservices
+│   ├── auth-service/             # User auth (register, login) - MS-2
+│   ├── users-service/            # User profile, preferences, trips - MS-2
+│   ├── recommendation-service/   # Neo4j recommendations - MS-1
+│   └── cache-service/            # Redis caching - MS-1
+├── docker-compose.yml            # Full stack orchestration
+├── .env.docker.example           # Example environment file
 └── README.md
 ```
 
@@ -125,13 +134,23 @@ itinera/
 
 ## 📡 API Endpoints
 
-### Auth (Legacy Backend)
+### Auth (auth-service - MS-2)
 - `POST /api/auth/register` — Register user
-- `POST /api/auth/login` — Login user
+- `POST /api/auth/login` — Login user, returns JWT token
 
-### Users (Legacy Backend)
+### Users (users-service - MS-2)
 - `GET /api/users/profile` — Get profile (JWT required)
 - `PUT /api/users/preferences` — Update preferences
+- `GET /api/users/:id/trips` — Get user's trips
+
+### Recommendations (recommendation-service - MS-1)
+- `GET /api/recommendations/city/:cityId` — Similar cities
+- `GET /api/recommendations/user/:userId` — Personalized recommendations
+
+### Cache/Redis (cache-service - MS-1)
+- `POST/GET/DELETE /api/redis/draft/:userId` — Trip drafts
+- `POST/GET /api/redis/recent/:userId` — Recently viewed
+- `POST/GET /api/redis/popular` — Popular cities
 
 ### Trips (Legacy Backend)
 - `POST /api/trips` — Create trip
@@ -143,15 +162,6 @@ itinera/
 - `GET /api/cities/continent/:continent` — Cities by continent
 - `GET /api/hotels/city/:cityId` — Hotels in city
 
-### Recommendations (Microservice)
-- `GET /api/recommendations/city/:cityId` — Similar cities
-- `GET /api/recommendations/user/:userId` — Personalized recommendations
-
-### Cache/Redis (Microservice)
-- `POST/GET/DELETE /api/redis/draft/:userId` — Trip drafts
-- `POST/GET /api/redis/recent/:userId` — Recently viewed
-- `POST/GET /api/redis/popular` — Popular cities
-
 ---
 
 ## 🧪 Testing
@@ -162,12 +172,39 @@ curl http://localhost:8080/
 # Expected: "API Gateway is running 🚀"
 ```
 
-### Test Recommendations Service
+### Test Auth Service (MS-2)
+```bash
+# Register
+curl -X POST http://localhost:8080/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Test User", "email": "test@example.com", "password": "password123"}'
+
+# Login
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "password123"}'
+# Returns: {"token": "...", "user": {...}}
+```
+
+### Test Users Service (MS-2)
+```bash
+# Get profile (use token from login)
+curl http://localhost:8080/api/users/profile \
+  -H "Authorization: Bearer <your-token>"
+
+# Update preferences
+curl -X PUT http://localhost:8080/api/users/preferences \
+  -H "Authorization: Bearer <your-token>" \
+  -H "Content-Type: application/json" \
+  -d '{"tags": ["beach", "romantic", "historic"]}'
+```
+
+### Test Recommendations Service (MS-1)
 ```bash
 curl http://localhost:8080/api/recommendations/city/Paris
 ```
 
-### Test Cache Service
+### Test Cache Service (MS-1)
 ```bash
 # Save draft
 curl -X POST http://localhost:8080/api/redis/draft/test123 \
@@ -180,6 +217,24 @@ curl http://localhost:8080/api/redis/draft/test123
 # Delete draft
 curl -X DELETE http://localhost:8080/api/redis/draft/test123
 ```
+
+---
+
+## 📋 Migration Phases
+
+### MS-1 (Completed)
+- ✅ API Gateway (BFF)
+- ✅ Recommendation Service (Neo4j)
+- ✅ Cache Service (Redis)
+
+### MS-2 (Completed)
+- ✅ Auth Service (register, login)
+- ✅ Users Service (profile, preferences, trips)
+
+### Future Phases
+- MS-3: Trip Service
+- MS-4: City/Hotel/Blog Services
+- MS-5: Itinerary Service (new)
 
 ---
 
