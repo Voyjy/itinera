@@ -11,7 +11,7 @@ const files = [
 ];
 
 
-const dataDir = path.join(__dirname, '..', 'data');
+const dataDir = path.join(__dirname, '..', 'Data');
 
 // Generate relative city image path
 const generateCityImagePath = (continent, city) => {

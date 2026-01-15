@@ -25,7 +25,7 @@ exports.createTrip = async (req, res) => {
           name: city.name,
           country: city.country,
           continent: city.continent, // ✅ ADDED
-          activities: city.activities || [],
+          activities: city.popularSpots || [],
           hotels: []
         }
       ]
