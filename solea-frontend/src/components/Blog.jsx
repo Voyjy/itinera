@@ -18,6 +18,16 @@ const Blog = () => {
     fetchBlogs();
   }, []);
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
   return (
     <div id="blog" className="bg-black text-white px-5 md:px-32 py-16">
       <div className="flex justify-between items-center mb-10">
@@ -29,14 +39,14 @@ const Blog = () => {
       <div className="grid md:grid-cols-2 gap-8">
         {blogs.map((blog, index) => (
           <div
-            key={index}
+            key={blog._id || index}
             className="relative bg-cover bg-center w-full h-[500px] rounded-lg overflow-hidden"
-            style={{ backgroundImage: `url(${blog.image})` }}
+            style={{ backgroundImage: `url(${blog.imageUrl})` }}
           >
             <div className="absolute top-4 left-4 bg-white text-black text-xs font-bold px-3 py-1 rounded-md flex gap-2 items-center shadow-lg oswald">
               <span>&bull;</span>
-              <span>{blog.category}</span>
-              <span>{new Date(blog.date).toLocaleDateString()}</span>
+              <span>{blog.tags?.[0] || "Travel"}</span>
+              <span>{formatDate(blog.createdAt)}</span>
               <span>&bull;</span>
             </div>
             <div className="absolute bottom-4 left-4 right-4 bg-black/60 text-white px-4 py-3 rounded-md backdrop-blur-sm">
