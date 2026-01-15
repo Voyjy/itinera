@@ -9,6 +9,7 @@ const app = express();
 const LEGACY_BACKEND_URL = process.env.LEGACY_BACKEND_URL || 'http://legacy-backend:4000';
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://auth-service:4001';
 const USERS_SERVICE_URL = process.env.USERS_SERVICE_URL || 'http://users-service:4002';
+const CATALOG_SERVICE_URL = process.env.CATALOG_SERVICE_URL || 'http://catalog-service:4003';
 const RECOMMENDATION_SERVICE_URL = process.env.RECOMMENDATION_SERVICE_URL || 'http://recommendation-service:4005';
 const CACHE_SERVICE_URL = process.env.CACHE_SERVICE_URL || 'http://cache-service:4006';
 
@@ -82,6 +83,60 @@ app.use('/api/users', createProxyMiddleware({
         error: (err, req, res) => {
             console.error('❌ Users Service proxy error:', err.message);
             res.status(502).json({ error: 'Users service unavailable' });
+        }
+    }
+}));
+
+// Proxy to Catalog Service - Cities (MS-3)
+app.use('/api/cities', createProxyMiddleware({
+    target: CATALOG_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api/cities': '/api/cities'
+    },
+    on: {
+        proxyReq: (proxyReq, req) => {
+            console.log(`➡️  Proxying to Catalog Service (Cities): ${req.method} ${req.path}`);
+        },
+        error: (err, req, res) => {
+            console.error('❌ Catalog Service proxy error:', err.message);
+            res.status(502).json({ error: 'Catalog service unavailable' });
+        }
+    }
+}));
+
+// Proxy to Catalog Service - Hotels (MS-3)
+app.use('/api/hotels', createProxyMiddleware({
+    target: CATALOG_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api/hotels': '/api/hotels'
+    },
+    on: {
+        proxyReq: (proxyReq, req) => {
+            console.log(`➡️  Proxying to Catalog Service (Hotels): ${req.method} ${req.path}`);
+        },
+        error: (err, req, res) => {
+            console.error('❌ Catalog Service proxy error:', err.message);
+            res.status(502).json({ error: 'Catalog service unavailable' });
+        }
+    }
+}));
+
+// Proxy to Catalog Service - Blogs (MS-3)
+app.use('/api/blogs', createProxyMiddleware({
+    target: CATALOG_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api/blogs': '/api/blogs'
+    },
+    on: {
+        proxyReq: (proxyReq, req) => {
+            console.log(`➡️  Proxying to Catalog Service (Blogs): ${req.method} ${req.path}`);
+        },
+        error: (err, req, res) => {
+            console.error('❌ Catalog Service proxy error:', err.message);
+            res.status(502).json({ error: 'Catalog service unavailable' });
         }
     }
 }));
@@ -164,6 +219,7 @@ app.listen(PORT, () => {
     console.log(`🚀 API Gateway running on port ${PORT}`);
     console.log(`   ➡️  Auth: ${AUTH_SERVICE_URL}`);
     console.log(`   ➡️  Users: ${USERS_SERVICE_URL}`);
+    console.log(`   ➡️  Catalog: ${CATALOG_SERVICE_URL}`);
     console.log(`   ➡️  Recommendations: ${RECOMMENDATION_SERVICE_URL}`);
     console.log(`   ➡️  Cache: ${CACHE_SERVICE_URL}`);
     console.log(`   ➡️  Legacy: ${LEGACY_BACKEND_URL}`);

@@ -107,6 +107,23 @@ services:
     networks:
       - solea-network
 
+  # MS-3: Catalog Service (Cities, Hotels, Blogs)
+  catalog-service:
+    build:
+      context: ./services/catalog-service
+      dockerfile: Dockerfile
+    container_name: solea-catalog-service
+    restart: unless-stopped
+    ports:
+      - "4003:4003"
+    environment:
+      PORT: 4003
+      MONGO_URI: ${MONGO_URI:-mongodb://root:rootpassword@mongo:27017/solea?authSource=admin}
+    depends_on:
+      - mongo
+    networks:
+      - solea-network
+
   # MS-1: Recommendation Service
   recommendation-service:
     build:
@@ -157,12 +174,14 @@ services:
       LEGACY_BACKEND_URL: http://legacy-backend:4000
       AUTH_SERVICE_URL: http://auth-service:4001
       USERS_SERVICE_URL: http://users-service:4002
+      CATALOG_SERVICE_URL: http://catalog-service:4003
       RECOMMENDATION_SERVICE_URL: http://recommendation-service:4005
       CACHE_SERVICE_URL: http://cache-service:4006
     depends_on:
       - legacy-backend
       - auth-service
       - users-service
+      - catalog-service
       - recommendation-service
       - cache-service
     networks:
