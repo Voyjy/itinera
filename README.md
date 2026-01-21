@@ -15,15 +15,15 @@ Solea uses a **microservices architecture** with an API Gateway pattern:
                         │  │     :8080       │                                        │
                         │  └────────┬────────┘                                        │
                         │           │                                                  │
-                        │  ┌────────┼────────┬─────────┬─────────┬─────────┐          │
-                        │  ▼        ▼        ▼         ▼         ▼         ▼          │
-                        │ ┌────┐ ┌────┐ ┌───────┐ ┌────────┐ ┌────────┐ ┌────────┐   │
-                        │ │Auth│ │User│ │Catalog│ │Rec Svc │ │Cache   │ │Legacy  │   │
-                        │ │Svc │ │Svc │ │ Svc   │ │        │ │Svc     │ │Backend │   │
-                        │ │4001│ │4002│ │ 4003  │ │  4005  │ │  4006  │ │  4000  │   │
-                        │ └──┬─┘ └──┬─┘ └───┬───┘ └───┬────┘ └───┬────┘ └───┬────┘   │
-                        │    │      │       │         │          │          │         │
-                        │    └──────┴───────┴─────────┴──────────┴──────────┘         │
+                        │  ┌────────┼────────┬─────────┬─────────┬─────────┬────────┐ │
+                        │  ▼        ▼        ▼         ▼         ▼         ▼        ▼ │
+                        │ ┌────┐ ┌────┐ ┌───────┐ ┌──────┐ ┌────────┐ ┌────────┐ ┌─────┐│
+                        │ │Auth│ │User│ │Catalog│ │Trips │ │Rec Svc │ │Cache   │ │Asset││
+                        │ │Svc │ │Svc │ │ Svc   │ │ Svc  │ │        │ │Svc     │ │ Svc ││
+                        │ │4001│ │4002│ │ 4003  │ │ 4004 │ │  4005  │ │  4006  │ │4007 ││
+                        │ └──┬─┘ └──┬─┘ └───┬───┘ └──┬───┘ └───┬────┘ └───┬────┘ └──┬──┘│
+                        │    │      │       │        │         │          │        │
+                        │    └──────┴───────┴────────┴─────────┴──────────┘          │
                         │                          │                                   │
                         │    ┌─────────┐    ┌─────────┐    ┌─────────┐                │
                         │    │ MongoDB │    │  Redis  │    │  Neo4j  │                │
@@ -38,11 +38,12 @@ Solea uses a **microservices architecture** with an API Gateway pattern:
 |---------|------|-------------|
 | **api-gateway** | 8080 (public) | Routes requests to appropriate microservices |
 | **auth-service** | 4001 (internal) | User registration and login (MS-2) |
-| **users-service** | 4002 (internal) | User profile, preferences, trips (MS-2) |
+| **users-service** | 4002 (internal) | User profile, preferences (MS-2) |
 | **catalog-service** | 4003 (internal) | Cities, hotels, blogs (MS-3) |
+| **trips-service** | 4004 (internal) | Trip CRUD, confirm trips (MS-4) |
 | **recommendation-service** | 4005 (internal) | Neo4j-based recommendations (MS-1) |
 | **cache-service** | 4006 (internal) | Redis caching for drafts, recent cities (MS-1) |
-| **legacy-backend** | 4000 (internal) | Trips and static assets |
+| **assets-service** | 4007 (internal) | Static file serving (MS-5) |
 
 ### Routing Rules
 
@@ -53,10 +54,10 @@ Solea uses a **microservices architecture** with an API Gateway pattern:
 | `/api/cities/*` | catalog-service | MS-3 |
 | `/api/hotels/*` | catalog-service | MS-3 |
 | `/api/blogs/*` | catalog-service | MS-3 |
+| `/api/trips/*` | trips-service | MS-4 |
 | `/api/recommendations/*` | recommendation-service | MS-1 |
 | `/api/redis/*` | cache-service | MS-1 |
-| `/api/*` (fallback) | legacy-backend | - |
-| `/assets/*` | legacy-backend | - |
+| `/assets/*` | assets-service | MS-5 |
 
 ---
 
@@ -113,12 +114,14 @@ npm run dev
 ```
 itinera/
 ├── solea-frontend/               # React frontend
-├── solea-backend/                # Legacy monolith (trips only)
+├── solea-backend/                # Assets directory (mounted to assets-service)
 ├── services/
 │   ├── api-gateway/              # BFF - routes to microservices
 │   ├── auth-service/             # User auth (MS-2)
 │   ├── users-service/            # User profile, preferences (MS-2)
 │   ├── catalog-service/          # Cities, hotels, blogs (MS-3)
+│   ├── trips-service/            # Trip CRUD, confirm (MS-4)
+│   ├── assets-service/           # Static file serving (MS-5)
 │   ├── recommendation-service/   # Neo4j recommendations (MS-1)
 │   └── cache-service/            # Redis caching (MS-1)
 ├── docker-compose.yml
@@ -157,9 +160,11 @@ itinera/
 - `POST/GET /api/redis/recent/:userId` — Recently viewed
 - `POST/GET /api/redis/popular` — Popular cities
 
-### Trips (Legacy Backend)
-- `POST /api/trips` — Create trip
-- `GET /api/trips/:tripId` — Get trip
+### Trips (trips-service)
+- `POST /api/trips` — Create trip (JWT required)
+- `POST /api/trips/:tripId/cities` — Add city to trip
+- `POST /api/trips/:tripId/hotels` — Add hotel to trip
+- `GET /api/trips/:tripId` — Get trip by ID
 - `POST /api/trips/:tripId/confirm` — Confirm trip
 
 ---
@@ -186,7 +191,7 @@ curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"pass123"}'
 
-# Assets (legacy)
+# Assets
 curl -I http://localhost:8080/assets/Europe/Paris.jpg
 ```
 
@@ -199,7 +204,8 @@ curl -I http://localhost:8080/assets/Europe/Paris.jpg
 | MS-1 | ✅ Done | recommendation-service, cache-service |
 | MS-2 | ✅ Done | auth-service, users-service |
 | MS-3 | ✅ Done | catalog-service (cities, hotels, blogs) |
-| MS-4 | 🔜 Next | trip-service |
+| MS-4 | ✅ Done | trips-service |
+| MS-5 | ✅ Done | assets-service (legacy backend removed) |
 
 ---
 

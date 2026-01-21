@@ -3,7 +3,7 @@ import { scroller } from 'react-scroll';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
-import logo from '../assets/images/logo2.png';
+import logo from '../assets/images/logo.png';
 import Button from '../layouts/Button';
 
 const Navbar = () => {

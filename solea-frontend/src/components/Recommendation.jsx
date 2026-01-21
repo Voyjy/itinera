@@ -10,6 +10,13 @@ const Recommendation = () => {
     const fetchRecommendations = async () => {
       try {
         const token = localStorage.getItem('token');
+
+        // Skip if user is not logged in
+        if (!token) {
+          console.log("No token found, skipping recommendations");
+          return;
+        }
+
         const userRes = await axios.get(`${BASE_URL}/api/users/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });

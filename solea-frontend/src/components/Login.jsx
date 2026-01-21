@@ -68,6 +68,7 @@ const Login = () => {
                 <label htmlFor="name" className="block text-sm mb-1 oswald">Name</label>
                 <input
                   type="text"
+                  id="name"
                   name="name"
                   required
                   onChange={handleChange}
@@ -80,6 +81,7 @@ const Login = () => {
               <label htmlFor="email" className="block text-sm mb-1 oswald">Email</label>
               <input
                 type="email"
+                id="email"
                 name="email"
                 required
                 onChange={handleChange}
@@ -91,6 +93,7 @@ const Login = () => {
               <label htmlFor="password" className="block text-sm mb-1 oswald">Password</label>
               <input
                 type="password"
+                id="password"
                 name="password"
                 required
                 onChange={handleChange}

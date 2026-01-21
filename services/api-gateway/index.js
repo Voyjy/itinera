@@ -6,12 +6,13 @@ require('dotenv').config();
 const app = express();
 
 // Service URLs (use Docker service names in Docker, localhost for local dev)
-const LEGACY_BACKEND_URL = process.env.LEGACY_BACKEND_URL || 'http://legacy-backend:4000';
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://auth-service:4001';
 const USERS_SERVICE_URL = process.env.USERS_SERVICE_URL || 'http://users-service:4002';
 const CATALOG_SERVICE_URL = process.env.CATALOG_SERVICE_URL || 'http://catalog-service:4003';
+const TRIPS_SERVICE_URL = process.env.TRIPS_SERVICE_URL || 'http://trips-service:4004';
 const RECOMMENDATION_SERVICE_URL = process.env.RECOMMENDATION_SERVICE_URL || 'http://recommendation-service:4005';
 const CACHE_SERVICE_URL = process.env.CACHE_SERVICE_URL || 'http://cache-service:4006';
+const ASSETS_SERVICE_URL = process.env.ASSETS_SERVICE_URL || 'http://assets-service:4007';
 
 // CORS configuration
 app.use(cors({
@@ -177,41 +178,47 @@ app.use('/api/redis', createProxyMiddleware({
     }
 }));
 
-// Proxy static assets to Legacy Backend
+// Proxy to Trips Service (MS-4)
+app.use('/api/trips', createProxyMiddleware({
+    target: TRIPS_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api/trips': '/api/trips'
+    },
+    on: {
+        proxyReq: (proxyReq, req) => {
+            console.log(`➡️  Proxying to Trips Service: ${req.method} ${req.path}`);
+        },
+        error: (err, req, res) => {
+            console.error('❌ Trips Service proxy error:', err.message);
+            res.status(502).json({ error: 'Trips service unavailable' });
+        }
+    }
+}));
+
+// Proxy static assets to Assets Service (MS-5)
 app.use('/assets', createProxyMiddleware({
-    target: LEGACY_BACKEND_URL,
+    target: ASSETS_SERVICE_URL,
     changeOrigin: true,
     pathRewrite: {
         '^/assets': '/assets'
     },
     on: {
         proxyReq: (proxyReq, req) => {
-            console.log(`➡️  Proxying assets: ${req.path}`);
+            console.log(`➡️  Proxying to Assets Service: ${req.path}`);
         },
         error: (err, req, res) => {
-            console.error('❌ Legacy Backend asset proxy error:', err.message);
-            res.status(502).json({ error: 'Asset service unavailable' });
+            console.error('❌ Assets Service proxy error:', err.message);
+            res.status(502).json({ error: 'Assets service unavailable' });
         }
     }
 }));
 
-// Proxy all other /api/* routes to Legacy Backend (fallback)
-app.use('/api', createProxyMiddleware({
-    target: LEGACY_BACKEND_URL,
-    changeOrigin: true,
-    pathRewrite: {
-        '^/api': '/api'
-    },
-    on: {
-        proxyReq: (proxyReq, req) => {
-            console.log(`➡️  Proxying to Legacy Backend: ${req.method} ${req.path}`);
-        },
-        error: (err, req, res) => {
-            console.error('❌ Legacy Backend proxy error:', err.message);
-            res.status(502).json({ error: 'Backend service unavailable' });
-        }
-    }
-}));
+// 404 handler for unmatched API routes (legacy backend removed)
+app.use('/api', (req, res) => {
+    console.warn(`⚠️  Unmatched API route: ${req.method} ${req.path}`);
+    res.status(404).json({ error: 'API endpoint not found' });
+});
 
 // Start server
 const PORT = process.env.PORT || 8080;
@@ -220,7 +227,8 @@ app.listen(PORT, () => {
     console.log(`   ➡️  Auth: ${AUTH_SERVICE_URL}`);
     console.log(`   ➡️  Users: ${USERS_SERVICE_URL}`);
     console.log(`   ➡️  Catalog: ${CATALOG_SERVICE_URL}`);
+    console.log(`   ➡️  Trips: ${TRIPS_SERVICE_URL}`);
     console.log(`   ➡️  Recommendations: ${RECOMMENDATION_SERVICE_URL}`);
     console.log(`   ➡️  Cache: ${CACHE_SERVICE_URL}`);
-    console.log(`   ➡️  Legacy: ${LEGACY_BACKEND_URL}`);
+    console.log(`   ➡️  Assets: ${ASSETS_SERVICE_URL}`);
 });

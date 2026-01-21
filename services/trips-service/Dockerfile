@@ -12,7 +12,7 @@ RUN npm install --omit=dev
 COPY . .
 
 # Expose port
-EXPOSE 4005
+EXPOSE 4004
 
 # Start the service
 CMD ["node", "index.js"]

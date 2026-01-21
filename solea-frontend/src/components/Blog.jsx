@@ -9,9 +9,12 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/api/blogs`);
-        setBlogs(response.data);
+        // Ensure blogs is always an array
+        const blogsData = Array.isArray(response.data) ? response.data : [];
+        setBlogs(blogsData);
       } catch (error) {
         console.error("Failed to fetch blogs:", error);
+        setBlogs([]); // Reset to empty array on error
       }
     };
 

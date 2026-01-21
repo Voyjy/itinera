@@ -11,8 +11,11 @@ RUN npm install --omit=dev
 # Copy source code
 COPY . .
 
+# Create assets directory (will be mounted via volume)
+RUN mkdir -p /app/assets
+
 # Expose port
-EXPOSE 4005
+EXPOSE 4007
 
 # Start the service
 CMD ["node", "index.js"]
