@@ -5,7 +5,7 @@ class AppConstants {
   // ============================================
   // BACKEND API CONFIGURATION
   // ============================================
-  
+
   /// Base URL for the API Gateway
   /// - Android Emulator: http://10.0.2.2:8080 (maps to host localhost)
   /// - Physical device: http://<your-computer-ip>:8080
@@ -28,23 +28,32 @@ class AppConstants {
   static const String onboardingCompleteKey = 'solea_onboarding_complete';
   static const String lastFlightSearchKey = 'solea_last_flight_search';
 
+  // TripIdea-specific keys
+  static const String likedTripIdeasKey = 'liked_trip_ideas_v1';
+  static const String dislikedTripIdeasKey = 'disliked_trip_ideas_v1';
+  static const String tagWeightsKey = 'tag_weights_v1';
+  static const String recentlyShownKey = 'recently_shown_ideas_v1';
+
+  // Demo mode flag (set automatically when backend is unavailable)
+  static bool isDemoMode = false;
+
   // ============================================
   // FLIGHT SEARCH CONFIGURATION (OPTIONAL API)
   // ============================================
-  
+
   /// Optional: Set your Amadeus API key here to enable in-app flight results
   /// If empty or null, the app will use redirect links (Google Flights, etc.)
   /// Get a free API key at: https://developers.amadeus.com/
   static const String? flightApiKey = null; // e.g., 'your-amadeus-api-key'
   static const String? flightApiSecret = null;
-  
+
   /// Amadeus API base URL (only used if flightApiKey is set)
   static const String amadeusBaseUrl = 'https://test.api.amadeus.com';
 
   // ============================================
   // DEEP LINK TEMPLATES FOR FLIGHT SEARCH
   // ============================================
-  
+
   /// Google Flights search URL template
   /// Format: /travel/flights/{origin}/{dest}/{date}
   static String googleFlightsUrl({
@@ -86,7 +95,8 @@ class AppConstants {
     String cabin = 'economy',
   }) {
     final cabinClass = _cabinCode(cabin, 'kayak');
-    final tripType = returnDate != null ? '$departDate/$returnDate' : '$departDate';
+    final tripType =
+        returnDate != null ? '$departDate/$returnDate' : '$departDate';
     return 'https://www.kayak.fr/flights/$origin-$destination/$tripType/${passengers}adults?sort=bestflight_a&fs=cabin=$cabinClass';
   }
 
@@ -94,21 +104,30 @@ class AppConstants {
     switch (provider) {
       case 'google':
         switch (cabin) {
-          case 'business': return '2';
-          case 'premium': return '1';
-          default: return '0';
+          case 'business':
+            return '2';
+          case 'premium':
+            return '1';
+          default:
+            return '0';
         }
       case 'skyscanner':
         switch (cabin) {
-          case 'business': return 'business';
-          case 'premium': return 'premiumeconomy';
-          default: return 'economy';
+          case 'business':
+            return 'business';
+          case 'premium':
+            return 'premiumeconomy';
+          default:
+            return 'economy';
         }
       case 'kayak':
         switch (cabin) {
-          case 'business': return 'b';
-          case 'premium': return 'p';
-          default: return 'e';
+          case 'business':
+            return 'b';
+          case 'premium':
+            return 'p';
+          default:
+            return 'e';
         }
       default:
         return 'economy';

@@ -4,11 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/colors.dart';
 import '../../core/theme/typography.dart';
-import '../../data/models/trip_card.dart';
-import '../../data/local/likes_store.dart';
+import '../../data/models/trip_idea.dart';
+import '../../data/local/trip_idea_store.dart';
 import '../../widgets/common_widgets.dart';
 
-/// Screen showing all liked trips
+/// Screen showing all liked TripIdeas
 class LikesScreen extends StatefulWidget {
   const LikesScreen({super.key});
 
@@ -17,7 +17,7 @@ class LikesScreen extends StatefulWidget {
 }
 
 class _LikesScreenState extends State<LikesScreen> {
-  List<TripCard> _likedCards = [];
+  List<TripIdea> _likedIdeas = [];
 
   @override
   void initState() {
@@ -25,24 +25,30 @@ class _LikesScreenState extends State<LikesScreen> {
     _loadLikes();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadLikes();
+  }
+
   void _loadLikes() {
     setState(() {
-      _likedCards = LikesStore.getLikedCards();
+      _likedIdeas = TripIdeaLikesStore.getLikedIdeas();
     });
   }
 
-  void _removeLike(TripCard card) async {
-    await LikesStore.removeLike(card.cityId);
+  void _removeLike(TripIdea idea) async {
+    await TripIdeaLikesStore.removeLike(idea.id);
     _loadLikes();
-    
+
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${card.title} retiré des favoris'),
+          content: Text('${idea.activityTitle} retiré des favoris'),
           action: SnackBarAction(
             label: 'Annuler',
             onPressed: () async {
-              await LikesStore.addLike(card);
+              await TripIdeaLikesStore.addLike(idea);
               _loadLikes();
             },
           ),
@@ -68,7 +74,7 @@ class _LikesScreenState extends State<LikesScreen> {
                     Text('Mes favoris', style: AppTypography.headlineLarge),
                     SizedBox(height: 4),
                     Text(
-                      '${_likedCards.length} destination${_likedCards.length > 1 ? 's' : ''} sauvegardée${_likedCards.length > 1 ? 's' : ''}',
+                      '${_likedIdeas.length} activité${_likedIdeas.length > 1 ? 's' : ''} sauvegardée${_likedIdeas.length > 1 ? 's' : ''}',
                       style: AppTypography.bodyMedium,
                     ),
                   ],
@@ -77,7 +83,7 @@ class _LikesScreenState extends State<LikesScreen> {
 
               // Content
               Expanded(
-                child: _likedCards.isEmpty
+                child: _likedIdeas.isEmpty
                     ? _buildEmptyState()
                     : _buildLikesList(),
               ),
@@ -99,8 +105,10 @@ class _LikesScreenState extends State<LikesScreen> {
               Icons.favorite_border,
               size: 80,
               color: AppColors.textMuted,
-            ).animate(onPlay: (c) => c.repeat(reverse: true))
-                .scale(begin: Offset(1, 1), end: Offset(1.1, 1.1), duration: 1.seconds),
+            ).animate(onPlay: (c) => c.repeat(reverse: true)).scale(
+                begin: Offset(1, 1),
+                end: Offset(1.1, 1.1),
+                duration: 1.seconds),
             SizedBox(height: 24),
             Text(
               'Pas encore de favoris',
@@ -108,7 +116,7 @@ class _LikesScreenState extends State<LikesScreen> {
             ),
             SizedBox(height: 8),
             Text(
-              'Swipez vers la droite sur les destinations qui vous plaisent !',
+              'Swipez vers la droite sur les activités qui vous plaisent !',
               textAlign: TextAlign.center,
               style: AppTypography.bodyLarge,
             ),
@@ -127,28 +135,26 @@ class _LikesScreenState extends State<LikesScreen> {
   Widget _buildLikesList() {
     return ListView.builder(
       padding: EdgeInsets.symmetric(horizontal: 20),
-      itemCount: _likedCards.length,
+      itemCount: _likedIdeas.length,
       itemBuilder: (context, index) {
-        final card = _likedCards[index];
-        return _LikedCardTile(
-          card: card,
-          onTap: () => context.push('/details', extra: card),
-          onRemove: () => _removeLike(card),
-        ).animate(delay: (50 * index).ms)
-            .fadeIn()
-            .slideX(begin: 0.1);
+        final idea = _likedIdeas[index];
+        return _LikedIdeaTile(
+          idea: idea,
+          onTap: () => context.push('/trip-vibe', extra: idea),
+          onRemove: () => _removeLike(idea),
+        ).animate(delay: (50 * index).ms).fadeIn().slideX(begin: 0.1);
       },
     );
   }
 }
 
-class _LikedCardTile extends StatelessWidget {
-  final TripCard card;
+class _LikedIdeaTile extends StatelessWidget {
+  final TripIdea idea;
   final VoidCallback onTap;
   final VoidCallback onRemove;
 
-  const _LikedCardTile({
-    required this.card,
+  const _LikedIdeaTile({
+    required this.idea,
     required this.onTap,
     required this.onRemove,
   });
@@ -170,12 +176,13 @@ class _LikedCardTile extends StatelessWidget {
             children: [
               // Image
               ClipRRect(
-                borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
+                borderRadius:
+                    BorderRadius.horizontal(left: Radius.circular(20)),
                 child: SizedBox(
                   width: 120,
                   height: 120,
                   child: CachedNetworkImage(
-                    imageUrl: card.imageUrl,
+                    imageUrl: idea.imageUrl,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Container(
                       color: AppColors.surfaceLight,
@@ -187,7 +194,7 @@ class _LikedCardTile extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Content
               Expanded(
                 child: Padding(
@@ -197,44 +204,53 @@ class _LikedCardTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        card.title,
-                        style: AppTypography.titleLarge,
+                        idea.activityTitle,
+                        style: AppTypography.titleMedium,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 4),
                       Text(
-                        card.subtitle,
+                        idea.displaySubtitle,
                         style: AppTypography.bodySmall,
                         maxLines: 1,
                       ),
                       SizedBox(height: 8),
-                      // Tags
-                      Wrap(
-                        spacing: 6,
-                        runSpacing: 4,
-                        children: card.tags.take(2).map((tag) {
-                          return Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: AppColors.chipBackground,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              tag,
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: AppColors.textSecondary,
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                      // Duration + Intensity
+                      Row(
+                        children: [
+                          Icon(Icons.schedule,
+                              size: 12, color: AppColors.textMuted),
+                          SizedBox(width: 4),
+                          Text(idea.duration, style: AppTypography.bodySmall),
+                          SizedBox(width: 12),
+                          // Tags
+                          ...idea.tags
+                              .take(2)
+                              .map((tag) => Container(
+                                    margin: EdgeInsets.only(right: 4),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.chipBackground,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Text(
+                                      tag,
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: AppColors.textSecondary,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-              
+
               // Remove button
               Padding(
                 padding: EdgeInsets.only(right: 12),

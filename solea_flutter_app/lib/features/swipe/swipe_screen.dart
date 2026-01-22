@@ -4,14 +4,14 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../core/theme/colors.dart';
 import '../../core/theme/typography.dart';
-import '../../data/models/trip_card.dart';
-import '../../data/repositories/recommendation_repository.dart';
-import '../../data/local/likes_store.dart';
-import '../../data/local/dislikes_store.dart';
+import '../../core/constants.dart';
+import '../../data/models/trip_idea.dart';
+import '../../data/repositories/trip_idea_repository.dart';
+import '../../data/local/trip_idea_store.dart';
 import '../../widgets/common_widgets.dart';
 import 'package:go_router/go_router.dart';
 
-/// Main swipe screen with Tinder-like card deck
+/// Main swipe screen with Tinder-like TripIdea card deck
 class SwipeScreen extends StatefulWidget {
   const SwipeScreen({super.key});
 
@@ -21,10 +21,10 @@ class SwipeScreen extends StatefulWidget {
 
 class _SwipeScreenState extends State<SwipeScreen>
     with TickerProviderStateMixin {
-  final RecommendationRepository _repo = RecommendationRepository();
+  final TripIdeaRepository _repo = TripIdeaRepository();
   final CardSwiperController _swiperController = CardSwiperController();
 
-  List<TripCard> _deck = [];
+  List<TripIdea> _deck = [];
   bool _isLoading = true;
   String? _error;
 
@@ -69,21 +69,36 @@ class _SwipeScreenState extends State<SwipeScreen>
       int previousIndex, int? currentIndex, CardSwiperDirection direction) {
     if (previousIndex >= _deck.length) return false;
 
-    final card = _deck[previousIndex];
+    final idea = _deck[previousIndex];
 
     if (direction == CardSwiperDirection.right) {
-      // Like
+      // Like - save and navigate to TripVibeScreen
       _showLikeAnimation();
-      LikesStore.addLike(card);
+      TripIdeaLikesStore.addLike(idea);
+      TripIdeaLikesStore.markAsShown(idea.id);
+
+      // Navigate to TripVibeScreen after animation
+      Future.delayed(Duration(milliseconds: 400), () {
+        if (mounted) {
+          context.push('/trip-vibe', extra: idea);
+        }
+      });
     } else if (direction == CardSwiperDirection.left) {
-      // Dislike
+      // Dislike - reduce similar ideas
       _showNopeAnimation();
-      DislikesStore.addDislike(card.cityId);
-      DislikesStore.recordDislikedTags(card.tags);
+      TripIdeaLikesStore.addDislike(idea.id, idea.tags);
+      TripIdeaLikesStore.markAsShown(idea.id);
     } else if (direction == CardSwiperDirection.top) {
       // Super like (treated as like)
       _showLikeAnimation();
-      LikesStore.addLike(card);
+      TripIdeaLikesStore.addLike(idea);
+      TripIdeaLikesStore.markAsShown(idea.id);
+
+      Future.delayed(Duration(milliseconds: 400), () {
+        if (mounted) {
+          context.push('/trip-vibe', extra: idea);
+        }
+      });
     }
 
     // Refill deck if running low
@@ -109,9 +124,9 @@ class _SwipeScreenState extends State<SwipeScreen>
 
   Future<void> _refillDeck() async {
     try {
-      final morCards = await _repo.buildDeck(size: 10);
+      final moreIdeas = await _repo.buildDeck(size: 10);
       setState(() {
-        _deck.addAll(morCards);
+        _deck.addAll(moreIdeas);
       });
     } catch (e) {
       print('Error refilling deck: $e');
@@ -127,6 +142,26 @@ class _SwipeScreenState extends State<SwipeScreen>
             children: [
               // Header
               _buildHeader(),
+
+              // Demo mode banner
+              if (AppConstants.isDemoMode)
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  color: AppColors.accent.withOpacity(0.2),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.wifi_off, size: 16, color: AppColors.accent),
+                      SizedBox(width: 8),
+                      Text(
+                        'Mode démo',
+                        style: AppTypography.labelMedium
+                            .copyWith(color: AppColors.accent),
+                      ),
+                    ],
+                  ),
+                ).animate().fadeIn(),
 
               // Main content
               Expanded(
@@ -202,10 +237,10 @@ class _SwipeScreenState extends State<SwipeScreen>
             cardBuilder:
                 (context, index, horizontalThreshold, verticalThreshold) {
               if (index >= _deck.length) return Container();
-              return _TripCardWidget(
-                card: _deck[index],
+              return _TripIdeaCardWidget(
+                idea: _deck[index],
                 horizontalDrag: horizontalThreshold.toDouble(),
-                onTap: () => context.push('/details', extra: _deck[index]),
+                onTap: () => context.push('/trip-vibe', extra: _deck[index]),
               );
             },
           ),
@@ -355,14 +390,14 @@ class _SwipeScreenState extends State<SwipeScreen>
   }
 }
 
-/// Individual trip card widget
-class _TripCardWidget extends StatelessWidget {
-  final TripCard card;
+/// Individual TripIdea card widget
+class _TripIdeaCardWidget extends StatelessWidget {
+  final TripIdea idea;
   final double horizontalDrag;
   final VoidCallback onTap;
 
-  const _TripCardWidget({
-    required this.card,
+  const _TripIdeaCardWidget({
+    required this.idea,
     required this.horizontalDrag,
     required this.onTap,
   });
@@ -397,7 +432,7 @@ class _TripCardWidget extends StatelessWidget {
                 child: Transform.translate(
                   offset: Offset(horizontalDrag * 0.05, 0),
                   child: CachedNetworkImage(
-                    imageUrl: card.imageUrl,
+                    imageUrl: idea.imageUrl,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Container(
                       color: AppColors.surface,
@@ -488,22 +523,22 @@ class _TripCardWidget extends StatelessWidget {
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
-                      children: card.tags.take(3).map((tag) {
+                      children: idea.tags.take(3).map((tag) {
                         return TagChip(label: tag);
                       }).toList(),
                     ),
                     SizedBox(height: 12),
 
-                    // Title
+                    // Activity Title
                     Text(
-                      card.title,
+                      idea.activityTitle,
                       style: AppTypography.displayMedium,
                     ),
                     SizedBox(height: 4),
 
-                    // Subtitle
+                    // City & Location
                     Text(
-                      card.subtitle,
+                      idea.displaySubtitle,
                       style: AppTypography.bodyLarge.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -531,7 +566,7 @@ class _TripCardWidget extends StatelessWidget {
                           ),
                           SizedBox(height: 6),
                           Text(
-                            card.whyThis,
+                            idea.whyThis,
                             style: AppTypography.bodySmall.copyWith(
                               color: AppColors.textPrimary,
                             ),
@@ -542,25 +577,38 @@ class _TripCardWidget extends StatelessWidget {
                       ),
                     ),
 
-                    // Top spots preview
-                    if (card.topSpots.isNotEmpty) ...[
-                      SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Icon(Icons.place,
-                              color: AppColors.textMuted, size: 14),
-                          SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              card.topSpots.join(' • '),
-                              style: AppTypography.bodySmall,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                    // Duration & Intensity
+                    SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Icon(Icons.schedule,
+                            color: AppColors.textMuted, size: 14),
+                        SizedBox(width: 4),
+                        Text(
+                          idea.duration,
+                          style: AppTypography.bodySmall,
+                        ),
+                        SizedBox(width: 16),
+                        Icon(
+                          idea.intensity == 'calm'
+                              ? Icons.spa
+                              : idea.intensity == 'active'
+                                  ? Icons.directions_run
+                                  : Icons.self_improvement,
+                          color: AppColors.textMuted,
+                          size: 14,
+                        ),
+                        SizedBox(width: 4),
+                        Text(
+                          idea.intensity == 'calm'
+                              ? 'Calme'
+                              : idea.intensity == 'active'
+                                  ? 'Actif'
+                                  : 'Équilibré',
+                          style: AppTypography.bodySmall,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

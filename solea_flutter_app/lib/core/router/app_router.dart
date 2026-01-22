@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../data/local/prefs_store.dart';
 import '../../data/models/trip_card.dart';
+import '../../data/models/trip_idea.dart';
 import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/swipe/swipe_screen.dart';
 import '../../features/likes/likes_screen.dart';
 import '../../features/trip_details/trip_details_screen.dart';
+import '../../features/trip_vibe/trip_vibe_screen.dart';
 import '../../features/flights/flights_screen.dart';
 import '../../features/hotels/hotels_screen.dart';
 import '../../features/settings/settings_screen.dart';
@@ -23,7 +25,8 @@ class AppRouter {
     initialLocation: '/',
     redirect: (context, state) {
       // Redirect to onboarding if not complete
-      if (!PrefsStore.isOnboardingComplete && state.matchedLocation != '/onboarding') {
+      if (!PrefsStore.isOnboardingComplete &&
+          state.matchedLocation != '/onboarding') {
         return '/onboarding';
       }
       return null;
@@ -34,7 +37,7 @@ class AppRouter {
         path: '/onboarding',
         builder: (context, state) => const OnboardingScreen(),
       ),
-      
+
       // Main app with bottom navigation shell
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -67,6 +70,15 @@ class AppRouter {
         builder: (context, state) {
           final card = state.extra as TripCard?;
           return TripDetailsScreen(card: card);
+        },
+      ),
+
+      // Trip vibe screen (after right swipe on TripIdea)
+      GoRoute(
+        path: '/trip-vibe',
+        builder: (context, state) {
+          final idea = state.extra as TripIdea;
+          return TripVibeScreen(likedIdea: idea);
         },
       ),
 

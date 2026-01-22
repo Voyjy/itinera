@@ -4,14 +4,27 @@ Application mobile Flutter pour la plateforme Itinera/Solea avec une expérience
 
 ## 🚀 Fonctionnalités
 
-- **Onboarding personnalisé** : Wizard 3 étapes pour définir vos préférences de voyage
-- **Swipe Deck** : Interface Tinder-like pour découvrir des destinations
-  - Swipe droite = J'aime
-  - Swipe gauche = Je passe
+- **Swipe Deck TripIdeas** : Interface Tinder-like pour découvrir des activités et lieux dans les villes
+  - Cartes avec image, titre d'activité, durée, intensité
+  - Swipe droite = J'aime → Navigation vers TripVibeScreen
+  - Swipe gauche = Je passe → Réduit les suggestions similaires
   - Swipe haut = Super like
-- **Favoris** : Consultez vos destinations sauvegardées
-- **Recherche de vols** : Redirection vers Google Flights, Skyscanner, Kayak
-- **UI moderne** : Gradients animés, parallaxe, micro-animations
+  - **Mode démo** : Fonctionne offline avec 50+ activités préchargées
+  
+- **TripVibeScreen** : Après un like, explorez la ville avec:
+  - 5 suggestions d'activités similaires
+  - Boutons Vols (Google Flights) et Hôtels (Booking.com)
+  - Bouton "Planifier ce voyage"
+
+- **Favoris** : Consultez vos activités sauvegardées avec navigation vers TripVibeScreen
+
+- **Adaptation intelligente** : 
+  - Les tags likés/dislikés affectent les futures suggestions
+  - Pondération basée sur l'historique de swipe
+  - Pas de répétition des 20 dernières cartes
+
+- **Onboarding personnalisé** : Wizard 3 étapes pour définir vos préférences
+- **UI moderne** : Gradients animés, parallaxe, micro-animations, glassmorphism
 
 ## 📋 Prérequis
 
@@ -106,18 +119,29 @@ lib/
 ├── main.dart                # Point d'entrée
 ├── app.dart                 # Configuration MaterialApp
 ├── core/
-│   ├── constants.dart       # BASE_URL, storage keys
+│   ├── constants.dart       # BASE_URL, storage keys, demo mode flag
 │   ├── router/              # GoRouter configuration
 │   └── theme/               # Colors, typography, theme
 ├── data/
-│   ├── models/              # City, TripCard, UserPrefs
+│   ├── models/              
+│   │   ├── city.dart        # Modèle ville backend
+│   │   ├── trip_idea.dart   # Modèle activité/lieu (NEW)
+│   │   └── user_prefs.dart  # Préférences utilisateur
+│   ├── demo/
+│   │   └── demo_trip_ideas.dart  # 50+ activités préchargées (NEW)
 │   ├── remote/              # API client (Dio)
-│   ├── local/               # SharedPreferences stores
-│   └── repositories/        # Recommendation, Flights
+│   ├── local/               
+│   │   ├── prefs_store.dart
+│   │   ├── likes_store.dart
+│   │   └── trip_idea_store.dart  # Stockage TripIdeas (NEW)
+│   └── repositories/        
+│       ├── recommendation_repository.dart
+│       └── trip_idea_repository.dart  # Build deck avec weighting (NEW)
 ├── features/
 │   ├── onboarding/          # Wizard 3 étapes
-│   ├── swipe/               # Deck de cartes
-│   ├── likes/               # Liste des favoris
+│   ├── swipe/               # Deck de cartes TripIdea
+│   ├── likes/               # Liste des favoris TripIdeas
+│   ├── trip_vibe/           # TripVibeScreen (NEW)
 │   ├── trip_details/        # Détails destination
 │   ├── flights/             # Recherche vols
 │   ├── settings/            # Réglages
