@@ -8,3 +8,4 @@ dist/
 
 # Media
 solea-frontend/src/assets/videos/*.mp4
+android-app/
