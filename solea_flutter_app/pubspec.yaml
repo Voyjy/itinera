@@ -1,0 +1,54 @@
+name: solea_flutter_app
+description: Solea Travel App - Swipe-based trip recommendations
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI & Icons
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.2.0
+  
+  # Networking
+  dio: ^5.4.0
+  
+  # Local Storage
+  shared_preferences: ^2.2.2
+  
+  # Images
+  cached_network_image: ^3.3.1
+  
+  # Swipe Card Deck
+  flutter_card_swiper: ^7.0.0
+  
+  # Animations
+  lottie: ^3.1.0
+  flutter_animate: ^4.5.0
+  shimmer: ^3.0.0
+  
+  # Navigation
+  go_router: ^14.0.0
+  
+  # URL Launcher (for flight redirects)
+  url_launcher: ^6.2.4
+  
+  # Date Picker
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/lottie/
