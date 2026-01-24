@@ -14,6 +14,8 @@ import UserProfile from "./components/UserProfile";
 import SelectHotelPage from "./landing pages/SelectHotelPage";
 import TripSummary from "./components/TripSummary";
 import Recommendation from "./components/Recommendation";
+import ItineraryLoadingScreen from './components/itinerary/ItineraryLoadingScreen';
+import ItineraryResultScreen from './components/itinerary/ItineraryResultScreen';
 
 
 const MainPage = () => (
@@ -32,6 +34,12 @@ const MainPage = () => (
 const LayoutWrapper = ({ children }) => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const isItineraryPage = location.pathname.startsWith('/itinerary');
+
+  // Hide navbar and footer on itinerary pages for full-screen experience
+  if (isItineraryPage) {
+    return <>{children}</>;
+  }
 
   return (
     <>
@@ -54,7 +62,8 @@ const App = () => {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/hotels/:cityId" element={<SelectHotelPage />} />
             <Route path="/trip-summary/:tripId" element={<TripSummary />} />
-            
+            <Route path="/itinerary/loading" element={<ItineraryLoadingScreen />} />
+            <Route path="/itinerary/result" element={<ItineraryResultScreen />} />
 
           </Routes>
         </main>
