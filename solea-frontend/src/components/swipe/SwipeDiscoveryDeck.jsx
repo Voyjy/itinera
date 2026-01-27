@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SwipeCard from './SwipeCard';
+import BlurredCardBackground from './BlurredCardBackground';
 import { DEMO_SWIPE_CARDS } from '../../data/demo/demoSwipeCards';
 import {
     loadSwipeSignals,
@@ -127,114 +128,113 @@ const SwipeDiscoveryDeck = () => {
     }
 
     return (
-        <div className="py-12 px-6 md:px-20 bg-gradient-to-b from-black to-zinc-900">
-            <div className="max-w-lg mx-auto">
-                {/* Header */}
-                <div className="text-center mb-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 oswald">
-                        {t('swipe.title')}
-                    </h2>
-                    <p className="text-white/60 oswald text-lg">
-                        {t('swipe.subtitle')}
-                    </p>
-                </div>
+        <div className="relative overflow-hidden">
+            {/* Dynamic Blurred Background - scoped to this section only */}
+            <BlurredCardBackground imageUrl={currentCard?.image} />
 
-                {/* Card Stack */}
-                <div className="relative h-[520px] mb-8">
-                    {/* Next card (underneath) */}
-                    {nextCard && (
-                        <div className="absolute inset-0 flex justify-center">
-                            <div className="w-full max-w-sm transform scale-95 opacity-60">
-                                <SwipeCard card={nextCard} />
-                            </div>
+            {/* Main Content - positioned above background */}
+            <div className="relative z-10 py-12 px-6 md:px-20">
+                <div className="max-w-lg mx-auto">
+                    {/* Header */}
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 oswald">
+                            {t('swipe.title')}
+                        </h2>
+                        <p className="text-white/60 oswald text-lg">
+                            {t('swipe.subtitle')}
+                        </p>
+                    </div>
+
+                    {/* Card Stack - Centered with buttons positioned relative to card */}
+                    <div className="w-full flex justify-center">
+                        <div className="relative h-[520px] w-[min(380px,90vw)]">
+                            {/* Next card (underneath) */}
+                            {nextCard && (
+                                <div className="absolute inset-0 flex justify-center">
+                                    <div className="w-full max-w-sm transform scale-95 opacity-60">
+                                        <SwipeCard card={nextCard} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Current card (on top, draggable) */}
+                            {currentCard && (
+                                <motion.div
+                                    className="absolute inset-0 flex justify-center cursor-grab active:cursor-grabbing"
+                                    style={{ x, rotate, opacity }}
+                                    drag="x"
+                                    dragConstraints={{ left: 0, right: 0 }}
+                                    dragElastic={1}
+                                    onDragEnd={handleDragEnd}
+                                >
+                                    <div className="w-full max-w-sm">
+                                        <SwipeCard
+                                            card={currentCard}
+                                            isTop={true}
+                                            dragX={x.get()}
+                                        />
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* Liked Overlay */}
+                            {showLikedOverlay && (
+                                <motion.div
+                                    className="absolute inset-0 flex items-center justify-center bg-emerald-500/20 backdrop-blur-sm rounded-2xl z-50"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                >
+                                    <div className="text-center">
+                                        <span className="text-6xl">❤️</span>
+                                        <p className="text-white text-2xl font-bold mt-2 oswald">{t('swipe.liked')}</p>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* Passed Overlay */}
+                            {showPassedOverlay && (
+                                <motion.div
+                                    className="absolute inset-0 flex items-center justify-center bg-rose-500/20 backdrop-blur-sm rounded-2xl z-50"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                >
+                                    <div className="text-center">
+                                        <span className="text-6xl">✕</span>
+                                        <p className="text-white text-2xl font-bold mt-2 oswald">{t('swipe.passed')}</p>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {/* Pass Button - LEFT of card */}
+                            <motion.button
+                                onClick={handlePassClick}
+                                className="absolute -left-20 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-zinc-800 border-2 border-rose-400/50 flex items-center justify-center shadow-lg hover:bg-rose-500/20 transition-colors z-20"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                aria-label="Passer"
+                            >
+                                <span className="text-rose-400 text-3xl">✕</span>
+                            </motion.button>
+
+                            {/* Like Button - RIGHT of card */}
+                            <motion.button
+                                onClick={handleLikeClick}
+                                className="absolute -right-20 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-zinc-800 border-2 border-emerald-400/50 flex items-center justify-center shadow-lg hover:bg-emerald-500/20 transition-colors z-20"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                aria-label="J'aime"
+                            >
+                                <span className="text-emerald-400 text-3xl">❤️</span>
+                            </motion.button>
                         </div>
-                    )}
+                    </div>
 
-                    {/* Current card (on top, draggable) */}
-                    {currentCard && (
-                        <motion.div
-                            className="absolute inset-0 flex justify-center cursor-grab active:cursor-grabbing"
-                            style={{ x, rotate, opacity }}
-                            drag="x"
-                            dragConstraints={{ left: 0, right: 0 }}
-                            dragElastic={1}
-                            onDragEnd={handleDragEnd}
-                        >
-                            <div className="w-full max-w-sm">
-                                <SwipeCard
-                                    card={currentCard}
-                                    isTop={true}
-                                    dragX={x.get()}
-                                />
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* Liked Overlay */}
-                    {showLikedOverlay && (
-                        <motion.div
-                            className="absolute inset-0 flex items-center justify-center bg-emerald-500/20 backdrop-blur-sm rounded-2xl z-50"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                        >
-                            <div className="text-center">
-                                <span className="text-6xl">❤️</span>
-                                <p className="text-white text-2xl font-bold mt-2 oswald">{t('swipe.liked')}</p>
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* Passed Overlay */}
-                    {showPassedOverlay && (
-                        <motion.div
-                            className="absolute inset-0 flex items-center justify-center bg-rose-500/20 backdrop-blur-sm rounded-2xl z-50"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                        >
-                            <div className="text-center">
-                                <span className="text-6xl">✕</span>
-                                <p className="text-white text-2xl font-bold mt-2 oswald">{t('swipe.passed')}</p>
-                            </div>
-                        </motion.div>
-                    )}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex justify-center gap-8">
-                    {/* Pass Button */}
-                    <motion.button
-                        onClick={handlePassClick}
-                        className="w-16 h-16 rounded-full bg-zinc-800 border-2 border-rose-400/50 flex items-center justify-center shadow-lg hover:bg-rose-500/20 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label="Passer"
-                    >
-                        <span className="text-rose-400 text-3xl">✕</span>
-                    </motion.button>
-
-                    {/* Like Button */}
-                    <motion.button
-                        onClick={handleLikeClick}
-                        className="w-16 h-16 rounded-full bg-zinc-800 border-2 border-emerald-400/50 flex items-center justify-center shadow-lg hover:bg-emerald-500/20 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label="J'aime"
-                    >
-                        <span className="text-emerald-400 text-3xl">❤️</span>
-                    </motion.button>
-                </div>
-
-                {/* Button Labels */}
-                <div className="flex justify-center gap-8 mt-2">
-                    <span className="text-rose-400/70 text-sm oswald w-16 text-center">{t('swipe.pass')}</span>
-                    <span className="text-emerald-400/70 text-sm oswald w-16 text-center">{t('swipe.like')}</span>
-                </div>
-
-                {/* Progress Indicator */}
-                <div className="mt-6 text-center">
-                    <p className="text-white/40 text-xs oswald">
-                        {currentIndex + 1} / {deck.length} destinations
-                    </p>
+                    {/* Progress Indicator */}
+                    <div className="mt-8 text-center">
+                        <p className="text-white/40 text-xs oswald">
+                            {currentIndex + 1} / {deck.length} destinations
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,3 +242,4 @@ const SwipeDiscoveryDeck = () => {
 };
 
 export default SwipeDiscoveryDeck;
+
