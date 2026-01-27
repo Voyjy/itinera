@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import GlassPanel from './ui/GlassPanel';
 import { generateDemoItinerary } from '../../data/demoItinerary';
+import { loadTripRequest } from '../../utils/storageKeys';
 
 /**
  * ItineraryLoadingScreen - Shows while generating itinerary
@@ -10,7 +11,12 @@ import { generateDemoItinerary } from '../../data/demoItinerary';
 const ItineraryLoadingScreen = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const profile = location.state?.profile || {};
+
+    // Try to get profile from location state, fallback to localStorage
+    const stateProfile = location.state?.profile || {};
+    const storedRequest = loadTripRequest();
+    const profile = Object.keys(stateProfile).length > 0 ? stateProfile : storedRequest || {};
+
     const [progress, setProgress] = useState(0);
     const [statusText, setStatusText] = useState('Analyse de vos préférences...');
 

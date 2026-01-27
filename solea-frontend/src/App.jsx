@@ -13,9 +13,9 @@ import DestinationPage from "./landing pages/DestinationPage";
 import UserProfile from "./components/UserProfile";
 import SelectHotelPage from "./landing pages/SelectHotelPage";
 import TripSummary from "./components/TripSummary";
-import Recommendation from "./components/Recommendation";
 import ItineraryLoadingScreen from './components/itinerary/ItineraryLoadingScreen';
 import ItineraryResultScreen from './components/itinerary/ItineraryResultScreen';
+import EditRecommendation from './pages/EditRecommendation';
 
 
 const MainPage = () => (
@@ -25,7 +25,7 @@ const MainPage = () => (
     <Hero3 />
     <Hero4 />
     <ContinentCarousel />
-    <Recommendation />
+    {/* Recommendation section moved to Home.jsx as SwipeDiscoveryDeck */}
     <Blog />
   </div>
 );
@@ -35,9 +35,10 @@ const LayoutWrapper = ({ children }) => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
   const isItineraryPage = location.pathname.startsWith('/itinerary');
+  const isCustomizePage = location.pathname === '/customize';
 
-  // Hide navbar and footer on itinerary pages for full-screen experience
-  if (isItineraryPage) {
+  // Hide navbar and footer on itinerary and customize pages for full-screen experience
+  if (isItineraryPage || isCustomizePage) {
     return <>{children}</>;
   }
 
@@ -62,6 +63,7 @@ const App = () => {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/hotels/:cityId" element={<SelectHotelPage />} />
             <Route path="/trip-summary/:tripId" element={<TripSummary />} />
+            <Route path="/customize" element={<EditRecommendation />} />
             <Route path="/itinerary/loading" element={<ItineraryLoadingScreen />} />
             <Route path="/itinerary/result" element={<ItineraryResultScreen />} />
 

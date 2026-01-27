@@ -7,7 +7,10 @@ import InfoChip from './ui/InfoChip';
 import DayCard from './ui/DayCard';
 import StayCard from './ui/StayCard';
 import TransportCard from './ui/TransportCard';
+import FlightsSection from './FlightsSection';
+import HotelsCompareLinks from './HotelsCompareLinks';
 import { generateDemoItinerary } from '../../data/demoItinerary';
+import { useBookingOptions } from '../../features/booking/useBookingOptions';
 
 /**
  * ItineraryResultScreen - Main itinerary result display
@@ -18,6 +21,16 @@ const ItineraryResultScreen = () => {
     const [itinerary, setItinerary] = useState(location.state?.itinerary || null);
     const profile = location.state?.profile || {};
     const [isRegenerating, setIsRegenerating] = useState(false);
+
+    // Booking options hook
+    const {
+        flights,
+        flightLinks,
+        hotelLinks,
+        origin,
+        updateOrigin,
+        isLoading: isBookingLoading
+    } = useBookingOptions(itinerary, profile);
 
     // If no itinerary, redirect to home
     if (!itinerary) {
@@ -251,8 +264,18 @@ const ItineraryResultScreen = () => {
                             </div>
                         </div>
 
-                        {/* Right Column - Stays & Transport */}
+                        {/* Right Column - Flights, Stays & Transport */}
                         <div className="space-y-6">
+                            {/* Flights Section */}
+                            <FlightsSection
+                                flights={flights}
+                                flightLinks={flightLinks}
+                                origin={origin}
+                                destination={itinerary.destination}
+                                onOriginChange={updateOrigin}
+                                isLoading={isBookingLoading}
+                            />
+
                             {/* Recommended Stays */}
                             <GlassPanel>
                                 <div className="flex items-center gap-2 mb-4">
@@ -266,6 +289,12 @@ const ItineraryResultScreen = () => {
                                         <StayCard key={stay.id} stay={stay} index={index} />
                                     ))}
                                 </div>
+
+                                {/* Hotel Compare Links */}
+                                <HotelsCompareLinks
+                                    hotelLinks={hotelLinks}
+                                    destination={itinerary.destination}
+                                />
                             </GlassPanel>
 
                             {/* Transport Options */}
