@@ -103,5 +103,19 @@
         "nightlife": "Nightlife",
         "active": "Active",
         "elder_friendly": "Senior"
+    },
+    "blog": {
+        "title": "Blogs",
+        "viewAll": "View All",
+        "error": "Failed to load blogs",
+        "empty": "No blogs found",
+        "notFound": "Blog not found",
+        "noContent": "No content available",
+        "backToBlogs": "← Back to Blogs"
+    },
+    "common": {
+        "retry": "Retry",
+        "goBack": "Go Back",
+        "back": "Back"
     }
 }

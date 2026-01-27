@@ -1,29 +1,64 @@
-const Blog = require('../models/blogModel');
+const { getAllBlogPosts, getBlogPostBySlug } = require('../services/sanityService');
 
-// @desc    Get all blog posts
+// @desc    Get all blog posts from Sanity CMS
 // @route   GET /api/blogs
+// @query   lang - Optional language filter ('en' or 'fr')
 const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
-    res.json(blogs);
+    const { lang } = req.query;
+
+    // Validate language parameter
+    const validLangs = ['en', 'fr'];
+    const language = validLangs.includes(lang) ? lang : null;
+
+    const posts = await getAllBlogPosts(language);
+
+    res.json({
+      results: posts,
+      count: posts.length,
+      language: language || 'all'
+    });
   } catch (err) {
-    res.status(500).json({ message: 'Error fetching blogs', error: err.message });
+    console.error('Error fetching blogs from Sanity:', err);
+    res.status(500).json({
+      message: 'Failed to load blogs',
+      error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
   }
 };
 
-// @desc    Get a single blog post
-// @route   GET /api/blogs/:blogId
-const getBlogById = async (req, res) => {
+// @desc    Get a single blog post by slug from Sanity CMS
+// @route   GET /api/blogs/:slug
+// @query   lang - Optional language filter
+const getBlogBySlug = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.blogId);
-    if (!blog) return res.status(404).json({ message: 'Blog not found' });
-    res.json(blog);
+    const { slug } = req.params;
+    const { lang } = req.query;
+
+    if (!slug) {
+      return res.status(400).json({ message: 'Slug is required' });
+    }
+
+    const validLangs = ['en', 'fr'];
+    const language = validLangs.includes(lang) ? lang : null;
+
+    const post = await getBlogPostBySlug(slug, language);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.json(post);
   } catch (err) {
-    res.status(500).json({ message: 'Error fetching blog', error: err.message });
+    console.error('Error fetching blog from Sanity:', err);
+    res.status(500).json({
+      message: 'Failed to load blog',
+      error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
   }
 };
 
 module.exports = {
   getAllBlogs,
-  getBlogById
+  getBlogBySlug
 };

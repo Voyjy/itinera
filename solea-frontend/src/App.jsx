@@ -8,6 +8,7 @@ import Hero2 from './components/Hero2';
 import Hero3 from './components/hero3';
 import Hero4 from './components/hero4';
 import Blog from './components/Blog';
+import BlogDetail from './components/BlogDetail';
 import ContinentCarousel from './components/ContinentCrousel';
 import DestinationPage from "./landing pages/DestinationPage";
 import UserProfile from "./components/UserProfile";
@@ -66,6 +67,8 @@ const App = () => {
             <Route path="/customize" element={<EditRecommendation />} />
             <Route path="/itinerary/loading" element={<ItineraryLoadingScreen />} />
             <Route path="/itinerary/result" element={<ItineraryResultScreen />} />
+            <Route path="/blogs/:slug" element={<BlogDetail />} />
+
 
           </Routes>
         </main>

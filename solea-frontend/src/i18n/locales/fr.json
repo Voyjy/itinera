@@ -103,5 +103,19 @@
         "nightlife": "Vie nocturne",
         "active": "Actif",
         "elder_friendly": "Senior"
+    },
+    "blog": {
+        "title": "Blogs",
+        "viewAll": "Voir tout",
+        "error": "Échec du chargement des blogs",
+        "empty": "Aucun blog trouvé",
+        "notFound": "Blog non trouvé",
+        "noContent": "Aucun contenu disponible",
+        "backToBlogs": "← Retour aux blogs"
+    },
+    "common": {
+        "retry": "Réessayer",
+        "goBack": "Retour",
+        "back": "Retour"
     }
 }
