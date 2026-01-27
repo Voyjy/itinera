@@ -1,0 +1,121 @@
+{
+    "nav": {
+        "home": "Home",
+        "destinations": "Destinations",
+        "activities": "Activities",
+        "blogs": "Blogs",
+        "about": "About",
+        "contact": "Contact",
+        "search": "Search...",
+        "signIn": "Sign In",
+        "profile": "Profile",
+        "logout": "Logout"
+    },
+    "swipe": {
+        "title": "Discovery",
+        "subtitle": "Swipe right if you like it, left if you don't",
+        "like": "Like",
+        "pass": "Pass",
+        "passed": "Passed",
+        "liked": "Liked!",
+        "loading": "Loading destinations...",
+        "counter": "{{current}} / {{total}} destinations"
+    },
+    "edit": {
+        "title": "Customize Your Trip",
+        "subtitle": "Adjust the details before generating your itinerary",
+        "departureDate": "Departure Date",
+        "returnDate": "Return Date",
+        "travelers": "Number of Travelers",
+        "budget": "Budget",
+        "budgetOptions": {
+            "budget": "Budget",
+            "moderate": "Moderate",
+            "luxury": "Luxury"
+        },
+        "pace": "Travel Pace",
+        "paceOptions": {
+            "relaxed": "Relaxed",
+            "moderate": "Balanced",
+            "active": "Active"
+        },
+        "interests": "Interests",
+        "back": "← Back",
+        "generate": "Generate My Itinerary ✨",
+        "noSelection": "No destination selected",
+        "backToHome": "Back to Home",
+        "loading": "Loading..."
+    },
+    "itinerary": {
+        "loading": {
+            "title": "Creating your itinerary...",
+            "status1": "Analyzing your preferences...",
+            "status2": "Searching for the best activities...",
+            "status3": "Optimizing your route...",
+            "status4": "Selecting accommodations...",
+            "status5": "Finalizing your itinerary...",
+            "placeholder": "Recommendations will appear here",
+            "destination": "Destination"
+        },
+        "result": {
+            "title": "Your itinerary is ready!",
+            "days": "days",
+            "activities": "activities",
+            "regenerate": "Regenerate",
+            "regenerating": "Generating...",
+            "share": "Share",
+            "export": "Export",
+            "hotels": "Recommended Accommodations",
+            "transports": "Transport Options",
+            "back": "Back",
+            "backToHome": "Back to Home",
+            "noItinerary": "No itinerary found",
+            "yourTrip": "Your trip to",
+            "activitiesOn": "activities over",
+            "traveler": "traveler",
+            "travelers": "travelers",
+            "tipTitle": "Tip of the day",
+            "tipContent": "Get the Paris Museum Pass for unlimited museum access and skip the lines!",
+            "regeneratingText": "Regenerating...",
+            "linkCopied": "Link copied to clipboard!",
+            "exported": "Itinerary exported and copied to clipboard!",
+            "budget": "Budget",
+            "moderate": "Moderate",
+            "luxury": "Luxury",
+            "relaxed": "Relaxed",
+            "active": "Active"
+        }
+    },
+    "tags": {
+        "culture": "Culture",
+        "food": "Food",
+        "nature": "Nature",
+        "relaxation": "Relaxation",
+        "couple": "Couple",
+        "family": "Family",
+        "solo": "Solo",
+        "friends": "Friends",
+        "photography": "Photography",
+        "history": "History",
+        "art": "Art",
+        "shopping": "Shopping",
+        "wellness": "Wellness",
+        "nightlife": "Nightlife",
+        "active": "Active",
+        "elder_friendly": "Senior"
+    },
+    "blog": {
+        "title": "Blogs",
+        "viewAll": "View All",
+        "error": "Failed to load blogs",
+        "empty": "No blogs found",
+        "notFound": "Blog not found",
+        "noContent": "No content available",
+        "backToBlogs": "← Back to Blogs"
+    },
+    "common": {
+        "retry": "Retry",
+        "goBack": "Go Back",
+        "back": "Back"
+    }
+}
