@@ -119,9 +119,9 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Layer 3: CTA Button - absolute positioned at bottom, never animated */}
+        {/* Layer 3: CTA Button - covers "Built with Spline" watermark */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[16vh] md:bottom-[18vh] z-30 pointer-events-auto"
+          className="absolute right-3 bottom-3 z-[999] pointer-events-auto"
         >
           <PersonalizationButton onClick={handlePersonalizeClick} />
         </div>
