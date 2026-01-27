@@ -1,0 +1,37 @@
+# Render.com Blueprint Configuration
+# Deploy with: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: itinera-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: NEO4J_URI
+        sync: false
+      - key: NEO4J_USERNAME
+        sync: false
+      - key: NEO4J_PASSWORD
+        sync: false
+      - key: SERPAPI_KEY
+        sync: false
+      - key: SANITY_PROJECT_ID
+        value: ya4shhoi
+      - key: SANITY_DATASET
+        value: production
+      - key: SANITY_API_VERSION
+        value: 2024-01-01
+    healthCheckPath: /api/health
+    autoDeploy: true
