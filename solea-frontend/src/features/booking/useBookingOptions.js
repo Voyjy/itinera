@@ -1,16 +1,25 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { generateFlightLinks, generateHotelLinks } from './bookingLinks';
 import { generateDemoFlights, HOTEL_COMPARISON_SITES, FLIGHT_COMPARISON_SITES } from './demoBookingData';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 /**
  * useBookingOptions Hook
- * Provides flight and hotel booking options with fallback to demo data
+ * Provides flight and hotel booking options with real API data
  */
 export const useBookingOptions = (itinerary, profile = {}) => {
+    const { i18n } = useTranslation();
     const [flights, setFlights] = useState([]);
+    const [hotels, setHotels] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isHotelsLoading, setIsHotelsLoading] = useState(true);
     const [origin, setOrigin] = useState(profile?.origin || 'Paris');
     const [error, setError] = useState(null);
+
+    // Get current language
+    const currentLang = i18n.language?.startsWith('fr') ? 'fr' : 'en';
 
     // Booking parameters derived from itinerary
     const bookingParams = useMemo(() => ({
@@ -35,18 +44,17 @@ export const useBookingOptions = (itinerary, profile = {}) => {
         [bookingParams]
     );
 
-    // Try to fetch from API, fallback to demo data
+    // Fetch flights (with fallback to demo data)
     useEffect(() => {
-        const fetchBookingOptions = async () => {
+        const fetchFlights = async () => {
             setIsLoading(true);
             setError(null);
 
             try {
-                // Try API call (optional - will likely fail if endpoint doesn't exist)
                 const apiUrl = `/api/booking/flights?from=${encodeURIComponent(origin)}&to=${encodeURIComponent(bookingParams.destination)}&depart=${bookingParams.departDate}&return=${bookingParams.returnDate}&adults=${bookingParams.travelers}`;
 
                 const response = await fetch(apiUrl, {
-                    signal: AbortSignal.timeout(3000) // 3s timeout
+                    signal: AbortSignal.timeout(3000)
                 });
 
                 if (response.ok) {
@@ -58,8 +66,7 @@ export const useBookingOptions = (itinerary, profile = {}) => {
                     }
                 }
             } catch (err) {
-                // API not available - use fallback
-                console.log('Booking API not available, using demo data');
+                console.log('Flight API not available, using demo data');
             }
 
             // Fallback: Generate demo flights
@@ -70,13 +77,61 @@ export const useBookingOptions = (itinerary, profile = {}) => {
                 );
                 setFlights(demoFlights);
                 setIsLoading(false);
-            }, 800); // Simulate loading delay
+            }, 800);
         };
 
         if (itinerary?.destination) {
-            fetchBookingOptions();
+            fetchFlights();
         }
     }, [itinerary, origin, bookingParams]);
+
+    // Fetch hotels from SerpAPI
+    useEffect(() => {
+        const fetchHotels = async () => {
+            if (!itinerary?.destination) return;
+
+            setIsHotelsLoading(true);
+
+            try {
+                const params = new URLSearchParams({
+                    city: itinerary.destination,
+                    adults: String(bookingParams.travelers),
+                    lang: currentLang,
+                    currency: 'EUR'
+                });
+
+                if (bookingParams.checkinDate) {
+                    params.append('check_in', bookingParams.checkinDate);
+                }
+                if (bookingParams.checkoutDate) {
+                    params.append('check_out', bookingParams.checkoutDate);
+                }
+
+                const response = await fetch(`${API_BASE}/api/hotels/search?${params.toString()}`, {
+                    signal: AbortSignal.timeout(10000)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.results) {
+                        setHotels(data.results);
+                    } else {
+                        setHotels([]);
+                    }
+                } else {
+                    console.warn('Hotels API returned error:', response.status);
+                    setHotels([]);
+                }
+            } catch (err) {
+                console.warn('Hotels API error:', err.message);
+                setHotels([]);
+            } finally {
+                setIsHotelsLoading(false);
+            }
+        };
+
+        fetchHotels();
+    }, [itinerary?.destination, bookingParams.checkinDate, bookingParams.checkoutDate, bookingParams.travelers, currentLang]);
 
     // Update origin
     const updateOrigin = (newOrigin) => {
@@ -90,8 +145,10 @@ export const useBookingOptions = (itinerary, profile = {}) => {
         flightSites: FLIGHT_COMPARISON_SITES,
 
         // Hotel data
+        hotels,
         hotelLinks,
         hotelSites: HOTEL_COMPARISON_SITES,
+        isHotelsLoading,
 
         // Booking params
         origin,
@@ -103,8 +160,9 @@ export const useBookingOptions = (itinerary, profile = {}) => {
         error,
 
         // Helper
-        isUsingDemoData: true // Always true for now since no backend
+        isUsingDemoData: hotels.length === 0
     };
 };
 
 export default useBookingOptions;
+

@@ -15,6 +15,7 @@ const hotelRoutes = require('./routes/hotels');
 const recommendationRoutes = require('./routes/recommendations');
 const blogRoutes = require('./routes/blogs');
 const redisRoutes = require('./routes/redis');
+const serpHotelsRoutes = require('./routes/serpHotels');
 
 // Middleware
 app.use(cors({
@@ -65,6 +66,7 @@ app.use('/api/hotels', hotelRoutes);
 app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/redis', redisRoutes);
+app.use('/api/serp/hotels', serpHotelsRoutes);
 
 // MongoDB connection
 const PORT = process.env.PORT || 5000;

@@ -113,7 +113,7 @@ const Home = () => {
             ref={headlineRef}
             className="text-center max-w-4xl -translate-y-12 md:-translate-y-24 will-change-transform"
           >
-            <h5 className="oswald text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight text-white tracking-normal reduce-word-spacing">
+            <h5 className="oswald text-5xl sm:text-6xl md:text-8xl lg:text-8xl font-extralight text-white tracking-normal reduce-word-spacing">
               Step Into a <span className="italic">W</span>orld of Discovery
             </h5>
           </div>

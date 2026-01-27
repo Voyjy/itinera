@@ -9,6 +9,7 @@ import DayCard from './ui/DayCard';
 import StayCard from './ui/StayCard';
 import TransportCard from './ui/TransportCard';
 import FlightsSection from './FlightsSection';
+import HotelsSection from './HotelsSection';
 import HotelsCompareLinks from './HotelsCompareLinks';
 import { generateDemoItinerary } from '../../data/demoItinerary';
 import { useBookingOptions } from '../../features/booking/useBookingOptions';
@@ -28,10 +29,12 @@ const ItineraryResultScreen = () => {
     const {
         flights,
         flightLinks,
+        hotels,
         hotelLinks,
         origin,
         updateOrigin,
-        isLoading: isBookingLoading
+        isLoading: isBookingLoading,
+        isHotelsLoading
     } = useBookingOptions(itinerary, profile);
 
     // If no itinerary, redirect to home
@@ -290,6 +293,15 @@ const ItineraryResultScreen = () => {
                                 destination={itinerary.destination}
                                 onOriginChange={updateOrigin}
                                 isLoading={isBookingLoading}
+                            />
+
+                            {/* Hotels Section - Real data from SerpAPI */}
+                            <HotelsSection
+                                hotels={hotels}
+                                hotelLinks={hotelLinks}
+                                destination={itinerary.destination}
+                                isLoading={isHotelsLoading}
+                                maxItems={6}
                             />
 
                             {/* Recommended Stays */}

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { scroller } from 'react-scroll';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { FiSearch } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 import logo from '../assets/images/logo2.png';
 import Button from '../layouts/Button';
@@ -11,10 +10,10 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [menu, setMenu] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isOnHero4, setIsOnHero4] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [user, setUser] = useState(null);
 
   const location = useLocation();
@@ -32,6 +31,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
       setShowNavbar(currentScrollY < lastScrollY);
       setLastScrollY(currentScrollY);
+      setIsScrolled(currentScrollY > 20);
 
       const hero4Start = 2000;
       const hero4End = 2600;
@@ -95,41 +95,28 @@ const Navbar = () => {
   }
 
   return (
-    <div className={`fixed top-0 left-0 w-full z-50 shadow-lg transition-transform duration-700 ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}>
+    <div className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 border-b border-white/10 ${isScrolled ? 'bg-white/5 backdrop-blur-lg' : 'bg-transparent backdrop-blur-md'
+      }`}>
       <div className="flex flex-row justify-between px-5 md:px-32 py-4">
         {/* Logo */}
         <div className="flex items-center">
           <span onClick={handleHomeClick} className="cursor-pointer">
-            <img src={logo} alt="Logo" style={{ width: '60px', height: '40px' }} />
+            <img src={logo} alt="Logo" className="h-12 md:h-14 w-auto" />
           </span>
         </div>
 
         {/* Main Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <span onClick={handleHomeClick} className={`oswald cursor-pointer ${linkColorClass}`}>
+        <nav className="hidden md:flex items-center gap-5">
+          <span onClick={handleHomeClick} className={`oswald text-sm cursor-pointer ${linkColorClass}`}>
             {t('nav.home')}
           </span>
-          <span onClick={() => scrollToSection('ContinentCrousel')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.destinations')}</span>
-          <span onClick={() => scrollToSection('hero2')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.activities')}</span>
-          <span onClick={() => scrollToSection('blog')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.blogs')}</span>
-          <span onClick={() => scrollToSection('about')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.about')}</span>
-          <span onClick={() => scrollToSection('contact')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.contact')}</span>
-
-          {/* Search Input */}
-          <div className="relative w-full max-w-[180px] min-w-[150px]">
-            <FiSearch className={`absolute w-5 h-5 top-2.5 left-2.5 ${isOnHero4 ? 'text-black' : 'text-white'}`} />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder={t('nav.search')}
-              className={`w-full bg-transparent placeholder:${isOnHero4 ? 'text-black' : 'text-white'} text-${isOnHero4 ? 'black' : 'white'} text-sm border rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-brightRed shadow-sm`}
-              style={{ borderColor: isOnHero4 ? '#000000' : '#FFFFFF', color: isOnHero4 ? '#000000' : '#FFFFFF' }}
-            />
-          </div>
+          <span onClick={() => scrollToSection('ContinentCrousel')} className={`oswald text-sm cursor-pointer ${linkColorClass}`}>{t('nav.destinations')}</span>
+          <span onClick={() => scrollToSection('hero2')} className={`oswald text-sm cursor-pointer ${linkColorClass}`}>{t('nav.activities')}</span>
+          <span onClick={() => scrollToSection('blog')} className={`oswald text-sm cursor-pointer ${linkColorClass}`}>{t('nav.blogs')}</span>
+          <span onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className={`oswald text-sm cursor-pointer ${linkColorClass}`}>{t('nav.contact')}</span>
 
           {/* Language Toggle */}
-          <div className={`flex items-center gap-1 text-sm oswald ${linkColorClass}`}>
+          <div className={`flex items-center gap-1 text-xs oswald ${linkColorClass}`}>
             <button
               onClick={() => toggleLanguage('fr')}
               className={`px-1.5 py-0.5 rounded transition-opacity ${currentLang === 'fr' ? 'opacity-100 font-bold' : 'opacity-50 hover:opacity-80'}`}
