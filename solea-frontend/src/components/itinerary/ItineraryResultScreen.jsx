@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import GlassPanel from './ui/GlassPanel';
 import PillButton from './ui/PillButton';
 import InfoChip from './ui/InfoChip';
@@ -16,6 +17,7 @@ import { useBookingOptions } from '../../features/booking/useBookingOptions';
  * ItineraryResultScreen - Main itinerary result display
  */
 const ItineraryResultScreen = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
     const [itinerary, setItinerary] = useState(location.state?.itinerary || null);
@@ -37,9 +39,9 @@ const ItineraryResultScreen = () => {
         return (
             <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
                 <GlassPanel className="text-center p-8 max-w-md">
-                    <p className="text-white/60 mb-4">Aucun itinéraire trouvé</p>
+                    <p className="text-white/60 mb-4">{t('itinerary.result.noItinerary')}</p>
                     <PillButton variant="primary" onClick={() => navigate('/')}>
-                        Retour à l'accueil
+                        {t('itinerary.result.backToHome')}
                     </PillButton>
                 </GlassPanel>
             </div>
@@ -56,12 +58,12 @@ const ItineraryResultScreen = () => {
     };
 
     const handleShare = async () => {
-        const shareText = `Mon voyage à ${itinerary.destination} - ${itinerary.days.length} jours d'aventure!`;
+        const shareText = `${t('itinerary.result.yourTrip')} ${itinerary.destination} - ${itinerary.days.length} ${t('itinerary.result.days')}!`;
 
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: `Voyage à ${itinerary.destination}`,
+                    title: `${t('itinerary.result.yourTrip')} ${itinerary.destination}`,
                     text: shareText,
                     url: window.location.href
                 });
@@ -71,16 +73,16 @@ const ItineraryResultScreen = () => {
         } else {
             // Fallback: copy to clipboard
             await navigator.clipboard.writeText(shareText);
-            alert('Lien copié dans le presse-papier!');
+            alert(t('itinerary.result.linkCopied'));
         }
     };
 
     const handleExport = () => {
         // Generate text export
-        let exportText = `=== ITINÉRAIRE ${itinerary.destination.toUpperCase()} ===\n\n`;
+        let exportText = `=== ${itinerary.destination.toUpperCase()} ===\n\n`;
         exportText += `Type: ${itinerary.tripType}\n`;
-        exportText += `Voyageurs: ${itinerary.travelers}\n`;
-        exportText += `Dates: ${itinerary.startDate || 'Non défini'}\n\n`;
+        exportText += `${t('itinerary.result.travelers')}: ${itinerary.travelers}\n`;
+        exportText += `Dates: ${itinerary.startDate || 'N/A'}\n\n`;
 
         itinerary.days.forEach(day => {
             exportText += `--- ${day.dayName} (${day.date}) ---\n`;
@@ -90,18 +92,32 @@ const ItineraryResultScreen = () => {
             });
         });
 
-        exportText += `\n=== HÉBERGEMENTS ===\n`;
+        exportText += `\n=== ${t('itinerary.result.hotels')} ===\n`;
         itinerary.stays.forEach(stay => {
             exportText += `• ${stay.name} - ${stay.priceText}\n`;
         });
 
         // Copy to clipboard
         navigator.clipboard.writeText(exportText);
-        alert('Itinéraire exporté et copié dans le presse-papier!');
+        alert(t('itinerary.result.exported'));
     };
 
     const handleBack = () => {
         navigate('/');
+    };
+
+    // Get budget label
+    const getBudgetLabel = () => {
+        if (itinerary.budget === 'luxury') return t('itinerary.result.luxury');
+        if (itinerary.budget === 'budget') return t('itinerary.result.budget');
+        return t('itinerary.result.moderate');
+    };
+
+    // Get pace label
+    const getPaceLabel = () => {
+        if (itinerary.pace === 'active') return t('itinerary.result.active');
+        if (itinerary.pace === 'relaxed') return t('itinerary.result.relaxed');
+        return t('itinerary.result.moderate');
     };
 
     return (
@@ -122,7 +138,7 @@ const ItineraryResultScreen = () => {
                         className="mb-6"
                     >
                         <PillButton variant="ghost" onClick={handleBack} icon="←">
-                            Retour
+                            {t('itinerary.result.back')}
                         </PillButton>
                     </motion.div>
 
@@ -142,15 +158,15 @@ const ItineraryResultScreen = () => {
 
                                 {/* Title */}
                                 <h1 className="text-2xl md:text-4xl font-bold text-white oswald mb-3">
-                                    Votre voyage à {itinerary.destination}
+                                    {t('itinerary.result.yourTrip')} {itinerary.destination}
                                     {itinerary.country && <span className="text-white/60">, {itinerary.country}</span>}
                                 </h1>
 
                                 {/* Info row */}
                                 <div className="flex flex-wrap items-center gap-3">
                                     <InfoChip icon="📍" text={itinerary.destination} variant="default" />
-                                    <InfoChip icon="📅" text={`${itinerary.days.length} jours`} variant="default" />
-                                    <InfoChip icon="👥" text={`${itinerary.travelers} voyageur${itinerary.travelers > 1 ? 's' : ''}`} variant="default" />
+                                    <InfoChip icon="📅" text={`${itinerary.days.length} ${t('itinerary.result.days')}`} variant="default" />
+                                    <InfoChip icon="👥" text={`${itinerary.travelers} ${itinerary.travelers > 1 ? t('itinerary.result.travelers') : t('itinerary.result.traveler')}`} variant="default" />
                                 </div>
                             </div>
 
@@ -158,12 +174,12 @@ const ItineraryResultScreen = () => {
                             <div className="flex flex-wrap items-center gap-2">
                                 <InfoChip
                                     icon="💰"
-                                    text={itinerary.budget === 'luxury' ? 'Luxe' : itinerary.budget === 'budget' ? 'Budget' : 'Modéré'}
+                                    text={getBudgetLabel()}
                                     variant="success"
                                 />
                                 <InfoChip
                                     icon="⚡"
-                                    text={itinerary.pace === 'active' ? 'Actif' : itinerary.pace === 'relaxed' ? 'Relax' : 'Modéré'}
+                                    text={getPaceLabel()}
                                     variant="info"
                                 />
 
@@ -175,13 +191,13 @@ const ItineraryResultScreen = () => {
                                         disabled={isRegenerating}
                                         icon={isRegenerating ? "⏳" : "🔄"}
                                     >
-                                        {isRegenerating ? 'Génération...' : 'Régénérer'}
+                                        {isRegenerating ? t('itinerary.result.regenerating') : t('itinerary.result.regenerate')}
                                     </PillButton>
                                     <PillButton variant="default" size="sm" onClick={handleShare} icon="📤">
-                                        Partager
+                                        {t('itinerary.result.share')}
                                     </PillButton>
                                     <PillButton variant="default" size="sm" onClick={handleExport} icon="📋">
-                                        Exporter
+                                        {t('itinerary.result.export')}
                                     </PillButton>
                                 </div>
                             </div>
@@ -196,13 +212,13 @@ const ItineraryResultScreen = () => {
                                 disabled={isRegenerating}
                                 icon={isRegenerating ? "⏳" : "🔄"}
                             >
-                                Régénérer
+                                {t('itinerary.result.regenerate')}
                             </PillButton>
                             <PillButton variant="default" size="sm" onClick={handleShare} icon="📤">
-                                Partager
+                                {t('itinerary.result.share')}
                             </PillButton>
                             <PillButton variant="default" size="sm" onClick={handleExport} icon="📋">
-                                Exporter
+                                {t('itinerary.result.export')}
                             </PillButton>
                         </div>
                     </GlassPanel>
@@ -220,7 +236,7 @@ const ItineraryResultScreen = () => {
                                     transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                                     className="w-12 h-12 mx-auto mb-4 rounded-full border-4 border-white/10 border-t-amber-500"
                                 />
-                                <p className="text-white oswald">Régénération en cours...</p>
+                                <p className="text-white oswald">{t('itinerary.result.regeneratingText')}</p>
                             </GlassPanel>
                         </motion.div>
                     )}
@@ -240,10 +256,10 @@ const ItineraryResultScreen = () => {
                                 </div>
                                 <div>
                                     <h2 className="text-xl font-bold text-white oswald">
-                                        Votre itinéraire est prêt !
+                                        {t('itinerary.result.title')}
                                     </h2>
                                     <p className="text-white/50 text-sm">
-                                        {itinerary.days.reduce((acc, day) => acc + day.activities.length, 0)} activités sur {itinerary.days.length} jours
+                                        {itinerary.days.reduce((acc, day) => acc + day.activities.length, 0)} {t('itinerary.result.activitiesOn')} {itinerary.days.length} {t('itinerary.result.days')}
                                     </p>
                                 </div>
                             </motion.div>
@@ -281,7 +297,7 @@ const ItineraryResultScreen = () => {
                                 <div className="flex items-center gap-2 mb-4">
                                     <span className="text-xl">🏨</span>
                                     <h3 className="text-lg font-bold text-white oswald">
-                                        Hébergements recommandés
+                                        {t('itinerary.result.hotels')}
                                     </h3>
                                 </div>
                                 <div className="space-y-3">
@@ -302,7 +318,7 @@ const ItineraryResultScreen = () => {
                                 <div className="flex items-center gap-2 mb-4">
                                     <span className="text-xl">🚌</span>
                                     <h3 className="text-lg font-bold text-white oswald">
-                                        Options de transport
+                                        {t('itinerary.result.transports')}
                                     </h3>
                                 </div>
                                 <div className="space-y-3">
@@ -317,9 +333,9 @@ const ItineraryResultScreen = () => {
                                 <div className="flex items-start gap-3">
                                     <span className="text-2xl">💡</span>
                                     <div>
-                                        <h4 className="text-white font-semibold oswald mb-1">Conseil du jour</h4>
+                                        <h4 className="text-white font-semibold oswald mb-1">{t('itinerary.result.tipTitle')}</h4>
                                         <p className="text-white/60 text-sm">
-                                            Achetez le Paris Museum Pass pour un accès illimité aux musées et éviter les files d'attente!
+                                            {t('itinerary.result.tipContent')}
                                         </p>
                                     </div>
                                 </div>

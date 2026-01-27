@@ -3,10 +3,12 @@ import { scroller } from 'react-scroll';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
+import { useTranslation } from 'react-i18next';
 import logo from '../assets/images/logo2.png';
 import Button from '../layouts/Button';
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [menu, setMenu] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,6 +22,10 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
 
   const handleChange = () => setMenu(!menu);
+
+  const toggleLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,6 +84,7 @@ const Navbar = () => {
 
   const isLoginPage = location.pathname === '/login';
   const linkColorClass = isOnHero4 ? 'text-black hover:text-gray-700' : 'text-white hover:text-white';
+  const currentLang = i18n.language;
 
   if (isLoginPage) {
     return (
@@ -100,13 +107,13 @@ const Navbar = () => {
         {/* Main Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <span onClick={handleHomeClick} className={`oswald cursor-pointer ${linkColorClass}`}>
-            Home
+            {t('nav.home')}
           </span>
-          <span onClick={() => scrollToSection('ContinentCrousel')} className={`oswald cursor-pointer ${linkColorClass}`}>Destinations</span>
-          <span onClick={() => scrollToSection('hero2')} className={`oswald cursor-pointer ${linkColorClass}`}>Activities</span>
-          <span onClick={() => scrollToSection('blog')} className={`oswald cursor-pointer ${linkColorClass}`}>Blogs</span>
-          <span onClick={() => scrollToSection('about')} className={`oswald cursor-pointer ${linkColorClass}`}>About</span>
-          <span onClick={() => scrollToSection('contact')} className={`oswald cursor-pointer ${linkColorClass}`}>Contact</span>
+          <span onClick={() => scrollToSection('ContinentCrousel')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.destinations')}</span>
+          <span onClick={() => scrollToSection('hero2')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.activities')}</span>
+          <span onClick={() => scrollToSection('blog')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.blogs')}</span>
+          <span onClick={() => scrollToSection('about')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.about')}</span>
+          <span onClick={() => scrollToSection('contact')} className={`oswald cursor-pointer ${linkColorClass}`}>{t('nav.contact')}</span>
 
           {/* Search Input */}
           <div className="relative w-full max-w-[180px] min-w-[150px]">
@@ -115,10 +122,27 @@ const Navbar = () => {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search..."
+              placeholder={t('nav.search')}
               className={`w-full bg-transparent placeholder:${isOnHero4 ? 'text-black' : 'text-white'} text-${isOnHero4 ? 'black' : 'white'} text-sm border rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-brightRed shadow-sm`}
               style={{ borderColor: isOnHero4 ? '#000000' : '#FFFFFF', color: isOnHero4 ? '#000000' : '#FFFFFF' }}
             />
+          </div>
+
+          {/* Language Toggle */}
+          <div className={`flex items-center gap-1 text-sm oswald ${linkColorClass}`}>
+            <button
+              onClick={() => toggleLanguage('fr')}
+              className={`px-1.5 py-0.5 rounded transition-opacity ${currentLang === 'fr' ? 'opacity-100 font-bold' : 'opacity-50 hover:opacity-80'}`}
+            >
+              FR
+            </button>
+            <span className="opacity-40">|</span>
+            <button
+              onClick={() => toggleLanguage('en')}
+              className={`px-1.5 py-0.5 rounded transition-opacity ${currentLang === 'en' ? 'opacity-100 font-bold' : 'opacity-50 hover:opacity-80'}`}
+            >
+              EN
+            </button>
           </div>
 
           {/* User Dropdown */}
@@ -141,19 +165,19 @@ const Navbar = () => {
                     href="/profile"
                     className="oswald block px-4 py-3 hover:bg-zinc-800 text-md font-oswald transition"
                   >
-                    Profile
+                    {t('nav.profile')}
                   </a>
                   <button
                     onClick={handleLogout}
                     className="oswald block w-full text-left px-4 py-3 hover:bg-zinc-800 text-md font-oswald transition"
                   >
-                    Logout
+                    {t('nav.logout')}
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            <Button title="Sign In" link="login" className={isOnHero4 ? "text-black" : "text-white"} />
+            <Button title={t('nav.signIn')} link="login" className={isOnHero4 ? "text-black" : "text-white"} />
           )}
         </nav>
 

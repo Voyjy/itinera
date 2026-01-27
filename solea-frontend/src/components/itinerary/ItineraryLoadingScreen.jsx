@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import GlassPanel from './ui/GlassPanel';
 import { generateDemoItinerary } from '../../data/demoItinerary';
 import { loadTripRequest } from '../../utils/storageKeys';
@@ -9,6 +10,7 @@ import { loadTripRequest } from '../../utils/storageKeys';
  * ItineraryLoadingScreen - Shows while generating itinerary
  */
 const ItineraryLoadingScreen = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -18,17 +20,22 @@ const ItineraryLoadingScreen = () => {
     const profile = Object.keys(stateProfile).length > 0 ? stateProfile : storedRequest || {};
 
     const [progress, setProgress] = useState(0);
-    const [statusText, setStatusText] = useState('Analyse de vos préférences...');
+    const [statusText, setStatusText] = useState('');
 
-    const statusMessages = [
-        'Analyse de vos préférences...',
-        'Recherche des meilleures activités...',
-        'Optimisation de votre parcours...',
-        'Sélection des hébergements...',
-        'Finalisation de votre itinéraire...'
+    // Get translated status messages
+    const getStatusMessages = () => [
+        t('itinerary.loading.status1'),
+        t('itinerary.loading.status2'),
+        t('itinerary.loading.status3'),
+        t('itinerary.loading.status4'),
+        t('itinerary.loading.status5')
     ];
 
     useEffect(() => {
+        const statusMessages = getStatusMessages();
+        // Set initial status
+        setStatusText(statusMessages[0]);
+
         // Simulate loading progress
         const progressInterval = setInterval(() => {
             setProgress(prev => {
@@ -41,12 +48,10 @@ const ItineraryLoadingScreen = () => {
         }, 40);
 
         // Update status messages
+        let statusIndex = 0;
         const statusInterval = setInterval(() => {
-            setStatusText(prev => {
-                const currentIndex = statusMessages.indexOf(prev);
-                const nextIndex = (currentIndex + 1) % statusMessages.length;
-                return statusMessages[nextIndex];
-            });
+            statusIndex = (statusIndex + 1) % statusMessages.length;
+            setStatusText(statusMessages[statusIndex]);
         }, 500);
 
         // Navigate to result after delay
@@ -63,7 +68,7 @@ const ItineraryLoadingScreen = () => {
             clearInterval(statusInterval);
             clearTimeout(timeout);
         };
-    }, [navigate, profile]);
+    }, [navigate, profile, t]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
@@ -85,7 +90,7 @@ const ItineraryLoadingScreen = () => {
 
                             {/* Title */}
                             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 oswald">
-                                Création de votre itinéraire...
+                                {t('itinerary.loading.title')}
                             </h2>
 
                             {/* Status text with animation */}
@@ -117,7 +122,7 @@ const ItineraryLoadingScreen = () => {
                                 </svg>
                             </div>
                             <p className="text-white/40 text-center oswald">
-                                Les recommandations apparaîtront ici
+                                {t('itinerary.loading.placeholder')}
                             </p>
                         </GlassPanel>
                     </div>
@@ -130,7 +135,7 @@ const ItineraryLoadingScreen = () => {
                         className="mt-8 text-center"
                     >
                         <p className="text-white/40 text-sm">
-                            Destination : <span className="text-amber-400 font-medium">{profile?.destination || 'Paris'}</span>
+                            {t('itinerary.loading.destination')} : <span className="text-amber-400 font-medium">{profile?.destination || 'Paris'}</span>
                         </p>
                     </motion.div>
                 </div>

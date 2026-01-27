@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SwipeCard from './SwipeCard';
 import { DEMO_SWIPE_CARDS } from '../../data/demo/demoSwipeCards';
 import {
@@ -15,6 +16,7 @@ import { saveSelectedTripIdea } from '../../utils/storageKeys';
  * Replaces the Vos recommandations section
  */
 const SwipeDiscoveryDeck = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [deck, setDeck] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -118,7 +120,7 @@ const SwipeDiscoveryDeck = () => {
         return (
             <div className="py-12 px-6 md:px-20 bg-gradient-to-b from-black to-zinc-900">
                 <div className="max-w-md mx-auto text-center">
-                    <p className="text-white/60 oswald">Chargement des destinations...</p>
+                    <p className="text-white/60 oswald">{t('swipe.loading')}</p>
                 </div>
             </div>
         );
@@ -130,10 +132,10 @@ const SwipeDiscoveryDeck = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 oswald">
-                        Découverte
+                        {t('swipe.title')}
                     </h2>
                     <p className="text-white/60 oswald text-lg">
-                        Glissez à droite si vous aimez, à gauche si vous n'aimez pas
+                        {t('swipe.subtitle')}
                     </p>
                 </div>
 
@@ -177,7 +179,7 @@ const SwipeDiscoveryDeck = () => {
                         >
                             <div className="text-center">
                                 <span className="text-6xl">❤️</span>
-                                <p className="text-white text-2xl font-bold mt-2 oswald">Liked!</p>
+                                <p className="text-white text-2xl font-bold mt-2 oswald">{t('swipe.liked')}</p>
                             </div>
                         </motion.div>
                     )}
@@ -191,7 +193,7 @@ const SwipeDiscoveryDeck = () => {
                         >
                             <div className="text-center">
                                 <span className="text-6xl">✕</span>
-                                <p className="text-white text-2xl font-bold mt-2 oswald">Passé</p>
+                                <p className="text-white text-2xl font-bold mt-2 oswald">{t('swipe.passed')}</p>
                             </div>
                         </motion.div>
                     )}
@@ -224,8 +226,8 @@ const SwipeDiscoveryDeck = () => {
 
                 {/* Button Labels */}
                 <div className="flex justify-center gap-8 mt-2">
-                    <span className="text-rose-400/70 text-sm oswald w-16 text-center">Passer</span>
-                    <span className="text-emerald-400/70 text-sm oswald w-16 text-center">J'aime</span>
+                    <span className="text-rose-400/70 text-sm oswald w-16 text-center">{t('swipe.pass')}</span>
+                    <span className="text-emerald-400/70 text-sm oswald w-16 text-center">{t('swipe.like')}</span>
                 </div>
 
                 {/* Progress Indicator */}

@@ -1,0 +1,107 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "destinations": "Destinations",
+        "activities": "Activités",
+        "blogs": "Blogs",
+        "about": "À propos",
+        "contact": "Contact",
+        "search": "Rechercher...",
+        "signIn": "Connexion",
+        "profile": "Profil",
+        "logout": "Déconnexion"
+    },
+    "swipe": {
+        "title": "Découverte",
+        "subtitle": "Glissez à droite si vous aimez, à gauche si vous n'aimez pas",
+        "like": "J'aime",
+        "pass": "Passer",
+        "passed": "Passé",
+        "liked": "Liked!",
+        "loading": "Chargement des destinations...",
+        "counter": "{{current}} / {{total}} destinations"
+    },
+    "edit": {
+        "title": "Personnalisez votre voyage",
+        "subtitle": "Ajustez les détails avant de générer votre itinéraire",
+        "departureDate": "Date de départ",
+        "returnDate": "Date de retour",
+        "travelers": "Nombre de voyageurs",
+        "budget": "Budget",
+        "budgetOptions": {
+            "budget": "Budget",
+            "moderate": "Modéré",
+            "luxury": "Luxe"
+        },
+        "pace": "Rythme du voyage",
+        "paceOptions": {
+            "relaxed": "Calme",
+            "moderate": "Équilibré",
+            "active": "Actif"
+        },
+        "interests": "Centres d'intérêt",
+        "back": "← Retour",
+        "generate": "Générer mon itinéraire ✨",
+        "noSelection": "Aucune destination sélectionnée",
+        "backToHome": "Retour à l'accueil",
+        "loading": "Chargement..."
+    },
+    "itinerary": {
+        "loading": {
+            "title": "Création de votre itinéraire...",
+            "status1": "Analyse de vos préférences...",
+            "status2": "Recherche des meilleures activités...",
+            "status3": "Optimisation de votre parcours...",
+            "status4": "Sélection des hébergements...",
+            "status5": "Finalisation de votre itinéraire...",
+            "placeholder": "Les recommandations apparaîtront ici",
+            "destination": "Destination"
+        },
+        "result": {
+            "title": "Votre itinéraire est prêt !",
+            "days": "jours",
+            "activities": "activités",
+            "regenerate": "Régénérer",
+            "regenerating": "Génération...",
+            "share": "Partager",
+            "export": "Exporter",
+            "hotels": "Hébergements recommandés",
+            "transports": "Options de transport",
+            "back": "Retour",
+            "backToHome": "Retour à l'accueil",
+            "noItinerary": "Aucun itinéraire trouvé",
+            "yourTrip": "Votre voyage à",
+            "activitiesOn": "activités sur",
+            "traveler": "voyageur",
+            "travelers": "voyageurs",
+            "tipTitle": "Conseil du jour",
+            "tipContent": "Achetez le Paris Museum Pass pour un accès illimité aux musées et éviter les files d'attente!",
+            "regeneratingText": "Régénération en cours...",
+            "linkCopied": "Lien copié dans le presse-papier!",
+            "exported": "Itinéraire exporté et copié dans le presse-papier!",
+            "budget": "Budget",
+            "moderate": "Modéré",
+            "luxury": "Luxe",
+            "relaxed": "Relax",
+            "active": "Actif"
+        }
+    },
+    "tags": {
+        "culture": "Culture",
+        "food": "Gastronomie",
+        "nature": "Nature",
+        "relaxation": "Détente",
+        "couple": "Couple",
+        "family": "Famille",
+        "solo": "Solo",
+        "friends": "Entre amis",
+        "photography": "Photo",
+        "history": "Histoire",
+        "art": "Art",
+        "shopping": "Shopping",
+        "wellness": "Bien-être",
+        "nightlife": "Vie nocturne",
+        "active": "Actif",
+        "elder_friendly": "Senior"
+    }
+}

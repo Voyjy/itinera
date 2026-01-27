@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import TripIdeaPreviewCard from '../components/edit/TripIdeaPreviewCard';
 import TagMultiSelect from '../components/edit/TagMultiSelect';
 import { loadSelectedTripIdea, saveTripRequest } from '../utils/storageKeys';
@@ -9,6 +10,7 @@ import { loadSelectedTripIdea, saveTripRequest } from '../utils/storageKeys';
  * EditRecommendation - Customize trip details before generating itinerary
  */
 const EditRecommendation = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [tripIdea, setTripIdea] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -79,7 +81,7 @@ const EditRecommendation = () => {
     if (isLoading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-                <p className="text-white/60">Chargement...</p>
+                <p className="text-white/60">{t('edit.loading')}</p>
             </div>
         );
     }
@@ -89,12 +91,12 @@ const EditRecommendation = () => {
         return (
             <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
                 <div className="text-center">
-                    <p className="text-white/60 mb-4">Aucune destination sélectionnée</p>
+                    <p className="text-white/60 mb-4">{t('edit.noSelection')}</p>
                     <button
                         onClick={handleBack}
                         className="px-6 py-2 bg-amber-500 text-black rounded-lg font-medium"
                     >
-                        Retour à l'accueil
+                        {t('edit.backToHome')}
                     </button>
                 </div>
             </div>
@@ -102,15 +104,15 @@ const EditRecommendation = () => {
     }
 
     const budgetOptions = [
-        { id: 'budget', label: 'Budget', icon: '💰' },
-        { id: 'moderate', label: 'Modéré', icon: '💎' },
-        { id: 'luxury', label: 'Luxe', icon: '👑' }
+        { id: 'budget', label: t('edit.budgetOptions.budget'), icon: '💰' },
+        { id: 'moderate', label: t('edit.budgetOptions.moderate'), icon: '💎' },
+        { id: 'luxury', label: t('edit.budgetOptions.luxury'), icon: '👑' }
     ];
 
     const paceOptions = [
-        { id: 'relaxed', label: 'Calme', icon: '🧘' },
-        { id: 'moderate', label: 'Équilibré', icon: '⚖️' },
-        { id: 'active', label: 'Actif', icon: '🏃' }
+        { id: 'relaxed', label: t('edit.paceOptions.relaxed'), icon: '🧘' },
+        { id: 'moderate', label: t('edit.paceOptions.moderate'), icon: '⚖️' },
+        { id: 'active', label: t('edit.paceOptions.active'), icon: '🏃' }
     ];
 
     return (
@@ -128,10 +130,10 @@ const EditRecommendation = () => {
                             animate={{ opacity: 1, y: 0 }}
                             className="text-3xl md:text-4xl font-bold text-white oswald"
                         >
-                            Personnalisez votre voyage
+                            {t('edit.title')}
                         </motion.h1>
                         <p className="text-white/60 mt-2">
-                            Ajustez les détails avant de générer votre itinéraire
+                            {t('edit.subtitle')}
                         </p>
                     </div>
 
@@ -156,7 +158,7 @@ const EditRecommendation = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-white/80 text-sm font-medium mb-2 oswald">
-                                    Date de départ
+                                    {t('edit.departureDate')}
                                 </label>
                                 <input
                                     type="date"
@@ -167,7 +169,7 @@ const EditRecommendation = () => {
                             </div>
                             <div>
                                 <label className="block text-white/80 text-sm font-medium mb-2 oswald">
-                                    Date de retour
+                                    {t('edit.returnDate')}
                                 </label>
                                 <input
                                     type="date"
@@ -181,7 +183,7 @@ const EditRecommendation = () => {
                         {/* Travelers */}
                         <div>
                             <label className="block text-white/80 text-sm font-medium mb-2 oswald">
-                                Nombre de voyageurs
+                                {t('edit.travelers')}
                             </label>
                             <div className="flex items-center gap-4">
                                 <motion.button
@@ -209,7 +211,7 @@ const EditRecommendation = () => {
                         {/* Budget */}
                         <div>
                             <label className="block text-white/80 text-sm font-medium mb-3 oswald">
-                                Budget
+                                {t('edit.budget')}
                             </label>
                             <div className="grid grid-cols-3 gap-3">
                                 {budgetOptions.map((option) => (
@@ -237,7 +239,7 @@ const EditRecommendation = () => {
                         {/* Pace */}
                         <div>
                             <label className="block text-white/80 text-sm font-medium mb-3 oswald">
-                                Rythme du voyage
+                                {t('edit.pace')}
                             </label>
                             <div className="grid grid-cols-3 gap-3">
                                 {paceOptions.map((option) => (
@@ -280,7 +282,7 @@ const EditRecommendation = () => {
                             onClick={handleBack}
                             className="flex-1 px-6 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-medium hover:bg-white/20 transition-colors oswald"
                         >
-                            ← Retour
+                            {t('edit.back')}
                         </button>
                         <motion.button
                             onClick={handleGenerate}
@@ -288,7 +290,7 @@ const EditRecommendation = () => {
                             whileTap={{ scale: 0.98 }}
                             className="flex-[2] px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-xl font-bold oswald shadow-lg"
                         >
-                            Générer mon itinéraire ✨
+                            {t('edit.generate')}
                         </motion.button>
                     </motion.div>
                 </div>
