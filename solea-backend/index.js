@@ -17,23 +17,45 @@ const blogRoutes = require('./routes/blogs');
 const redisRoutes = require('./routes/redis');
 const serpHotelsRoutes = require('./routes/serpHotels');
 
-// Middleware
+// CORS Configuration - Allow Vercel production + preview domains
+const allowedOrigins = [
+  'https://itinera-xi.vercel.app', // Vercel production
+  'https://voluble-scone-617f6ee.netlify.app', // Netlify (legacy)
+  'http://localhost:5173', // Local dev
+  'http://localhost:3000', // Local dev alt
+];
+
+// Pattern match for Vercel preview deployments
+const vercelPreviewPattern = /^https:\/\/itinera(-[a-z0-9]+)?(-jessk10s-projects)?\.vercel\.app$/;
+
 app.use(cors({
   origin: (origin, callback) => {
-    const allowedOrigins = [
-      'https://voluble-scone-617f6ee.netlify.app',
-      'http://localhost:5173',
-      undefined // allow curl/Postman or same-origin
-    ];
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS: ' + origin));
+    // Allow requests with no origin (curl, Postman, same-origin)
+    if (!origin) {
+      return callback(null, true);
     }
+
+    // Check exact match first
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // Check Vercel preview pattern
+    if (vercelPreviewPattern.test(origin)) {
+      console.log('✅ CORS: Allowing Vercel preview:', origin);
+      return callback(null, true);
+    }
+
+    console.log('❌ CORS blocked:', origin);
+    callback(new Error('Not allowed by CORS: ' + origin));
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Handle preflight OPTIONS for all routes
+app.options('*', cors());
 
 app.use(express.json());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
