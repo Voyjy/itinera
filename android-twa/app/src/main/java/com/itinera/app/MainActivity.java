@@ -1,6 +1,11 @@
 package com.itinera.app;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,6 +18,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.Manifest;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 /**
  * MainActivity - WebView-based app that displays your website inside the app.
@@ -24,6 +34,9 @@ public class MainActivity extends Activity {
     // CHANGE THIS URL TO YOUR DEPLOYED WEBSITE
     // ========================================
     private static final String WEBSITE_URL = "https://itinera-xi.vercel.app/";
+
+    private static final String CHANNEL_ID = "itinera_notifications";
+    private static final int NOTIFICATION_ID = 1001;
 
     private WebView webView;
     private ProgressBar progressBar;
@@ -66,8 +79,75 @@ public class MainActivity extends Activity {
         // Configure WebView for perfect mobile display
         configureWebView();
 
+        // Create notification channel and show welcome notification
+        createNotificationChannel();
+        showWelcomeNotification();
+
         // Load the website
         webView.loadUrl(WEBSITE_URL);
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Itinera Notifications";
+            String description = "Notifications from Itinera travel app";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            channel.enableLights(true);
+            channel.setLightColor(Color.parseColor("#FF6B35"));
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void showWelcomeNotification() {
+        // Check notification permission for Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                // Request permission
+                requestPermissions(new String[] { Manifest.permission.POST_NOTIFICATIONS }, 100);
+                return;
+            }
+        }
+
+        // Create intent for when notification is tapped
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+        // Build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(android.R.drawable.ic_dialog_map)
+                .setContentTitle("Bienvenue sur Itinera! 🌍")
+                .setContentText("Planifiez votre prochain voyage maintenant!")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(
+                                "Découvrez des destinations incroyables et planifiez votre voyage parfait avec Itinera. Famille, romantique, solo ou entre amis - nous avons tout prévu!"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setColor(Color.parseColor("#FF6B35"));
+
+        // Show notification
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        try {
+            notificationManager.notify(NOTIFICATION_ID, builder.build());
+        } catch (SecurityException e) {
+            // Permission not granted, ignore
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            showWelcomeNotification();
+        }
     }
 
     private void configureWebView() {
