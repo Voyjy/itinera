@@ -1,0 +1,77 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.itinera.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.itinera.app"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // TWA Host URL - Change this to your deployed website URL
+        resValue "string", "twa_host", "example.com"
+        resValue "string", "twa_url", "https://parallax-medieval.netlify.app/"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    // Signing configurations for release builds
+    signingConfigs {
+        // Uncomment and configure for release signing
+        // release {
+        //     storeFile file('../keystore/itinera-release.keystore')
+        //     storePassword System.getenv('KEYSTORE_PASSWORD') ?: ''
+        //     keyAlias 'itinera'
+        //     keyPassword System.getenv('KEY_PASSWORD') ?: ''
+        // }
+    }
+}
+
+dependencies {
+    // AndroidX Core
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+
+    // AndroidX Browser - Contains TWA support
+    implementation 'androidx.browser:browser:1.7.0'
+
+    // Force consistent Kotlin stdlib version to resolve duplicates
+    constraints {
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.0') {
+            because 'Avoid duplicate classes from kotlin-stdlib-jdk7'
+        }
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0') {
+            because 'Avoid duplicate classes from kotlin-stdlib-jdk8'
+        }
+    }
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

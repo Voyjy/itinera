@@ -8,4 +8,12 @@ dist/
 
 # Media
 solea-frontend/src/assets/videos/*.mp4
-android-app/
+
+# Gradle caches / distributions (never commit)
+**/.gradle/
+**/build/
+**/local.properties
+
+# TWA gradle artifacts accidentally generated
+android-twa/gradle-*.zip
+android-twa/gradle-*/

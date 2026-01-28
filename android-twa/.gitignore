@@ -1,0 +1,58 @@
+# Android TWA Build Artifacts
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration
+local.properties
+
+# IDE
+.idea/
+*.iml
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keystore files - NEVER commit these!
+*.keystore
+*.jks
+keystore/
+
+# Signing configuration
+signing.properties
+
+# Debug files
+*.log
+*.hprof
+
+# Generated files
+app/release/
+app/debug/
+captures/
+
+# ProGuard
+proguard/
+mapping.txt
+
+# Gradle caches / distributions (never commit)
+**/.gradle/
+**/build/
+**/local.properties
+
+# TWA gradle artifacts accidentally generated
+android-twa/gradle-*.zip
+android-twa/gradle-*/

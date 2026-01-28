@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Colors - Customize these to match your website -->
+    <color name="primary">#3B82F6</color>         <!-- Blue - Main brand color -->
+    <color name="primary_dark">#1D4ED8</color>    <!-- Darker blue for status bar -->
+    <color name="accent">#10B981</color>          <!-- Green accent color -->
+
+    <!-- UI Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="background">#F3F4F6</color>
+
+    <!-- Splash screen colors -->
+    <color name="splash_background">#1D4ED8</color>
+</resources>

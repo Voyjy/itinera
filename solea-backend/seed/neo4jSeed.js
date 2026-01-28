@@ -11,7 +11,7 @@ const files = [
   'Oceania.json',
 ];
 
-const dataDir = path.join(__dirname, '..', 'Data');
+const dataDir = path.join(__dirname, '..', 'data');
 
 async function seedNeo4j() {
   const session = driver.session();

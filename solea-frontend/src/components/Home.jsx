@@ -3,7 +3,7 @@ import Button from "../layouts/Button";
 import bgVideo from "../assets/videos/video_bg2.mp4";
 import PersonalizationModal from "./personalization/PersonalizationModal";
 import PersonalizationButton from "./personalization/PersonalizationButton";
-import RecommendationPlaceholder from "./personalization/RecommendationPlaceholder";
+import SwipeDiscoveryDeck from "./swipe/SwipeDiscoveryDeck";
 import TagChips from "./personalization/TagChips";
 import { usePersonalization } from "./personalization/usePersonalization";
 
@@ -92,8 +92,8 @@ const Home = () => {
         onComplete={handleModalComplete}
       />
 
-      {/* Recommendations Section */}
-      {hasProfile && <RecommendationPlaceholder />}
+      {/* Swipe Discovery Section */}
+      {hasProfile && <SwipeDiscoveryDeck />}
     </>
   );
 };

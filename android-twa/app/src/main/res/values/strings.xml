@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Itinera</string>
+
+    <!-- TWA Configuration -->
+    <!-- IMPORTANT: Replace REPLACE_WITH_MY_DEPLOYED_URL with your actual deployed domain -->
+    <!-- Example: itinera.vercel.app or www.itinera.com -->
+    <string name="twa_host">example.com</string>
+    <string name="twa_url">https://example.com</string>
+
+    <!-- Digital Asset Links Statement -->
+    <!-- This is used by the Android system to verify the association with your website -->
+    <!-- The SHA-256 fingerprint must match your signing key -->
+    <!-- Replace YOUR_SHA256_FINGERPRINT with the actual fingerprint from your keystore -->
+    <string name="asset_statements" translatable="false">
+        [{
+            \"relation\": [\"delegate_permission/common.handle_all_urls\"],
+            \"target\": {
+                \"namespace\": \"web\",
+                \"site\": \"https://REPLACE_WITH_MY_DEPLOYED_URL\"
+            }
+        }]
+    </string>
+</resources>

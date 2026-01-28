@@ -1,0 +1,56 @@
+﻿.\gradle-8.2\bin\grad
+le.bat : 
+At line:1 char:1
++ .\gradle-8.2\bin\gr
+adle.bat tasks 2>&1 
+| Out-File -Encoding 
+UTF8 buil ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (:String   
+ ) [], RemoteExce    
+ption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+FAILURE: Build 
+failed with an 
+exception.
+
+* What went wrong:
+Could not open 
+cp_settings generic 
+class cache for 
+settings file 
+'C:\Epita\SEM 5\new-i
+tinera\android-twa\se
+ttings.gradle' (C:\Us
+ers\Yashvi\.gradle\ca
+ches\8.2\scripts\6syh
+ryl9bcamqq1pfdix9ksnt
+).
+> BUG! exception in 
+phase 'semantic 
+analysis' in source 
+unit '_BuildScript_' 
+Unsupported class 
+file major version 66
+
+* Try:
+> Run with 
+--stacktrace option 
+to get the stack 
+trace.
+> Run with --info or 
+--debug option to 
+get more log output.
+> Run with --scan to 
+get full insights.
+> Get more help at ht
+tps://help.gradle.org
+.
+
+BUILD FAILED in 1s

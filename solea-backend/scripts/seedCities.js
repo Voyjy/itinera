@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const City = require('../models/cityModel');
 const Hotel = require('../models/hotelModel');
 
-const africa = require('../Data/Africa.json');
-const asia = require('../Data/Asia.json');
-const europe = require('../Data/europe_cities.json');
-const northAmerica = require('../Data/NorthAmerica_cities.json');
-const southAmerica = require('../Data/SouthAmerica.json');
-const oceania = require('../Data/Oceania.json');
+const africa = require('../data/Africa.json');
+const asia = require('../data/Asia.json');
+const europe = require('../data/europe_cities.json');
+const northAmerica = require('../data/NorthAmerica_cities.json');
+const southAmerica = require('../data/SouthAmerica.json');
+const oceania = require('../data/Oceania.json');
 
 const dotenv = require('dotenv');
 dotenv.config();

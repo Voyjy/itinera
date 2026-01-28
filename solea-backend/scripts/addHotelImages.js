@@ -10,7 +10,7 @@ const files = [
   'Oceania.json'
 ];
 
-const dataDir = path.join(__dirname, '..', 'Data');
+const dataDir = path.join(__dirname, '..', 'data');
 
 // Function to generate an image URL for a hotel
 const generateHotelImageUrl = (city, hotelName) => {

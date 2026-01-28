@@ -1,0 +1,85 @@
+﻿
+> Configure project :
+Build was configured to prefer settings repositories over project repositories but repository 'Google' was added by build file 'build.gradle'
+Build was configured to prefer settings repositories over project repositories but repository 'MavenRepo' was added by build file 'build.gradle'
+Build was configured to prefer settings repositories over project repositories but repository 'Google' was added by build file 'build.gradle'
+Build was configured to prefer settings repositories over project repositories but repository 'MavenRepo' was added by build file 'build.gradle'
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+
+> Task :app:compileDebugJavaWithJavac
+.\gradle-8.10\bin\gradle.b
+at : C:\Epita\SEM 5\new-it
+inera\android-twa\app\src\
+main\java\com\itinera\app\
+LauncherActivity.java:91: 
+error: incompatible 
+types: CustomTabsIntent 
+cannot be converted to 
+CustomTabsSession
+At line:1 char:1
++ .\gradle-8.10\bin\gradle
+.bat :app:compileDebugJava
+WithJavac 2>&1 | Ou ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (C  
+  :\Epita\SEM 5\...stom   
+ TabsSession:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+                new Custom
+TabsIntent.Builder().build
+()
+                          
+                          
+^
+Note: Some messages have 
+been simplified; 
+recompile with 
+-Xdiags:verbose to get 
+full output
+1 error
+
+> Task :app:compileDebugJavaWithJavac FAILED
+
+FAILURE: Build failed 
+with an exception.
+
+* What went wrong:
+Execution failed for task 
+':app:compileDebugJavaWith
+Javac'.
+> Compilation failed; see 
+the compiler error output 
+for details.
+
+* Try:
+> Run with --info option 
+to get more log output.
+> Run with --scan to get 
+full insights.
+
+BUILD FAILED in 6s
+16 actionable tasks: 1 executed, 15 up-to-date
