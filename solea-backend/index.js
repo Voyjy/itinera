@@ -25,10 +25,11 @@ const allowedOrigins = [
   'http://localhost:3000', // Local dev alt
 ];
 
-// Pattern match for Vercel preview deployments
-const vercelPreviewPattern = /^https:\/\/itinera(-[a-z0-9]+)?(-jessk10s-projects)?\.vercel\.app$/;
+// Pattern match for ALL Vercel preview deployments (itinera-*.vercel.app)
+const vercelPreviewPattern = /^https:\/\/itinera[a-z0-9-]*\.vercel\.app$/;
 
-app.use(cors({
+// CORS options (reusable for middleware and preflight)
+const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (curl, Postman, same-origin)
     if (!origin) {
@@ -52,10 +53,13 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
+};
 
-// Handle preflight OPTIONS for all routes
-app.options('*', cors());
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Handle preflight OPTIONS for all routes (Express 5 compatible - uses RegExp instead of '*')
+app.options(/.*/, cors(corsOptions));
 
 app.use(express.json());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
