@@ -44,32 +44,15 @@ export const useBookingOptions = (itinerary, profile = {}) => {
         [bookingParams]
     );
 
-    // Fetch flights (with fallback to demo data)
+    // Fetch flights - Currently using demo data (no flights API implemented)
+    // TODO: Add real flights API when available (e.g., SerpAPI flights)
     useEffect(() => {
         const fetchFlights = async () => {
             setIsLoading(true);
             setError(null);
 
-            try {
-                const apiUrl = `/api/booking/flights?from=${encodeURIComponent(origin)}&to=${encodeURIComponent(bookingParams.destination)}&depart=${bookingParams.departDate}&return=${bookingParams.returnDate}&adults=${bookingParams.travelers}`;
-
-                const response = await fetch(apiUrl, {
-                    signal: AbortSignal.timeout(3000)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.flights && data.flights.length > 0) {
-                        setFlights(data.flights);
-                        setIsLoading(false);
-                        return;
-                    }
-                }
-            } catch (err) {
-                console.log('Flight API not available, using demo data');
-            }
-
-            // Fallback: Generate demo flights
+            // Generate demo flights (no flights API endpoint exists yet)
+            // This provides a seamless UX with realistic-looking data
             setTimeout(() => {
                 const demoFlights = generateDemoFlights(
                     bookingParams.destination,
@@ -77,7 +60,7 @@ export const useBookingOptions = (itinerary, profile = {}) => {
                 );
                 setFlights(demoFlights);
                 setIsLoading(false);
-            }, 800);
+            }, 600);
         };
 
         if (itinerary?.destination) {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const TripDraft = ({ userId }) => {
   const [draft, setDraft] = useState(null);
@@ -9,7 +10,7 @@ const TripDraft = ({ userId }) => {
   useEffect(() => {
     const fetchDraft = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/redis/draft/${userId}`);
+        const res = await axios.get(`${BASE_URL}/api/redis/draft/${userId}`);
         setDraft(res.data);
         setTitle(res.data.title || "");
       } catch (err) {
@@ -33,7 +34,7 @@ const TripDraft = ({ userId }) => {
       };
 
       await axios.post(
-        "http://localhost:5000/api/redis/draft",
+        `${BASE_URL}/api/redis/draft`,
         {
           userId,
           draft: tripData,
@@ -51,7 +52,7 @@ const TripDraft = ({ userId }) => {
 
   const clearDraft = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/redis/draft/${userId}`);
+      await axios.delete(`${BASE_URL}/api/redis/draft/${userId}`);
       setDraft(null);
       alert("Draft cleared.");
     } catch (err) {
