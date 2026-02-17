@@ -1,0 +1,109 @@
+/* Print-friendly stylesheet for PDF export via window.print() */
+
+@media print {
+  /* Hide navigation, footer, sidebar, buttons */
+  nav, footer, .no-print,
+  button, .btn, .action-bar,
+  .map-container,
+  .sidebar-actions {
+    display: none !important;
+  }
+
+  /* Reset background and colors for printing */
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 20px;
+  }
+
+  /* Full width layout */
+  .itinerary-container,
+  .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure grid becomes single column */
+  .grid {
+    display: block !important;
+  }
+
+  /* Header styling */
+  .itinerary-header {
+    text-align: center;
+    margin-bottom: 20pt;
+    padding-bottom: 10pt;
+    border-bottom: 2pt solid #333;
+  }
+
+  .itinerary-header h1 {
+    font-size: 20pt;
+    color: #1a1a1a !important;
+  }
+
+  /* Day cards */
+  .day-card {
+    page-break-inside: avoid;
+    margin-bottom: 15pt;
+    border: 1pt solid #ccc;
+    border-radius: 4pt;
+    padding: 10pt;
+    background: white !important;
+  }
+
+  .day-card h3 {
+    font-size: 14pt;
+    margin-bottom: 8pt;
+    color: #333 !important;
+    border-bottom: 1pt solid #eee;
+    padding-bottom: 4pt;
+  }
+
+  /* Activities */
+  .activity-item {
+    padding: 4pt 0;
+    border-bottom: 0.5pt solid #eee;
+  }
+
+  .activity-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Budget estimate */
+  .budget-estimate {
+    page-break-inside: avoid;
+    margin-top: 15pt;
+    padding: 10pt;
+    border: 1pt solid #333;
+    border-radius: 4pt;
+  }
+
+  /* Stays section */
+  .stays-section {
+    page-break-inside: avoid;
+    margin-top: 15pt;
+  }
+
+  /* Remove shadows, rounded corners, and gradients */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure images print */
+  img {
+    max-width: 100% !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+}

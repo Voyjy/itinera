@@ -17,6 +17,7 @@ import TripSummary from "./components/TripSummary";
 import ItineraryLoadingScreen from './components/itinerary/ItineraryLoadingScreen';
 import ItineraryResultScreen from './components/itinerary/ItineraryResultScreen';
 import EditRecommendation from './pages/EditRecommendation';
+import SharedTripPage from './pages/SharedTripPage';
 
 
 const MainPage = () => (
@@ -37,9 +38,10 @@ const LayoutWrapper = ({ children }) => {
   const isLoginPage = location.pathname === '/login';
   const isItineraryPage = location.pathname.startsWith('/itinerary');
   const isCustomizePage = location.pathname === '/customize';
+  const isSharedPage = location.pathname.startsWith('/trip/shared');
 
   // Hide navbar and footer on itinerary and customize pages for full-screen experience
-  if (isItineraryPage || isCustomizePage) {
+  if (isItineraryPage || isCustomizePage || isSharedPage) {
     return <>{children}</>;
   }
 
@@ -68,6 +70,7 @@ const App = () => {
             <Route path="/itinerary/loading" element={<ItineraryLoadingScreen />} />
             <Route path="/itinerary/result" element={<ItineraryResultScreen />} />
             <Route path="/blogs/:slug" element={<BlogDetail />} />
+            <Route path="/trip/shared/:tripId" element={<SharedTripPage />} />
 
 
           </Routes>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import GlassPanel from './ui/GlassPanel';
 import PillButton from './ui/PillButton';
 import InfoChip from './ui/InfoChip';
@@ -11,8 +12,11 @@ import TransportCard from './ui/TransportCard';
 import FlightsSection from './FlightsSection';
 import HotelsSection from './HotelsSection';
 import HotelsCompareLinks from './HotelsCompareLinks';
+import ItineraMap from '../map/ItineraMap';
 import { generateDemoItinerary } from '../../data/demoItinerary';
 import { useBookingOptions } from '../../features/booking/useBookingOptions';
+import { BASE_URL } from '../../config';
+import '../../styles/print.css';
 
 /**
  * ItineraryResultScreen - Main itinerary result display
@@ -24,6 +28,11 @@ const ItineraryResultScreen = () => {
     const [itinerary, setItinerary] = useState(location.state?.itinerary || null);
     const profile = location.state?.profile || {};
     const [isRegenerating, setIsRegenerating] = useState(false);
+    const [showMap, setShowMap] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(0);
+    const [savedTripId, setSavedTripId] = useState(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const [copyFeedback, setCopyFeedback] = useState('');
 
     // Booking options hook
     const {
@@ -60,50 +69,107 @@ const ItineraryResultScreen = () => {
         }, 1500);
     };
 
-    const handleShare = async () => {
-        const shareText = `${t('itinerary.result.yourTrip')} ${itinerary.destination} - ${itinerary.days.length} ${t('itinerary.result.days')}!`;
-
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: `${t('itinerary.result.yourTrip')} ${itinerary.destination}`,
-                    text: shareText,
-                    url: window.location.href
-                });
-            } catch (err) {
-                console.log('Share cancelled');
+    // Phase 3: Save trip to backend
+    const handleSaveTrip = async () => {
+        if (savedTripId || isSaving) return;
+        setIsSaving(true);
+        try {
+            const { data } = await axios.post(`${BASE_URL}/api/saved-trips/save`, {
+                city: itinerary.destination,
+                preferences: profile,
+                itinerary,
+            }, { timeout: 5000 });
+            if (data.success && data.tripId) {
+                setSavedTripId(data.tripId);
+                setCopyFeedback('✅ Voyage sauvegardé !');
+                setTimeout(() => setCopyFeedback(''), 2500);
             }
-        } else {
-            // Fallback: copy to clipboard
-            await navigator.clipboard.writeText(shareText);
-            alert(t('itinerary.result.linkCopied'));
+        } catch (err) {
+            console.error('Save trip error:', err.message);
+            setCopyFeedback('❌ Erreur de sauvegarde');
+            setTimeout(() => setCopyFeedback(''), 2500);
+        } finally {
+            setIsSaving(false);
         }
     };
 
-    const handleExport = () => {
-        // Generate text export
-        let exportText = `=== ${itinerary.destination.toUpperCase()} ===\n\n`;
-        exportText += `Type: ${itinerary.tripType}\n`;
-        exportText += `${t('itinerary.result.travelers')}: ${itinerary.travelers}\n`;
-        exportText += `Dates: ${itinerary.startDate || 'N/A'}\n\n`;
+    // Phase 3: Copy share link
+    const handleCopyShareLink = () => {
+        if (!savedTripId) return;
+        const shareUrl = `${window.location.origin}/trip/shared/${savedTripId}`;
+        navigator.clipboard.writeText(shareUrl)
+            .then(() => { setCopyFeedback('🔗 Lien copié !'); setTimeout(() => setCopyFeedback(''), 2000); })
+            .catch(() => { });
+    };
 
-        itinerary.days.forEach(day => {
-            exportText += `--- ${day.dayName} (${day.date}) ---\n`;
-            day.activities.forEach(act => {
-                exportText += `${act.time} - ${act.title}\n`;
-                exportText += `  ${act.address}\n\n`;
+    // Phase 3: Share via native share API or copy link
+    const handleShare = async () => {
+        // If not saved yet, save first
+        if (!savedTripId) await handleSaveTrip();
+        if (savedTripId) {
+            handleCopyShareLink();
+        } else {
+            // Fallback: share current text
+            const shareText = `${t('itinerary.result.yourTrip')} ${itinerary.destination} - ${itinerary.days?.length || 0} ${t('itinerary.result.days')}!`;
+            if (navigator.share) {
+                try { await navigator.share({ title: `Voyage ${itinerary.destination}`, text: shareText, url: window.location.href }); } catch (_) { }
+            } else {
+                navigator.clipboard.writeText(shareText).catch(() => { });
+                setCopyFeedback('📋 Copié !'); setTimeout(() => setCopyFeedback(''), 2000);
+            }
+        }
+    };
+
+    // Phase 3: JSON export download
+    const handleExportJSON = () => {
+        try {
+            const json = JSON.stringify(itinerary, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `itinerary-${(itinerary.destination || 'voyage').toLowerCase().replace(/\s+/g, '-')}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        } catch (err) {
+            console.error('JSON export error:', err.message);
+        }
+    };
+
+    // Phase 3: PDF export via window.print
+    const handleExportPDF = () => {
+        window.print();
+    };
+
+    // Legacy export (text to clipboard)
+    const handleExport = () => {
+        let exportText = `=== ${(itinerary.destination || 'VOYAGE').toUpperCase()} ===\n\n`;
+        exportText += `Type: ${itinerary.tripType || ''}\n`;
+        exportText += `${t('itinerary.result.travelers')}: ${itinerary.travelers || ''}\n`;
+        exportText += `Dates: ${itinerary.startDate || 'N/A'}\n\n`;
+        (itinerary.days || []).forEach(day => {
+            exportText += `--- ${day.dayName} (${day.date || ''}) ---\n`;
+            (day.activities || []).forEach(act => {
+                exportText += `${act.time || ''} - ${act.title || act.name || ''}\n`;
+                exportText += `  ${act.address || ''}\n\n`;
             });
         });
-
-        exportText += `\n=== ${t('itinerary.result.hotels')} ===\n`;
-        itinerary.stays.forEach(stay => {
-            exportText += `• ${stay.name} - ${stay.priceText}\n`;
-        });
-
-        // Copy to clipboard
-        navigator.clipboard.writeText(exportText);
-        alert(t('itinerary.result.exported'));
+        navigator.clipboard.writeText(exportText).catch(() => { });
+        setCopyFeedback('📋 Copié !'); setTimeout(() => setCopyFeedback(''), 2000);
     };
+
+    // Phase 3: Build map places from current day
+    const mapPlaces = useMemo(() => {
+        if (!itinerary?.days) return [];
+        const day = itinerary.days[selectedDay];
+        if (!day?.activities) return [];
+        return day.activities.filter(a => a.lat && a.lng).map(a => ({
+            id: a.id, name: a.title || a.name, lat: a.lat, lng: a.lng,
+            slot: a.slot || 'default', address: a.address,
+        }));
+    }, [itinerary, selectedDay]);
 
     const handleBack = () => {
         navigate('/');
@@ -186,42 +252,74 @@ const ItineraryResultScreen = () => {
                                     variant="info"
                                 />
 
-                                <div className="hidden sm:flex items-center gap-2 ml-2">
-                                    <PillButton
-                                        variant="default"
-                                        size="sm"
-                                        onClick={handleRegenerate}
-                                        disabled={isRegenerating}
-                                        icon={isRegenerating ? "⏳" : "🔄"}
-                                    >
+                                <div className="hidden sm:flex items-center gap-2 ml-2 no-print">
+                                    <PillButton variant="default" size="sm" onClick={handleRegenerate} disabled={isRegenerating} icon={isRegenerating ? "⏳" : "🔄"}>
                                         {isRegenerating ? t('itinerary.result.regenerating') : t('itinerary.result.regenerate')}
+                                    </PillButton>
+                                    <PillButton variant="default" size="sm" onClick={handleSaveTrip} disabled={isSaving || !!savedTripId} icon={savedTripId ? '✅' : '💾'}>
+                                        {savedTripId ? 'Sauvegardé' : isSaving ? '...' : 'Sauvegarder'}
                                     </PillButton>
                                     <PillButton variant="default" size="sm" onClick={handleShare} icon="📤">
                                         {t('itinerary.result.share')}
                                     </PillButton>
-                                    <PillButton variant="default" size="sm" onClick={handleExport} icon="📋">
-                                        {t('itinerary.result.export')}
+                                    <PillButton variant="default" size="sm" onClick={handleExportJSON} icon="📥">
+                                        JSON
+                                    </PillButton>
+                                    <PillButton variant="default" size="sm" onClick={handleExportPDF} icon="🖨️">
+                                        PDF
+                                    </PillButton>
+                                    <PillButton variant="default" size="sm" onClick={() => setShowMap(!showMap)} icon="🗺️">
+                                        {showMap ? 'Masquer carte' : 'Carte'}
                                     </PillButton>
                                 </div>
                             </div>
                         </div>
 
+                        {/* Copy feedback toast */}
+                        <AnimatePresence>
+                            {copyFeedback && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="mt-3 text-center text-sm font-medium text-amber-400"
+                                >
+                                    {copyFeedback}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        {/* Share link button (visible after save) */}
+                        {savedTripId && (
+                            <div className="mt-3 flex items-center gap-2 no-print">
+                                <button
+                                    onClick={handleCopyShareLink}
+                                    className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 rounded-lg text-amber-400 text-xs font-medium transition-colors"
+                                >
+                                    🔗 Copier le lien de partage
+                                </button>
+                                <span className="text-slate-500 text-xs truncate max-w-xs">
+                                    {window.location.origin}/trip/shared/{savedTripId}
+                                </span>
+                            </div>
+                        )}
+
                         {/* Mobile action buttons */}
-                        <div className="flex sm:hidden items-center gap-2 mt-4 overflow-x-auto pb-2">
-                            <PillButton
-                                variant="default"
-                                size="sm"
-                                onClick={handleRegenerate}
-                                disabled={isRegenerating}
-                                icon={isRegenerating ? "⏳" : "🔄"}
-                            >
+                        <div className="flex sm:hidden items-center gap-2 mt-4 overflow-x-auto pb-2 no-print">
+                            <PillButton variant="default" size="sm" onClick={handleRegenerate} disabled={isRegenerating} icon={isRegenerating ? "⏳" : "🔄"}>
                                 {t('itinerary.result.regenerate')}
+                            </PillButton>
+                            <PillButton variant="default" size="sm" onClick={handleSaveTrip} disabled={isSaving || !!savedTripId} icon={savedTripId ? '✅' : '💾'}>
+                                {savedTripId ? '✅' : 'Save'}
                             </PillButton>
                             <PillButton variant="default" size="sm" onClick={handleShare} icon="📤">
                                 {t('itinerary.result.share')}
                             </PillButton>
-                            <PillButton variant="default" size="sm" onClick={handleExport} icon="📋">
-                                {t('itinerary.result.export')}
+                            <PillButton variant="default" size="sm" onClick={handleExportJSON} icon="📥">
+                                JSON
+                            </PillButton>
+                            <PillButton variant="default" size="sm" onClick={() => setShowMap(!showMap)} icon="🗺️">
+                                Carte
                             </PillButton>
                         </div>
                     </GlassPanel>
@@ -244,6 +342,67 @@ const ItineraryResultScreen = () => {
                         </motion.div>
                     )}
 
+                    {/* Phase 3: Map View */}
+                    <AnimatePresence>
+                        {showMap && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="mb-6 no-print"
+                            >
+                                {/* Day selector tabs for map */}
+                                {itinerary.days && itinerary.days.length > 1 && (
+                                    <div className="flex gap-2 mb-3 overflow-x-auto pb-1">
+                                        {itinerary.days.map((day, i) => (
+                                            <button
+                                                key={i}
+                                                onClick={() => setSelectedDay(i)}
+                                                className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${selectedDay === i
+                                                        ? 'bg-amber-500 text-white'
+                                                        : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700'
+                                                    }`}
+                                            >
+                                                Jour {day.dayNumber || i + 1}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                                <div className="rounded-xl overflow-hidden shadow-xl border border-slate-700">
+                                    <ItineraMap places={mapPlaces} height="380px" />
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Phase 3: Budget Estimate Banner */}
+                    {itinerary.budgetEstimate && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mb-6 p-4 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-xl budget-estimate"
+                        >
+                            <div className="flex items-center justify-between flex-wrap gap-3">
+                                <div className="flex items-center gap-3">
+                                    <span className="text-2xl">💰</span>
+                                    <div>
+                                        <h4 className="text-white font-semibold text-sm">Budget estimé</h4>
+                                        <p className="text-emerald-400 font-bold text-lg">
+                                            ~€{itinerary.budgetEstimate.perDay}/jour · €{itinerary.budgetEstimate.total} total
+                                        </p>
+                                    </div>
+                                </div>
+                                {itinerary.budgetEstimate.breakdown && (
+                                    <div className="flex gap-4 text-xs text-slate-400">
+                                        <span>🎭 Activités: €{itinerary.budgetEstimate.breakdown.attractions}</span>
+                                        <span>🚌 Transport: €{itinerary.budgetEstimate.breakdown.transport}</span>
+                                        <span>🍽️ Repas: €{itinerary.budgetEstimate.breakdown.meals}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    )}
+
                     {/* Main Content Grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Left Column - Itinerary Days */}
@@ -262,21 +421,21 @@ const ItineraryResultScreen = () => {
                                         {t('itinerary.result.title')}
                                     </h2>
                                     <p className="text-white/50 text-sm">
-                                        {itinerary.days.reduce((acc, day) => acc + day.activities.length, 0)} {t('itinerary.result.activitiesOn')} {itinerary.days.length} {t('itinerary.result.days')}
+                                        {(itinerary.days || []).reduce((acc, day) => acc + (day.activities?.length || 0), 0)} {t('itinerary.result.activitiesOn')} {(itinerary.days || []).length} {t('itinerary.result.days')}
                                     </p>
                                 </div>
                             </motion.div>
 
                             {/* Day Cards */}
                             <div className="space-y-3">
-                                {itinerary.days.map((day, index) => (
+                                {(itinerary.days || []).map((day, index) => (
                                     <DayCard
-                                        key={day.dayNumber}
+                                        key={day.dayNumber || index}
                                         dayNumber={day.dayNumber}
                                         dayName={day.dayName}
                                         date={day.date}
                                         weather={day.weather}
-                                        activities={day.activities}
+                                        activities={day.activities || []}
                                         defaultExpanded={index === 0}
                                     />
                                 ))}

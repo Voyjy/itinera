@@ -1,0 +1,682 @@
+[
+  {
+    "id": "6657c8ed-6bd3-4267-86c9-de1213b8416c",
+    "city": "Paris",
+    "preferences": {
+      "pace": "Relax",
+      "tripType": "Romantique"
+    },
+    "itinerary": {
+      "days": [
+        {
+          "dayNumber": 1,
+          "activities": []
+        }
+      ],
+      "numDays": 3,
+      "totalAttractions": 10,
+      "city": "Paris"
+    },
+    "createdAt": "2026-02-17T15:03:16.602Z"
+  },
+  {
+    "id": "051b6b72-c9f0-47ba-a522-8108e43d2181",
+    "city": "Rome",
+    "preferences": {
+      "destination": "Rome",
+      "country": "Italie",
+      "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
+      "tags": [
+        "food",
+        "relaxed",
+        "nature",
+        "photography",
+        "couple"
+      ],
+      "activities": [
+        "Colisée",
+        "Fontaine de Trevi",
+        "Vatican",
+        "Dégustation de gelato"
+      ],
+      "startDate": "2026-02-17",
+      "endDate": "2026-02-24",
+      "travelers": 2,
+      "budget": "budget",
+      "pace": "relaxed"
+    },
+    "itinerary": {
+      "id": "itinerary-1771340743065",
+      "destination": "Rome",
+      "country": "Italy",
+      "tripType": "Voyage Personnalisé",
+      "travelers": 2,
+      "startDate": "2026-02-17",
+      "endDate": "2026-02-24",
+      "budget": "budget",
+      "pace": "relaxed",
+      "days": [
+        {
+          "dayNumber": 1,
+          "dayName": "Jour 1",
+          "date": "Lundi 3 Février",
+          "weather": {
+            "temp": 10,
+            "condition": "Ensoleillé"
+          },
+          "activities": [
+            {
+              "id": "act-1-1",
+              "type": "landmark",
+              "icon": "🏰",
+              "title": "Visite de Vatican City",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Vatican City, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "08:30"
+            },
+            {
+              "id": "act-1-2",
+              "type": "walking",
+              "icon": "🛍️",
+              "title": "Exploration de Testaccio",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Testaccio, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "10:30"
+            },
+            {
+              "id": "act-1-3",
+              "type": "landmark",
+              "icon": "🏛️",
+              "title": "Visite de Colosseum",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Colosseum, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "13:00"
+            },
+            {
+              "id": "act-1-4",
+              "type": "landmark",
+              "icon": "🏛️",
+              "title": "Visite de Roman Forum",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Roman Forum, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "15:30"
+            },
+            {
+              "id": "act-1-5",
+              "type": "walking",
+              "icon": "🚶",
+              "title": "Exploration de Trastevere",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Trastevere, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "18:00"
+            },
+            {
+              "id": "act-1-6",
+              "type": "food",
+              "icon": "🍝",
+              "title": "Dîner - Gelato",
+              "description": "Dégustez Gelato dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "20:30"
+            }
+          ]
+        },
+        {
+          "dayNumber": 2,
+          "dayName": "Jour 2",
+          "date": "Mardi 4 Février",
+          "weather": {
+            "temp": 12,
+            "condition": "Partiellement nuageux"
+          },
+          "activities": [
+            {
+              "id": "act-2-1",
+              "type": "food",
+              "icon": "🍽️",
+              "title": "Dîner - Carbonara",
+              "description": "Dégustez Carbonara dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "08:30"
+            },
+            {
+              "id": "act-2-2",
+              "type": "food",
+              "icon": "🥘",
+              "title": "Dîner - Supplì",
+              "description": "Dégustez Supplì dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "10:30"
+            },
+            {
+              "id": "act-2-3",
+              "type": "walking",
+              "icon": "🌆",
+              "title": "Exploration de Prati",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Prati, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "13:00"
+            },
+            {
+              "id": "act-2-4",
+              "type": "food",
+              "icon": "🍰",
+              "title": "Pause café - Tazza d'Oro",
+              "description": "Savourez Supplì dans ce lieu emblématique.",
+              "address": "Tazza d'Oro, Rome",
+              "duration": "1h30",
+              "category": "food",
+              "time": "15:30"
+            },
+            {
+              "id": "act-2-5",
+              "type": "food",
+              "icon": "🥐",
+              "title": "Petit-déjeuner - Caffè Sant'Eustachio",
+              "description": "Savourez Carbonara dans ce lieu emblématique.",
+              "address": "Caffè Sant'Eustachio, Rome",
+              "duration": "1h30",
+              "category": "food",
+              "time": "18:00"
+            },
+            {
+              "id": "act-2-6",
+              "type": "landmark",
+              "icon": "🌉",
+              "title": "Visite de Pantheon",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Pantheon, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "20:30"
+            }
+          ]
+        },
+        {
+          "dayNumber": 3,
+          "dayName": "Jour 3",
+          "date": "Mercredi 5 Février",
+          "weather": {
+            "temp": 14,
+            "condition": "Nuageux"
+          },
+          "activities": [
+            {
+              "id": "act-3-1",
+              "type": "food",
+              "icon": "☕",
+              "title": "Brunch - Antico Caffè Greco",
+              "description": "Savourez Cacio e Pepe dans ce lieu emblématique.",
+              "address": "Antico Caffè Greco, Rome",
+              "duration": "1h30",
+              "category": "food",
+              "time": "08:30"
+            },
+            {
+              "id": "act-3-2",
+              "type": "museum",
+              "icon": "📜",
+              "title": "Découverte - Capitoline Museums",
+              "description": "Explorez les collections exceptionnelles de ce musée renommé.",
+              "address": "Capitoline Museums, Rome",
+              "duration": "2h30",
+              "category": "culture",
+              "time": "10:30"
+            },
+            {
+              "id": "act-3-3",
+              "type": "food",
+              "icon": "🍷",
+              "title": "Dîner - Cacio e Pepe",
+              "description": "Dégustez Cacio e Pepe dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "13:00"
+            },
+            {
+              "id": "act-3-4",
+              "type": "museum",
+              "icon": "🖼️",
+              "title": "Découverte - Galleria Borghese",
+              "description": "Explorez les collections exceptionnelles de ce musée renommé.",
+              "address": "Galleria Borghese, Rome",
+              "duration": "2h30",
+              "category": "culture",
+              "time": "15:30"
+            },
+            {
+              "id": "act-3-5",
+              "type": "landmark",
+              "icon": "⛪",
+              "title": "Visite de Trevi Fountain",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Trevi Fountain, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "18:00"
+            },
+            {
+              "id": "act-3-6",
+              "type": "walking",
+              "icon": "🏘️",
+              "title": "Exploration de Monti",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Monti, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "20:30"
+            }
+          ]
+        },
+        {
+          "dayNumber": 4,
+          "dayName": "Jour 4",
+          "date": "Jeudi 6 Février",
+          "weather": {
+            "temp": 16,
+            "condition": "Dégagé"
+          },
+          "activities": [
+            {
+              "id": "act-4-1",
+              "type": "museum",
+              "icon": "🎨",
+              "title": "Découverte - Vatican Museums",
+              "description": "Explorez les collections exceptionnelles de ce musée renommé.",
+              "address": "Vatican Museums, Rome",
+              "duration": "2h30",
+              "category": "culture",
+              "time": "08:30"
+            },
+            {
+              "id": "act-4-2",
+              "type": "landmark",
+              "icon": "🏰",
+              "title": "Retour à Vatican City",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Vatican City, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "10:30"
+            },
+            {
+              "id": "act-4-3",
+              "type": "walking",
+              "icon": "🛍️",
+              "title": "Fin de journée à Testaccio",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Testaccio, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "13:00"
+            },
+            {
+              "id": "act-4-4",
+              "type": "landmark",
+              "icon": "🏛️",
+              "title": "Retour à Colosseum",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Colosseum, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "15:30"
+            },
+            {
+              "id": "act-4-5",
+              "type": "landmark",
+              "icon": "🏛️",
+              "title": "Retour à Roman Forum",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Roman Forum, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "18:00"
+            },
+            {
+              "id": "act-4-6",
+              "type": "walking",
+              "icon": "🚶",
+              "title": "Fin de journée à Trastevere",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Trastevere, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "20:30"
+            }
+          ]
+        },
+        {
+          "dayNumber": 5,
+          "dayName": "Jour 5",
+          "date": "Vendredi 7 Février",
+          "weather": {
+            "temp": 8,
+            "condition": "Ensoleillé"
+          },
+          "activities": [
+            {
+              "id": "act-5-1",
+              "type": "food",
+              "icon": "🍝",
+              "title": "Dîner - Gelato",
+              "description": "Dégustez Gelato dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "08:30"
+            },
+            {
+              "id": "act-5-2",
+              "type": "food",
+              "icon": "🍽️",
+              "title": "Dîner - Carbonara",
+              "description": "Dégustez Carbonara dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "10:30"
+            },
+            {
+              "id": "act-5-3",
+              "type": "food",
+              "icon": "🥘",
+              "title": "Dîner - Supplì",
+              "description": "Dégustez Supplì dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "13:00"
+            },
+            {
+              "id": "act-5-4",
+              "type": "walking",
+              "icon": "🌆",
+              "title": "Fin de journée à Prati",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Prati, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "15:30"
+            },
+            {
+              "id": "act-5-5",
+              "type": "food",
+              "icon": "🍰",
+              "title": "Pause café - Tazza d'Oro",
+              "description": "Savourez Supplì dans ce lieu emblématique.",
+              "address": "Tazza d'Oro, Rome",
+              "duration": "1h30",
+              "category": "food",
+              "time": "18:00"
+            },
+            {
+              "id": "act-5-6",
+              "type": "food",
+              "icon": "🥐",
+              "title": "Petit-déjeuner - Caffè Sant'Eustachio",
+              "description": "Savourez Carbonara dans ce lieu emblématique.",
+              "address": "Caffè Sant'Eustachio, Rome",
+              "duration": "1h30",
+              "category": "food",
+              "time": "20:30"
+            }
+          ]
+        },
+        {
+          "dayNumber": 6,
+          "dayName": "Jour 6",
+          "date": "Samedi 8 Février",
+          "weather": {
+            "temp": 10,
+            "condition": "Partiellement nuageux"
+          },
+          "activities": [
+            {
+              "id": "act-6-1",
+              "type": "landmark",
+              "icon": "🌉",
+              "title": "Retour à Pantheon",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Pantheon, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "08:30"
+            },
+            {
+              "id": "act-6-2",
+              "type": "food",
+              "icon": "☕",
+              "title": "Brunch - Antico Caffè Greco",
+              "description": "Savourez Cacio e Pepe dans ce lieu emblématique.",
+              "address": "Antico Caffè Greco, Rome",
+              "duration": "1h30",
+              "category": "food",
+              "time": "10:30"
+            },
+            {
+              "id": "act-6-3",
+              "type": "museum",
+              "icon": "📜",
+              "title": "Suite de - Capitoline Museums",
+              "description": "Explorez les collections exceptionnelles de ce musée renommé.",
+              "address": "Capitoline Museums, Rome",
+              "duration": "2h30",
+              "category": "culture",
+              "time": "13:00"
+            },
+            {
+              "id": "act-6-4",
+              "type": "food",
+              "icon": "🍷",
+              "title": "Dîner - Cacio e Pepe",
+              "description": "Dégustez Cacio e Pepe dans un restaurant traditionnel de Rome.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "dinner",
+              "time": "15:30"
+            },
+            {
+              "id": "act-6-5",
+              "type": "museum",
+              "icon": "🖼️",
+              "title": "Suite de - Galleria Borghese",
+              "description": "Explorez les collections exceptionnelles de ce musée renommé.",
+              "address": "Galleria Borghese, Rome",
+              "duration": "2h30",
+              "category": "culture",
+              "time": "18:00"
+            },
+            {
+              "id": "act-6-6",
+              "type": "landmark",
+              "icon": "⛪",
+              "title": "Retour à Trevi Fountain",
+              "description": "Découvrez ce site incontournable de Rome.",
+              "address": "Trevi Fountain, Rome",
+              "duration": "2h30",
+              "category": "sightseeing",
+              "time": "20:30"
+            }
+          ]
+        },
+        {
+          "dayNumber": 7,
+          "dayName": "Jour 7",
+          "date": "Dimanche 9 Février",
+          "weather": {
+            "temp": 12,
+            "condition": "Nuageux"
+          },
+          "activities": [
+            {
+              "id": "act-7-1",
+              "type": "walking",
+              "icon": "🏘️",
+              "title": "Fin de journée à Monti",
+              "description": "Balade dans ce quartier authentique de Rome.",
+              "address": "Monti, Rome",
+              "duration": "2h",
+              "category": "walk",
+              "time": "08:30"
+            },
+            {
+              "id": "act-7-2",
+              "type": "museum",
+              "icon": "🎨",
+              "title": "Suite de - Vatican Museums",
+              "description": "Explorez les collections exceptionnelles de ce musée renommé.",
+              "address": "Vatican Museums, Rome",
+              "duration": "2h30",
+              "category": "culture",
+              "time": "10:30"
+            },
+            {
+              "id": "act-7-3",
+              "type": "free",
+              "icon": "✨",
+              "title": "Temps libre",
+              "description": "Profitez de ce moment pour explorer Rome à votre rythme.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "free",
+              "time": "13:00"
+            },
+            {
+              "id": "act-7-4",
+              "type": "free",
+              "icon": "✨",
+              "title": "Temps libre",
+              "description": "Profitez de ce moment pour explorer Rome à votre rythme.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "free",
+              "time": "15:30"
+            },
+            {
+              "id": "act-7-5",
+              "type": "free",
+              "icon": "✨",
+              "title": "Temps libre",
+              "description": "Profitez de ce moment pour explorer Rome à votre rythme.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "free",
+              "time": "18:00"
+            },
+            {
+              "id": "act-7-6",
+              "type": "free",
+              "icon": "✨",
+              "title": "Temps libre",
+              "description": "Profitez de ce moment pour explorer Rome à votre rythme.",
+              "address": "Rome City Center",
+              "duration": "2h",
+              "category": "free",
+              "time": "20:30"
+            }
+          ]
+        }
+      ],
+      "stays": [
+        {
+          "id": "stay-1",
+          "name": "Boutique Hotel Rome",
+          "type": "Boutique Hotel",
+          "rating": 4.7,
+          "priceRange": "€€€",
+          "priceText": "180-250€ / nuit",
+          "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
+          "location": "Trastevere",
+          "amenities": [
+            "WiFi",
+            "Petit-déjeuner",
+            "Climatisation"
+          ],
+          "bookingUrl": "#"
+        },
+        {
+          "id": "stay-2",
+          "name": "Rome Central Hotel",
+          "type": "Hotel 3 étoiles",
+          "rating": 4.5,
+          "priceRange": "€€",
+          "priceText": "120-180€ / nuit",
+          "image": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=300&fit=crop",
+          "location": "Testaccio",
+          "amenities": [
+            "WiFi",
+            "Vue panoramique",
+            "Bar"
+          ],
+          "bookingUrl": "#"
+        },
+        {
+          "id": "stay-3",
+          "name": "Le Rome Residence",
+          "type": "Boutique Hotel",
+          "rating": 4.6,
+          "priceRange": "€€",
+          "priceText": "140-200€ / nuit",
+          "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=300&fit=crop",
+          "location": "Monti",
+          "amenities": [
+            "WiFi",
+            "Rooftop",
+            "Restaurant"
+          ],
+          "bookingUrl": "#"
+        }
+      ],
+      "transport": [
+        {
+          "id": "transport-1",
+          "name": "Metro / Tram",
+          "type": "Transport public",
+          "icon": "🚇",
+          "description": "Pass transport Rome - Zones centrales",
+          "priceText": "15-25€ / semaine",
+          "bookingUrl": "#"
+        },
+        {
+          "id": "transport-2",
+          "name": "Uber / Taxi",
+          "type": "Taxi privé",
+          "icon": "🚕",
+          "description": "Pour les trajets de nuit ou avec bagages",
+          "priceText": "Variable",
+          "bookingUrl": "#"
+        },
+        {
+          "id": "transport-3",
+          "name": "Vélos en libre-service",
+          "type": "Vélo",
+          "icon": "🚲",
+          "description": "Idéal pour explorer les quartiers",
+          "priceText": "5€ / jour",
+          "bookingUrl": "#"
+        }
+      ],
+      "generatedAt": "2026-02-17T15:05:43.065Z"
+    },
+    "createdAt": "2026-02-17T15:06:42.176Z"
+  }
+]

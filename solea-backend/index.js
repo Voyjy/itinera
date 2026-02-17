@@ -21,6 +21,9 @@ const serpHotelsRoutes = require('./routes/serpHotels');
 const placesRoutes = require('./routes/places');
 const itineraryRoutes = require('./routes/itinerary');
 
+// Phase 3 Routes
+const savedTripsRoutes = require('./routes/savedTrips');
+
 // CORS Configuration - Allow Vercel production + preview domains
 const allowedOrigins = [
   'https://itinera-xi.vercel.app', // Vercel production
@@ -113,6 +116,9 @@ app.use('/api/serp/hotels', serpHotelsRoutes);
 // Phase 1+2: Places deck + Itinerary generation
 app.use('/api/places', placesRoutes);
 app.use('/api/itinerary', itineraryRoutes);
+
+// Phase 3: Saved trips (file-based, no auth required)
+app.use('/api/saved-trips', savedTripsRoutes);
 
 // Start the HTTP server FIRST (Places API + Itinerary API don't need MongoDB)
 const PORT = process.env.PORT || 5000;

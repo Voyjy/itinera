@@ -2,14 +2,18 @@
  * Itinerary Controller — handles /api/itinerary/* endpoints
  *
  * Phase 2: proximity clustering + time-of-day scheduling
+ * Phase 3: budget estimation + weather awareness
  *
- * Pipeline: provider → score → cluster → schedule → respond
+ * Pipeline: provider → weather → score → cluster → schedule → budget → respond
  */
 
 const { loadAllPlaces, getPlaces } = require('../services/localProvider');
 const { scorePlaces } = require('../utils/scoring');
 const { generateItinerary } = require('../utils/scheduler');
 const { normalizePreferences } = require('../types/preferences');
+const { estimateBudget } = require('../utils/budgetEstimator');
+const { getWeatherForecast, applyWeatherAdjustments } = require('../utils/weather');
+const { getWeights } = require('../utils/weights');
 
 /**
  * GET /api/itinerary/generate
@@ -20,6 +24,7 @@ const { normalizePreferences } = require('../types/preferences');
  * - startDate, endDate (optional)
  *
  * Returns structured itinerary with dayPlans[].morning/afternoon/evening
+ * Phase 3: includes budgetEstimate and weatherSummary
  */
 async function generateHandler(req, res) {
     try {
@@ -38,6 +43,12 @@ async function generateHandler(req, res) {
             budget: preferences.budget,
             interests: preferences.interests,
         });
+
+        // Phase 3: Optional weather awareness (never throws)
+        let weatherForecast = null;
+        try {
+            weatherForecast = await getWeatherForecast(preferences.city);
+        } catch (_) { /* silently ignore */ }
 
         // 1. Fetch candidate places — smart matching with French aliases
         let candidates = getPlaces(preferences.city);
@@ -70,8 +81,16 @@ async function generateHandler(req, res) {
             });
         }
 
+        // Phase 3: Apply weather-based weight adjustments if available
+        let adjustedPreferences = preferences;
+        if (weatherForecast) {
+            const baseWeights = getWeights(preferences);
+            const adjusted = applyWeatherAdjustments(baseWeights, weatherForecast);
+            adjustedPreferences = { ...preferences, _weatherWeights: adjusted };
+        }
+
         // 2. Score places
-        const scoredPlaces = scorePlaces(candidates, preferences);
+        const scoredPlaces = scorePlaces(candidates, adjustedPreferences);
 
         // 3. Take top N candidates (enough for multi-day)
         const topN = Math.min(scoredPlaces.length, 8);
@@ -80,7 +99,17 @@ async function generateHandler(req, res) {
         // 4. Generate itinerary (includes clustering + scheduling)
         const itinerary = generateItinerary(topScored, preferences);
 
-        console.log(`✅ Generated ${itinerary.numDays}-day itinerary: ${itinerary.totalAttractions} attractions`);
+        // Phase 3: Budget estimation
+        const budgetEstimate = estimateBudget(itinerary, topScored, preferences);
+        itinerary.budgetEstimate = budgetEstimate;
+
+        // Phase 3: Attach weather summary if available
+        if (weatherForecast) {
+            itinerary.weatherSummary = weatherForecast.summary;
+            itinerary.isRainy = weatherForecast.isRainy;
+        }
+
+        console.log(`✅ Generated ${itinerary.numDays}-day itinerary: ${itinerary.totalAttractions} attractions, budget: €${budgetEstimate.perDay}/day`);
 
         res.json({
             success: true,
