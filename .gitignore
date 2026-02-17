@@ -8,3 +8,12 @@ dist/
 
 # Media
 solea-frontend/src/assets/videos/*.mp4
+
+
+node_modules/
+dist/
+build/
+android/
+.gradle/
+.idea/
+.env
