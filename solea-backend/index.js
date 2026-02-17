@@ -17,11 +17,17 @@ const blogRoutes = require('./routes/blogs');
 const redisRoutes = require('./routes/redis');
 const serpHotelsRoutes = require('./routes/serpHotels');
 
+// Phase 1+2 Routes
+const placesRoutes = require('./routes/places');
+const itineraryRoutes = require('./routes/itinerary');
+
 // CORS Configuration - Allow Vercel production + preview domains
 const allowedOrigins = [
   'https://itinera-xi.vercel.app', // Vercel production
   'https://voluble-scone-617f6ee.netlify.app', // Netlify (legacy)
-  'http://localhost:5173', // Local dev
+  'http://localhost:5173', // Local dev (Vite)
+  'http://localhost:5174', // Vite fallback port
+  'http://localhost:5175', // Vite fallback port
   'http://localhost:3000', // Local dev alt
 ];
 
@@ -104,17 +110,23 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/redis', redisRoutes);
 app.use('/api/serp/hotels', serpHotelsRoutes);
 
-// MongoDB connection
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
+// Phase 1+2: Places deck + Itinerary generation
+app.use('/api/places', placesRoutes);
+app.use('/api/itinerary', itineraryRoutes);
 
-mongoose.connect(MONGO_URI)
-  .then(() => {
-    console.log('✅ Connected to MongoDB Atlas');
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('❌ MongoDB connection error:', err.message);
-  });
+// Start the HTTP server FIRST (Places API + Itinerary API don't need MongoDB)
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+
+  // Connect to MongoDB in the background (non-blocking)
+  const MONGO_URI = process.env.MONGO_URI;
+  if (MONGO_URI) {
+    mongoose.connect(MONGO_URI)
+      .then(() => console.log('✅ Connected to MongoDB Atlas'))
+      .catch((err) => console.error('❌ MongoDB connection error:', err.message));
+  } else {
+    console.warn('⚠️ No MONGO_URI set — MongoDB features disabled');
+  }
+});
